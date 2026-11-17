@@ -1,0 +1,3681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff"><title>JC CONNECT — Connect Your World</title>
+<style>
+:root {
+  --ink: #18212f;
+  --muted: #8490a0;
+  --line: #e9edf4;
+  --blue: #326cf4;
+  --blue2: #eaf0ff;
+  --bg: #f5f7fc;
+  --white: #ffffff;
+  --shadow: 0 12px 35px rgba(27, 43, 72, 0.06);
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial}button,input,textarea{font:inherit}button{cursor:pointer}#app{min-height:100vh;padding-bottom:82px}.top{height:68px;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,calc((100vw - 1180px)/2));position:sticky;top:0;z-index:20}.brand{font-weight:950;font-size:25px;letter-spacing:-1.5px;color:var(--blue)}.brand small{font-size:10px;letter-spacing:2px;color:#8993a2;margin-left:6px}.topright {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.topright .avatar {
+  border: 2px solid #e8edf5;
+  box-shadow: 0 3px 10px rgba(24, 33, 47, 0.08);
+}.iconbtn{border:0;background:#f3f5f9;border-radius:50%;width:40px;height:40px;font-size:18px;color:#526071;position:relative}.avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#dfe8ff}.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 32px;
+}.main{min-width:0}.heading{display:flex;justify-content:space-between;align-items:end;margin:3px 0 15px}.heading h1 {
+  font-size: 27px;
+  font-weight: 850;
+  margin: 0;
+  letter-spacing: -1px;
+  color: #18212f;
+}.heading p{color:var(--muted);font-size:13px;margin:4px 0 0}.stories{display:flex;gap:14px;overflow:auto;padding:5px 2px 16px;scrollbar-width:none}.story{
+  flex:0 0 76px;
+  text-align:center;
+  border:0;
+  background:none;
+  padding:0;
+  color:#536174;
+  font-size:12px;
+  font-weight:600;
+  transition:transform .2s ease;
+}
+.story:active{
+  transform:scale(.95);
+}
+.storyring{
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  padding:3px;
+  background:linear-gradient(135deg,#ff9b45,#ed3d91,#705cff);
+  margin:0 auto 7px;
+}.storyring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#ff8d52,#e83c9c,#685dff);margin:0 auto 6px}.storyring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.story:hover .storyring img {
+  transform: scale(1.04);
+}.story.add .storyring{background:#edf2ff;display:grid;place-items:center;color:var(--blue);font-size:27px;border:1px dashed #9eb5ff}.composer {
+  background: #ffffff;
+  border: 1px solid #e8edf4;
+  border-radius: 22px;
+  padding: 18px;
+  margin: 5px 0 20px;
+  box-shadow: 0 8px 28px rgba(24, 33, 47, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.composer:focus-within {
+  box-shadow: 0 10px 30px rgba(50, 108, 244, 0.10);
+}.compose-row{display:flex;align-items:center;gap:11px}.compose-input{border:0;background:#f6f7fa;border-radius:30px;padding:13px 16px;flex:1;text-align:left;color:#8a94a3}.compose-actions{display:flex;gap:8px;margin:12px 0 0 49px}.softbtn{border:0;border-radius:20px;padding:8px 12px;background:#f4f6fa;color:#536174;font-size:12px}.softbtn b{margin-right:5px}.feed {
+  display: grid;
+  gap: 22px;
+}.post{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.posthead{display:flex;align-items:center;gap:10px;padding:14px 16px}.posthead img{width:42px;height:42px;border-radius:50%;object-fit:cover}.person{flex:1}.person strong{font-size:14px}.person small{display:block;color:#98a1ae;font-size:11px;margin-top:2px}.more{border:0;background:none;color:#8b95a2;font-size:20px}.posttext{padding:0 16px 13px;line-height:1.5;font-size:14px}.media{width:100%;height:clamp(230px,42vw,460px);background:#e5eaf2;display:block;object-fit:cover}.postfoot{padding:11px 16px 14px}.counts{font-size:12px;color:#929baa;padding-bottom:10px;border-bottom:1px solid #f0f2f5}.actions{display:flex;justify-content:space-between;padding-top:10px}.act{border:0;background:none;color:#687486;font-size:13px;padding:5px 8px}.act.liked{color:#ed4d70}.sidebar{position:sticky;top:90px;align-self:start}.sidecard {
+  background: #ffffff;
+  border: 1px solid #e9edf3;
+  border-radius: 20px;
+  padding: 19px;
+  margin-bottom: 17px;
+  box-shadow: 0 8px 25px rgba(24, 33, 47, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidecard:hover {
+  box-shadow: 0 12px 30px rgba(24, 33, 47, 0.08);
+}.sidecard h3{font-size:14px;margin:0 0 14px}.profile-mini{display:flex;align-items:center;gap:11px}.profile-mini img{width:46px;height:46px;border-radius:50%;object-fit:cover}.profile-mini p{margin:0;font-size:13px;font-weight:750}.profile-mini small{color:var(--muted);font-weight:400}.trend{display:flex;justify-content:space-between;margin:12px 0;font-size:13px}.trend span{color:var(--muted);font-size:11px}.bottomnav {
+  position: fixed;
+  z-index: 30;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid #e9edf3;
+  display: flex;
+  justify-content: center;
+  padding: 10px 8px max(10px, env(safe-area-inset-bottom));
+  gap: clamp(12px, 5vw, 65px);
+  box-shadow: 0 -5px 20px rgba(24, 33, 47, 0.04);
+}.nav{border:0;background:none;color:#929baa;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;min-width:45px}.nav i{font-style:normal;font-size:21px}.nav.active {
+  color: #326cf4;
+  font-weight: 850;
+  transform: translateY(-2px);
+}
+
+.nav.active i {
+  filter: drop-shadow(0 3px 5px rgba(50, 108, 244, 0.18));
+}.nav.create i {
+  background: linear-gradient(135deg, #326cf4, #2055dc);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 4px 15px;
+  box-shadow: 0 5px 14px rgba(50, 108, 244, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.nav.create:active i {
+  transform: scale(0.92);
+}.page{display:none}.page.active{display:block}
+.chatlayout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  min-height: 68vh;
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(24,33,47,0.05);
+}
+grid-template-columns:270px 1fr;min-height:68vh;background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden}.chatlist {
+  border-right: 1px solid #e9edf4;
+  padding: 20px 16px;
+  background: #ffffff;
+}
+
+.chatlist h2 {
+  font-size: 19px;
+  font-weight: 800;
+  color: #18212f;
+  margin: 0 0 18px;
+}.chatlist h2{font-size:20px;margin:0 0 14px}.search{width:100%;border:0;background:#f4f6f9;border-radius:12px;padding:11px 13px;margin-bottom:12px;outline:none}.chatperson{display:flex;gap:10px;align-items:center;padding:11px 5px;border-bottom:1px solid #f3f4f7;cursor:pointer}.chatperson img{width:42px;height:42px;border-radius:50%;object-fit:cover}.chatperson strong{font-size:13px}.chatperson small{display:block;color:#98a1ae;font-size:11px;margin-top:3px}.conversation{display:flex;flex-direction:column;min-width:0}.convhead{padding:14px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}.convhead img{width:38px;height:38px;border-radius:50%}.convhead strong{font-size:14px}.convhead small{display:block;color:#25a56a;font-size:11px}.messages{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:300px;max-height:55vh;overflow:auto;background:linear-gradient(#fff,#fafbfe)}.bubble{max-width:76%;padding:11px 14px;border-radius:16px;background:#f0f2f6;font-size:13px;line-height:1.4;align-self:flex-start}.bubble.mine{align-self:flex-end;background:var(--blue);color:white;border-bottom-right-radius:5px}.bubble small{display:block;font-size:9px;opacity:.65;margin-top:5px}.sendbar{padding:12px;display:flex;gap:8px;border-top:1px solid var(--line)}.sendbar input{flex:1;min-width:0;border:0;background:#f4f6f9;border-radius:22px;padding:12px 15px;outline:none}.sendbar button,.primary{border:0;background:var(--blue);color:white;border-radius:22px;padding:11px 17px;font-weight:750}.profilehero {
+  background: linear-gradient(120deg, #326cf4, #829cf8, #e5c5e8);
+  height: 170px;
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(50, 108, 244, 0.12);
+}.profilebox{background:white;border:1px solid var(--line);border-radius:18px;padding:0 20px 20px;margin-bottom:18px}.profiletop{display:flex;align-items:end;gap:15px;margin-top:-38px}.profiletop img{width:88px;height:88px;border:4px solid white;border-radius:50%;object-fit:cover}.profiletop h2{margin:0 0 4px;font-size:20px}.profiletop p{margin:0 0 6px;color:var(--muted);font-size:12px}.profilebio{font-size:13px;color:#687486;margin:15px 0}.metrics{display:flex;gap:24px;font-size:12px;color:#7b8695}.metrics b{color:var(--ink);font-size:16px;display:block}.modal{position:fixed;inset:0;background:#18212f66;z-index:60;display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{width:min(480px,100%);background:white;border-radius:20px;padding:21px;box-shadow:0 20px 70px #0003}.modalbox h2{margin:0 0 14px;font-size:20px}.field{width:100%;border:1px solid #e7eaf0;border-radius:12px;padding:12px;margin:7px 0;outline-color:#9ab4ff}.modalrow{display:flex;justify-content:flex-end;gap:8px;margin-top:13px}.cancel{border:0;background:#f1f3f7;padding:11px 16px;border-radius:20px;color:#657184}.empty{padding:55px 20px;text-align:center;color:#8a95a4}.empty b{display:block;color:#334155;font-size:18px;margin-bottom:6px}
+@media(max-width:800px){.wrap{display:block;padding:17px 12px}.sidebar{display:none}.top{height:59px;padding:0 14px}.brand{font-size:23px}.chatlayout{grid-template-columns:105px 1fr;min-height:70vh}.chatlist{padding:9px}.chatlist h2{font-size:16px}.chatperson{padding:10px 0;justify-content:center}.chatperson img{width:42px;height:42px}.chatperson div{display:none}.chatlist .search{font-size:10px;padding:8px 5px}.messages{padding:12px;max-height:58vh}.convhead.conv-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.call-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.call-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #f0f5ff;
+  color: #2563eb;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.call-btn:hover {
+  background: #dce8ff;
+  transform: scale(1.06);
+}{padding:11px}.sendbar{padding:9px}.heading h1{font-size:23px}}
+
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:22px;background:linear-gradient(145deg,#f5f8ff,#fff7fb)}
+.auth-card {
+  width: min(500px, 100%);
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 18px 55px rgba(24, 33, 47, 0.09);
+}
+.auth-logo {
+  font-size: 40px;
+  font-weight: 950;
+  letter-spacing: -2.5px;
+  color: #326cf4;
+  margin-bottom: 8px;
+  text-shadow: 0 5px 15px rgba(50, 108, 244, 0.15);
+}
+.auth-card h1{font-size:23px;margin:8px 0}.auth-card p{color:var(--muted);font-size:13px;line-height:1.5}
+.auth-card .field{margin:7px 0}.auth-actions{display:grid;gap:9px;margin-top:12px}
+.auth-actions button{width:100%;border:0;border-radius:13px;padding:13px;font-weight:750}
+.auth-primary{background:var(--blue);color:white}.auth-secondary{background:#eef2ff;color:#315fce}
+.auth-message{font-size:12px!important;min-height:18px;margin:10px 0 0!important}
+#signOutBtn{border:0;background:#fff0f2;color:#c33;border-radius:18px;padding:8px 11px;font-size:12px;font-weight:700}
+
+.auth-card{max-width:500px}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.auth-grid .full{grid-column:1/-1}
+.auth-card .field{width:100%;min-width:0;padding:13px 14px;border:1px solid #e5e9f0;border-radius:12px;background:#fff;color:#18212f}
+.auth-card select.field{appearance:auto}
+.auth-terms{display:flex;align-items:flex-start;gap:9px;margin:12px 0;color:#596579;font-size:12px;line-height:1.5}
+.auth-terms input{margin-top:2px;accent-color:#326cf4}
+.auth-note{font-size:11px!important;color:#8490a0!important;margin:5px 0!important}
+.auth-message{white-space:pre-wrap}
+@media(max-width:480px){.auth-grid{grid-template-columns:1fr}.auth-grid .full{grid-column:auto}.auth-card{padding:20px}}
+
+/* JC CONNECT — Premium post card styling */
+
+.post {
+  border: 1px solid #e9edf3;
+  border-radius: 20px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(24, 33, 47, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.posthead {
+  padding: 16px;
+}
+
+.posthead img {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #f0f3f8;
+}
+
+.person strong {
+  font-size: 14px;
+  font-weight: 750;
+  color: #18212f;
+}
+
+.posttext {
+  padding: 0 16px 15px;
+  color: #354154;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.media {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  background: #f0f2f6;
+}
+
+.postfoot {
+  padding: 13px 16px 15px;
+}
+
+.counts {
+  color: #7d8999;
+  font-size: 12px;
+}
+
+.act {
+  border-radius: 10px;
+  padding: 8px 10px;
+  transition: background 0.2s ease;
+}
+
+.act:active {
+  background: #f0f3f9;
+}
+
+.act.liked {
+  color: #ed4d70;
+  font-weight: 700;
+}
+
+/* JC CONNECT Notifications Panel */
+
+.notifications-panel {
+  display: none;
+  position: absolute;
+  top: 75px;
+  right: 20px;
+  width: min(350px, calc(100vw - 30px));
+  background: #ffffff;
+  border: 1px solid #e9edf3;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 15px 40px rgba(24, 33, 47, 0.14);
+  z-index: 100;
+}
+
+.notifications-panel.show {
+  display: block;
+}
+
+.notifications-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.notifications-head h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #18212f;
+}
+
+.notifications-head span {
+  color: #326cf4;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.notification-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 0;
+  border-top: 1px solid #edf0f5;
+}
+
+.notification-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #f3f6ff;
+  border-radius: 50%;
+  font-size: 19px;
+}
+
+.notification-item strong {
+  display: block;
+  color: #18212f;
+  font-size: 13px;
+}
+
+.notification-item p {
+  margin: 4px 0;
+  color: #7d8999;
+  font-size: 12px;
+}
+
+.notification-item small {
+  color: #a0a9b5;
+  font-size: 11px;
+}
+.notification-bell {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 9px;
+  height: 9px;
+  background: #ef4444;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+.incoming-call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 12px;
+  margin: 8px;
+  max-width: 100%;
+}
+
+.incoming-call img {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.incoming-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.incoming-info strong {
+  display: block;
+  font-size: 12px;
+}
+
+.incoming-info small {
+  font-size: 10px;
+  color: #888;
+}
+
+.incoming-call button {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.decline-btn {
+  background: #e53935;
+}
+
+.accept-btn {
+  background: #16a34a;
+}
+.voice-note-btn {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #eef3ff;
+  color: #2563eb;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.voice-note-btn:hover {
+  background: #dce7ff;
+}
+
+.voice-message {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
+
+.voice-message audio {
+  width: 230px;
+  max-width: 85%;
+  border-radius: 20px;
+}
+.recording-indicator {
+  display: none;
+  color: #e53935;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 5px 10px;
+  animation: recordingPulse 1s infinite;
+}
+
+@keyframes recordingPulse {
+  50% { opacity: 0.3; }
+}
+/* JC CONNECT MOBILE WIDTH FIX */
+@media screen and (max-width: 768px) {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .layout,
+  .app-container,
+  .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+/* JC CONNECT MOBILE WIDTH FIX */
+@media screen and (max-width: 768px) {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .layout,
+  .app-container,
+  .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+/* JC CONNECT — responsive phone and tablet layout */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #app {
+    width: 100%;
+    min-width: 0;
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  .top {
+    width: 100%;
+    height: 58px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .brand { font-size: 21px; white-space: nowrap; }
+  .brand small { font-size: 9px; margin-left: 3px; }
+  .topright { gap: 7px; }
+  .topright .iconbtn { width: 35px; height: 35px; font-size: 17px; }
+  .topright .avatar { width: 34px; height: 34px; }
+  #signOutBtn { padding: 7px 9px; font-size: 11px; }
+
+  .wrap {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 15px 10px 22px;
+  }
+
+  .main, .page { width: 100%; min-width: 0; }
+  .sidebar { display: none !important; }
+
+  .heading {
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 3px 0 13px;
+  }
+  .heading h1 { font-size: 22px; line-height: 1.2; }
+  .heading p { font-size: 12px; }
+
+  .stories {
+    width: 100%;
+    gap: 11px;
+    padding: 5px 1px 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .story { flex-basis: 65px; font-size: 11px; }
+  .storyring { width: 56px; height: 56px; }
+
+  .composer {
+    width: 100%;
+    padding: 13px;
+    border-radius: 17px;
+    margin: 4px 0 16px;
+  }
+  .compose-row { gap: 8px; }
+  .compose-row .avatar { width: 34px; height: 34px; flex: 0 0 34px; }
+  .compose-input { min-width: 0; padding: 11px 13px; font-size: 12px; }
+  .compose-actions { margin: 10px 0 0 42px; gap: 6px; flex-wrap: wrap; }
+  .softbtn { padding: 8px 10px; font-size: 11px; }
+
+  .feed { width: 100%; gap: 15px; }
+  .post { width: 100%; min-width: 0; border-radius: 16px; }
+  .posthead { padding: 12px; }
+  .posthead img { width: 39px; height: 39px; }
+  .posttext { padding: 0 12px 12px; font-size: 13px; }
+  .media {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  .postfoot { padding: 11px 12px 12px; }
+  .actions { gap: 2px; }
+  .act { padding: 7px 5px; font-size: 11px; }
+
+  body.signed-out .bottomnav { display: none !important; }
+  .bottomnav {
+    justify-content: space-around;
+    gap: 0;
+    width: 100%;
+    padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+  }
+  .nav { flex: 1 1 20%; min-width: 0; font-size: 10px; }
+  .nav i { font-size: 20px; }
+  .nav.create i { padding: 3px 13px; }
+
+  .chatlayout {
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+    border-radius: 16px;
+  }
+  .chatlist {
+    width: 100%;
+    padding: 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .chatlist h2 { font-size: 17px; margin-bottom: 10px; }
+  .chatlist .search { width: 100%; margin-bottom: 6px; }
+  #chatPeople {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 3px 0 7px;
+  }
+  .chatperson {
+    flex: 0 0 72px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 6px 2px;
+    border: 0;
+    text-align: center;
+  }
+  .chatperson img { width: 43px; height: 43px; }
+  .chatperson div { display: block; width: 100%; min-width: 0; }
+  .chatperson strong {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+  .chatperson small { display: none; }
+  .conversation { width: 100%; min-width: 0; min-height: 390px; }
+  .convhead { padding: 11px 12px; }
+  .convhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 65px;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f5;
+  box-sizing: border-box;
+}
+  .messages {
+  min-height: 230px;
+  max-height: 42vh;
+  padding: 15px 12px;
+  background: #f5f7fb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+  .bubble {
+  max-width: 80%;
+  padding: 10px 13px;
+  border-radius: 15px;
+  background: #ffffff;
+  color: #202939;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.bubble.mine {
+  align-self: flex-end;
+  background: #d9fdd3;
+  color: #172033;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble:not(.mine) {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.bubble small {
+  display: block;
+  font-size: 10px;
+  color: #87909d;
+  text-align: right;
+  margin-top: 4px;
+}
+  .sendbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #ffffff;
+  border-top: 1px solid #edf0f5;
+}
+  .sendbar input { min-width: 0; padding: 11px 12px; }
+  .sendbar button { padding: 10px 13px; }
+  #messageInput {
+  min-width: 0;
+  flex: 1;
+  width: 1px;
+  border: none;
+  outline: none;
+  background: #f1f3f6;
+  border-radius: 25px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+  #voiceNoteBtn { flex: 0 0 38px; width: 38px; height: 38px; min-width: 38px; }
+
+  .profilehero { height: 125px; border-radius: 17px; }
+  .profilebox { padding: 0 13px 15px; }
+  .profiletop { gap: 10px; margin-top: -32px; }
+  .profiletop img { width: 72px; height: 72px; }
+  .profiletop h2 { font-size: 18px; }
+  .metrics { gap: 17px; flex-wrap: wrap; }
+
+  .notifications-panel {
+    position: fixed;
+    top: 64px;
+    right: 8px;
+    width: min(350px, calc(100vw - 16px));
+    max-height: calc(100dvh - 85px);
+    overflow-y: auto;
+  }
+
+  .modal { padding: 12px; }
+  .modalbox { width: 100%; max-height: 88dvh; overflow-y: auto; padding: 17px; }
+  .auth-screen { padding: 14px; }
+  .auth-card { width: 100%; padding: 20px 16px; border-radius: 20px; }
+}
+
+@media (max-width: 380px) {
+  .topright { gap: 5px; }
+  #signOutBtn { font-size: 10px; padding: 7px 7px; }
+  .brand { font-size: 19px; }
+  .brand small { letter-spacing: 1px; }
+  .wrap { padding-left: 8px; padding-right: 8px; }
+  .actions .act { font-size: 10px; padding-left: 3px; padding-right: 3px; }
+}
+/* JC CONNECT RESPONSIVE FIX */
+@media screen and (max-width: 1000px) {
+  .wrap {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    box-sizing: border-box;
+  }
+
+  .main {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .sidebar {
+    display: none !important;
+  }
+
+  .chatlayout {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: 100px minmax(0, 1fr) !important;
+  }
+}
+.back-to-chats {
+  display: none;
+  border: 0;
+  background: #eef3ff;
+  color: #326cf4;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .chatlayout {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  .chatlist,
+  .conversation {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  .chatlist {
+    display: block !important;
+  }
+  
+  .conversation {
+    display: none !important;
+  }
+  
+  .chatlayout.chat-open .chatlist {
+    display: none !important;
+  }
+  
+  .chatlayout.chat-open .conversation {
+    display: flex !important;
+    flex-direction: column;
+  }
+  
+  .chatlayout.chat-open .back-to-chats {
+    display: block !important;
+  }
+}
+.convhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.convhead img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.conv-info strong {
+  display: block;
+  font-size: 15px;
+}
+
+.conv-info small {
+  display: block;
+  margin-top: 4px;
+  color: #16a34a;
+  font-size: 11px;
+}
+
+.online-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #16a34a;
+  border-radius: 50%;
+}
+.conv-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.conv-info strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.conv-info small {
+  font-size: 12px;
+  color: #16a36a;
+}
+
+.online-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #16c784;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+#chatAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e8eef7;
+} .conversation
+/* Mobile chat list improvement */
+@media (max-width: 768px) {
+  .chatperson {
+    min-height: 68px;
+    padding: 12px;
+    gap: 12px;
+    border-bottom: 1px solid #edf0f5;
+    cursor: pointer;
+  }
+
+  .chatperson img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .chatperson strong {
+    display: block;
+    font-size: 14px;
+  }
+
+  .chatperson small {
+    display: block;
+    margin-top: 4px;
+    color: #7b8494;
+  }
+}
+/* Chat message styling */
+.bubble {
+  max-width: 80%;
+  padding: 11px 14px;
+  margin: 8px 0;
+  border-radius: 16px;
+  background: #f0f2f5;
+  color: #202124;
+  overflow-wrap: anywhere;
+}
+
+.bubble.mine {
+  margin-left: auto;
+  background: #2878f0;
+  color: white;
+}
+
+.bubble small {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  opacity: 0.7;
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .sendbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #edf0f5;
+  }
+
+  .sendbar input {
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    border: 1px solid #e1e5ec;
+    border-radius: 22px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .sendbar button {
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 768px) {
+  .convhead {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    border-bottom: 1px solid #edf0f5;
+  }
+
+  .convhead img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .conv-info strong {
+    font-size: 14px;
+  }
+
+  .conv-info small {
+    font-size: 11px;
+  }
+
+  .call-actions {
+    display: flex;
+    gap: 8px;
+  }
+}
+@media (max-width: 768px) {
+  .chatlayout {
+    height: calc(100dvh - 150px);
+    min-height: 400px;
+    overflow: hidden;
+  }
+
+  .conversation {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 12px;
+  }
+
+  .sendbar {
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile home feed improvements */
+@media (max-width: 768px) {
+  .post {
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .post img {
+    max-width: 100%;
+  }
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .post-header img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+/* JC CONNECT SETTINGS */
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.settings-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  color: #1f2937;
+  text-align: left;
+  cursor: pointer;
+}
+
+.settings-item span {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-item strong {
+  font-size: 15px;
+}
+
+.settings-item small {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.settings-item b {
+  font-size: 22px;
+  color: #9ca3af;
+}
+/* HELP AND SUPPORT */
+
+.help-content {
+    line-height: 1.7;
+    color: #374151;
+}
+
+.help-content h3 {
+    color: #111827;
+    font-size: 16px;
+    margin: 18px 0 8px;
+}
+
+.help-content p {
+    font-size: 14px;
+    margin: 8px 0 14px;
+}
+
+.help-content hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 18px 0;
+}
+
+.help-content details {
+    background: #f7f8fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.help-content summary {
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1f2937;
+}
+
+.help-content details p {
+    margin: 10px 0 0;
+}
+/* JC CONNECT DARK MODE */
+
+body.jc-dark-mode {
+    background: #111827;
+    color: #f9fafb;
+}
+
+body.jc-dark-mode .page,
+body.jc-dark-mode .profilebox,
+body.jc-dark-mode .settings-item,
+body.jc-dark-mode .card,
+body.jc-dark-mode .post {
+    background: #1f2937;
+    color: #f9fafb;
+}
+
+body.jc-dark-mode h1,
+body.jc-dark-mode h2,
+body.jc-dark-mode h3,
+body.jc-dark-mode p,
+body.jc-dark-mode small {
+    color: #e5e7eb;
+}
+
+body.jc-dark-mode .settings-item {
+    border-color: #374151;
+}
+
+body.jc-dark-mode .settings-item small {
+    color: #9ca3af;
+}
+
+body.jc-dark-mode input,
+body.jc-dark-mode textarea,
+body.jc-dark-mode select {
+    background: #374151;
+    color: #fff;
+    border-color: #4b5563;
+}
+
+body.jc-dark-mode .help-content details {
+    background: #374151;
+    border-color: #4b5563;
+}
+
+.theme-option {
+    display: block;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.theme-option small {
+    display: block;
+    margin: 6px 0 0 25px;
+    color: #6b7280;
+}
+/* JC CONNECT PRIVACY SETTINGS */
+
+.privacy-content {
+    line-height: 1.6;
+}
+
+.privacy-content h3 {
+    font-size: 15px;
+    margin: 18px 0 10px;
+    color: #1f2937;
+}
+
+.privacy-content p {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 7px 0 12px;
+}
+
+.privacy-content label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 0;
+}
+
+.privacy-content input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+.privacy-content select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.privacy-content hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 18px 0;
+}
+
+/* JC CONNECT ACCOUNT SETTINGS */
+
+.account-content {
+    line-height: 1.6;
+}
+
+.account-content h3 {
+    font-size: 16px;
+    color: #1f2937;
+    margin: 18px 0 10px;
+}
+
+.account-content p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.account-setting-item {
+    padding: 14px;
+    margin: 10px 0;
+    background: #f7f8fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.account-setting-item strong {
+    display: block;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.account-setting-item small {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.account-content hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 18px 0;
+}
+
+.account-note {
+    margin-top: 18px;
+    padding: 12px;
+    background: #eff6ff;
+    border-radius: 10px;
+}
+
+
+/* JC CONNECT NOTIFICATION SETTINGS */
+
+.notification-content {
+    line-height: 1.6;
+}
+
+.notification-content h3 {
+    font-size: 16px;
+    color: #1f2937;
+    margin: 15px 0 8px;
+}
+
+.notification-content p {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 15px;
+}
+
+.notification-content label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 10px;
+    margin: 8px 0;
+    background: #f7f8fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.notification-content input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+
+/* JC CONNECT SECURITY SETTINGS */
+
+.security-content {
+    line-height: 1.6;
+}
+
+.security-content h3 {
+    font-size: 16px;
+    color: #1f2937;
+    margin: 16px 0 10px;
+}
+
+.security-content p,
+.security-content li {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.security-item {
+    padding: 14px;
+    margin: 10px 0;
+    background: #f7f8fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.security-item strong {
+    display: block;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.security-item small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.security-item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.security-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+.security-content ul {
+    padding-left: 20px;
+}
+
+.security-content li {
+    margin: 8px 0;
+}
+
+.security-content hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 18px 0;
+}
+
+.security-note {
+    padding: 12px;
+    background: #eff6ff;
+    border-radius: 10px;
+}
+
+
+/* FORGOT PASSWORD */
+
+.forgot-password {
+    display: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+
+/* HIDE APP NAVIGATION WHEN LOGGED OUT */
+
+.meta-ai-pinned {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  margin-top: 12px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #172554, #4338ca, #7c3aed);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(67, 56, 202, 0.25);
+}
+
+.meta-ai-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+.meta-ai-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-ai-info strong {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.meta-ai-info small {
+  color: #ddd6fe;
+  font-size: 11px;
+}
+
+.ai-badge {
+  background: white;
+  color: #4338ca;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.chatlist {
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+}
+
+#chatPeople {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.meta-ai-pinned {
+  flex-shrink: 0;
+  margin-top: 12px;
+}
+
+/* JC CONNECT responsive upgrade: compact, crisp and safe-area aware */
+html { width:100%; min-width:320px; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body { width:100%; min-width:320px; overflow-x:hidden; }
+#app { width:100%; min-height:100svh; padding-bottom:calc(78px + env(safe-area-inset-bottom)); }
+.wrap { width:100%; max-width:1240px; }
+.page { width:100%; min-width:0; }
+.post, .composer, .profilebox, .chatlayout { min-width:0; }
+.media { width:100%; max-height:min(72svh,720px); height:auto; aspect-ratio:4/3; object-fit:contain; background:#10131a; cursor:zoom-in; }
+video.media { object-fit:contain; }
+.jc-metric-button { border:0; padding:0; background:transparent; color:inherit; text-align:left; font:inherit; cursor:pointer; }
+.jc-metric-button b { color:var(--ink); font-size:16px; display:block; }
+.jc-metric-button:active { opacity:.65; }
+.jc-follow-list { max-height:62dvh; overflow:auto; }
+.jc-follow-person { display:flex; align-items:center; gap:12px; padding:12px 2px; border-bottom:1px solid var(--line); }
+.jc-follow-person img,.jc-viewer-author img { width:44px; height:44px; border-radius:50%; object-fit:cover; }
+.jc-follow-person div { flex:1; min-width:0; }
+.jc-follow-person strong,.jc-follow-person small { display:block; }
+.jc-follow-person small { color:var(--muted); font-size:12px; margin-top:3px; }
+.jc-viewer-author { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
+.jc-viewer-author strong,.jc-viewer-author small { display:block; }
+.jc-viewer-author small { color:var(--muted); font-size:12px; }
+.jc-viewer-media { background:#050505; border-radius:12px; overflow:hidden; }
+.jc-viewer-caption { line-height:1.5; white-space:pre-wrap; }
+.jc-comment-context { padding:10px 12px; background:#f5f7fb; border-radius:12px; margin-bottom:10px; }
+.jc-comment-context p { margin:5px 0 0; color:#647084; font-size:13px; }
+.jc-comment-input { min-height:90px; resize:vertical; }
+.jc-comment-thread { flex:1; min-height:90px; overflow:auto; padding:4px 0 12px; }
+.jc-comment-row { padding:10px 12px; border-bottom:1px solid var(--line); }
+.jc-comment-row strong { font-size:13px; }
+.jc-comment-row p { margin:4px 0 0; font-size:14px; line-height:1.4; }
+@media (max-width:800px) {
+  .wrap { padding:12px 10px calc(16px + env(safe-area-inset-bottom)); }
+  .heading { align-items:center; margin:4px 0 12px; }
+  .heading h1 { font-size:clamp(20px,5vw,25px); }
+  .heading p { font-size:12px; }
+  .stories { gap:9px; padding-bottom:12px; }
+  .story { flex-basis:62px; font-size:10px; }
+  .storyring { width:54px; height:54px; }
+  .composer { padding:12px; border-radius:16px; }
+  .compose-input { font-size:13px; }
+  .feed { gap:12px; }
+  .post { border-radius:15px; }
+  .posthead { padding:11px 12px; }
+  .posthead img { width:40px; height:40px; }
+  .posttext { font-size:14px; line-height:1.45; }
+  .media { max-height:68svh; aspect-ratio:4/3; }
+  .postfoot { padding:10px 12px 12px; }
+  .act { font-size:12px; padding:8px 5px; }
+  .bottomnav { padding-bottom:calc(8px + env(safe-area-inset-bottom)); }
+  .modal { padding:0; align-items:flex-end; }
+  .modalbox { width:100%; max-width:none; max-height:94svh; max-height:94dvh; border-radius:22px 22px 0 0; padding:18px 16px calc(16px + env(safe-area-inset-bottom)); overflow:auto; }
+  .modalbox.jc-live-sheet { height:min(88dvh,820px); max-height:94dvh; display:flex; flex-direction:column; }
+  .modalbox.jc-live-sheet #jcFollowList { flex:1; min-height:160px; }
+  .modalbox.jc-media-viewer { height:100dvh; max-height:100dvh; border-radius:0; background:#fff; display:flex; flex-direction:column; justify-content:center; }
+  .modalbox.jc-media-viewer .jc-viewer-media { flex:1; display:flex; align-items:center; justify-content:center; min-height:0; }
+  .modalbox.jc-media-viewer .jc-viewer-media img,.modalbox.jc-media-viewer .jc-viewer-media video { max-height:72dvh !important; }
+}
+@media (max-width:380px) {
+  .wrap { padding-left:7px; padding-right:7px; }
+  .top { padding-left:10px; padding-right:10px; }
+  .brand { font-size:20px; }
+  .topright { gap:5px; }
+  .actions { gap:0; }
+  .act { font-size:11px; }
+}
+@media (min-width:801px) {
+  .modalbox.jc-live-sheet { width:min(720px,94vw); }
+  .media { max-height:620px; }
+}
+
+
+/* JC CONNECT creator and chat upgrade */
+body.signed-out .bottomnav, body.signed-out .top {display:none!important}
+#authScreen{min-height:100svh;padding:24px 14px calc(24px + env(safe-area-inset-bottom));}
+.terms-read{display:block;margin:7px 0 2px;color:#326cf4;font-size:13px;font-weight:700;text-decoration:underline;cursor:pointer}
+.jc-camera-stage{position:relative;background:#090b10;border-radius:18px;overflow:hidden;min-height:260px;display:grid;place-items:center;margin:10px 0}
+.jc-camera-stage video{width:100%;height:min(58vh,520px);object-fit:cover;display:block;transform:scaleX(-1);filter:var(--jc-camera-filter,none)}
+.jc-camera-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.jc-camera-tools button,.jc-sticker-panel button{border:0;border-radius:18px;background:#f0f3fa;padding:9px 12px;color:#263246}
+.jc-camera-tools button.active{background:#326cf4;color:#fff}
+.jc-sticker-panel{display:none;gap:8px;flex-wrap:wrap;padding:10px;background:#f5f7fc;border-radius:14px;margin:8px 0}
+.jc-sticker-panel.show{display:flex}
+.jc-sticker-panel button{font-size:25px;min-width:46px}
+.convhead .jc-presence{font-size:11px;color:#8792a2;display:block}
+.convhead .jc-presence.online{color:#16a36a}
+@media(max-width:800px){
+ .modal{padding:0;align-items:flex-end}
+ .modalbox{width:100%;max-width:none;max-height:94dvh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+ .modalbox.jc-media-viewer{height:100dvh;max-height:100dvh;border-radius:0;display:flex;flex-direction:column;justify-content:center}
+ .modalbox.jc-camera-modal{height:100dvh;max-height:100dvh;border-radius:0;display:flex;flex-direction:column;justify-content:center}
+ .jc-camera-stage{min-height:40vh;flex:1}
+ .jc-camera-stage video{height:100%;max-height:68dvh}
+ .chatlayout.chat-open .chatlist{display:none!important}
+ .chatlayout.chat-open .conversation{display:flex!important;min-height:calc(100dvh - 190px)}
+ .messages{max-height:none;min-height:42vh;flex:1}
+ .sendbar{position:sticky;bottom:0;background:#fff;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+}
+
+
+/* JC CONNECT vertical short-video viewer and cross-device refinements */
+.jc-video-thumb{display:block;position:relative;width:100%;padding:0;border:0;background:#080a0e;overflow:hidden;cursor:pointer}
+.jc-video-thumb .media{display:block;width:100%;max-height:min(76svh,760px);aspect-ratio:9/16;object-fit:cover;cursor:pointer}
+.jc-play-mark{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:54px;text-shadow:0 2px 18px #0009;pointer-events:none}
+.jc-video-byline{position:absolute;left:12px;bottom:12px;color:#fff;font-weight:700;text-shadow:0 1px 5px #000;background:#0005;padding:5px 9px;border-radius:20px}
+.modalbox.jc-tiktok-modal{padding:0!important;width:min(100vw,560px)!important;height:100dvh!important;max-height:100dvh!important;border-radius:0!important;overflow:hidden!important;background:#050505!important;color:#fff!important}
+.jc-tiktok-viewer{position:relative;width:100%;height:100dvh;height:100svh;background:#050505;overflow:hidden;color:#fff}
+.jc-tiktok-video-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.jc-tiktok-video-wrap video{width:100%;height:100%;object-fit:contain;background:#050505}
+.jc-tiktok-gradient{position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#000a);pointer-events:none}
+.jc-viewer-close{position:absolute;z-index:5;top:calc(12px + env(safe-area-inset-top));left:12px;width:42px;height:42px;border:0;border-radius:50%;background:#0007;color:white;font-size:30px}
+.jc-tiktok-author{position:absolute;z-index:3;left:16px;bottom:calc(104px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;text-shadow:0 1px 5px #000}
+.jc-tiktok-author img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid white}
+.jc-tiktok-author strong,.jc-tiktok-author small{display:block}.jc-tiktok-author small{font-size:12px;opacity:.85;margin-top:3px}
+.jc-tiktok-caption{position:absolute;z-index:3;left:16px;right:92px;bottom:calc(64px + env(safe-area-inset-bottom));font-size:14px;line-height:1.4;text-shadow:0 1px 5px #000;white-space:pre-wrap}
+.jc-tiktok-actions{position:absolute;z-index:4;right:12px;bottom:calc(75px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:18px}
+.jc-tiktok-actions button{border:0;background:#0005;color:#fff;border-radius:22px;padding:10px 8px;min-width:54px;font-size:18px}
+.jc-tiktok-actions span{display:block;font-size:11px;margin-top:3px}
+.jc-tiktok-position{position:absolute;z-index:4;top:calc(16px + env(safe-area-inset-top));right:16px;font-size:12px;background:#0006;border-radius:16px;padding:7px 10px}
+.jc-video-next{position:absolute;z-index:4;right:15px;top:46%;border:0;border-radius:50%;width:38px;height:38px;background:#0005;color:#fff;font-size:22px}
+.jc-video-prev{right:auto;left:15px;top:46%}
+@media(min-width:801px){.modalbox.jc-tiktok-modal{width:min(520px,94vw)!important;height:min(94dvh,920px)!important;max-height:94dvh!important;border-radius:18px!important}.jc-tiktok-viewer{height:100%}}
+@media(max-width:800px){.jc-video-thumb .media{max-height:70svh}.modalbox.jc-tiktok-modal{width:100vw!important}.jc-tiktok-viewer{height:100dvh}}
+@media(prefers-reduced-motion:reduce){.jc-video-thumb,.jc-tiktok-viewer{scroll-behavior:auto}}
+
+
+/* JC CONNECT - WhatsApp-inspired chat screen and full-screen creator studio */
+@media(max-width:768px){
+ #messagesPage{margin:-12px -8px 76px!important;min-height:calc(100dvh - 76px)}
+ #messagesPage>.heading{display:none!important}
+ #messagesPage .chatlayout{display:flex!important;flex-direction:column!important;min-height:calc(100dvh - 76px)!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff}
+ #messagesPage .chatlist{display:flex!important;flex-direction:column!important;flex:1!important;padding:14px 16px 8px!important;border:0!important;overflow:hidden}
+ #messagesPage .chatlist h2{font-size:27px!important;color:#159b63!important;margin:0!important}
+ .jc-chat-top{display:flex;align-items:center;gap:14px;margin:3px 0 18px}
+ .jc-chat-top button{border:0;background:transparent;font-size:25px;color:#17212b;padding:4px}
+ .jc-chat-top .jc-chat-camera{margin-left:auto}
+ .jc-chat-search{border-radius:28px!important;background:#f3f4f5!important;padding:15px 18px!important;font-size:15px!important;margin:0 0 15px!important}
+ .jc-chat-filters{display:flex;gap:9px;overflow-x:auto;padding:1px 0 14px;white-space:nowrap}
+ .jc-chat-filters button{border:1px solid #d6dadd;background:#fff;border-radius:22px;padding:8px 17px;color:#555f66;font-size:13px;font-weight:650}
+ .jc-chat-filters button.active{background:#dcf8d9;border-color:#b9dfb8;color:#1b6944}
+ #createGroupBtn{align-self:flex-start;margin:0 0 8px}
+ #messagesPage #chatPeople{display:block!important;overflow-y:auto!important;overflow-x:hidden!important;padding:0!important;flex:1!important}
+ #messagesPage .chatperson{width:100%;display:flex!important;flex-direction:row!important;align-items:center!important;gap:13px!important;padding:12px 0!important;border:0!important;text-align:left!important;min-height:74px}
+ #messagesPage .chatperson img{width:58px!important;height:58px!important;flex:0 0 58px;border-radius:50%!important}
+ #messagesPage .chatperson div{display:block!important;min-width:0!important;flex:1}
+ #messagesPage .chatperson strong{font-size:16px!important;color:#101820;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #messagesPage .chatperson small{display:block!important;font-size:13px!important;color:#657078!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:5px}
+ #messagesPage .conversation{display:none!important;min-height:0!important;flex:1!important}
+ #messagesPage .chatlayout.chat-open .chatlist{display:none!important}
+ #messagesPage .chatlayout.chat-open .conversation{display:flex!important;min-height:calc(100dvh - 76px)!important}
+ .jc-chat-bottomnav{display:flex;justify-content:space-around;align-items:center;border-top:1px solid #edf0f1;padding:8px 4px max(8px,env(safe-area-inset-bottom));background:#fff}
+ .jc-chat-bottomnav button{border:0;background:none;color:#25313a;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:22px;padding:5px 10px}
+ .jc-chat-bottomnav span{font-size:11px;font-weight:650}
+ .jc-chat-bottomnav button.active{color:#159b63}
+}
+.jc-create-studio{min-height:calc(100dvh - 130px);background:#101319;color:#fff;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;padding:18px;box-sizing:border-box}
+.jc-create-head{display:flex;align-items:center;gap:13px}.jc-create-head h1{font-size:22px;margin:0}.jc-create-head p{font-size:12px;color:#b9c0ca;margin:4px 0}.jc-create-head>span{margin-left:auto;font-size:23px}.jc-create-back{border:0;background:#252b34;color:#fff;border-radius:50%;width:38px;height:38px;font-size:25px}
+.jc-create-preview{flex:1;min-height:55vh;border-radius:24px;margin:18px 0;background:radial-gradient(circle at 50% 40%,#303946,#11151c 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px}.jc-create-lens{font-size:60px;color:#c9d5e6}.jc-create-preview strong{font-size:20px}.jc-create-preview small{color:#b7c0cb}.jc-create-main,.jc-create-secondary{border:0;border-radius:28px;padding:13px 23px;font-weight:750;font-size:14px}.jc-create-main{background:#18a76a;color:#fff;margin-top:12px}.jc-create-secondary{background:#2b313b;color:#fff}.jc-create-actions{display:flex;justify-content:space-around;gap:12px}.jc-create-actions button{border:0;background:#252b34;color:#fff;border-radius:18px;padding:12px 18px}
+@media(max-width:768px){.jc-create-studio{min-height:calc(100dvh - 105px);border-radius:0;margin:-12px}.jc-create-preview{min-height:60dvh}.jc-create-actions{padding-bottom:12px}}
+
+</style></head>
+<body>
+
+<section id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">JC</div>
+    <p style="margin:0;letter-spacing:2px;font-weight:800">CONNECT YOUR WORLD</p>
+    <h1 id="authHeading">Create your JC account</h1>
+    <p id="authIntro">Join JC and connect with your world.</p>
+    <form id="authForm">
+      <div class="auth-grid" id="registrationFields">
+        <input id="authFirstName" class="field" autocomplete="given-name" required maxlength="50" placeholder="First name" />
+        <input id="authLastName" class="field" autocomplete="family-name" required maxlength="50" placeholder="Last name / surname" />
+        <input id="authDob" class="field" type="date" autocomplete="bday" required aria-label="Date of birth" />
+        <select id="authGender" class="field" required aria-label="Gender">
+          <option value="">Select gender</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+        <input id="authPhone" class="field full" type="tel" autocomplete="tel" required maxlength="25" placeholder="Phone number (include country code, e.g. +234...)" />
+        <p class="auth-note full">Your phone number is collected as profile information. SMS verification will be added separately.</p>
+      </div>
+      <input id="authEmail" class="field" type="email" autocomplete="email" required maxlength="254" placeholder="Email address (Gmail or another provider)" />
+      <input id="authPassword" class="field" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="Password (at least 8 characters)" />
+      <input id="authConfirmPassword" class="field" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="Confirm password" />
+      <label id="termsRow" class="auth-terms">
+        <input id="authTerms" type="checkbox" required />
+        <span>I have read and agree to the JC Terms of Service and Privacy Policy.</span>
+      </label>
+      <button type="button" class="terms-read" id="readJcTerms">Read the terms and privacy summary</button>
+     <button id="forgotPasswordBtn" type="button" class="forgot-password">
+  Forgot Password?
+</button>
+      <div class="auth-actions">
+        <button class="auth-primary" id="authSubmit" type="submit">Create account</button>
+        <button class="auth-secondary" id="authToggle" type="button">I already have an account — Sign in</button>
+      </div>
+    </form>
+    <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+  </div>
+</section>
+<div id="app" style="display:none">
+<header class="top"><div class="brand">JC <small>CONNECT</small></div><div class="topright"><button id="signOutBtn" type="button">Sign out</button><button class="iconbtn" id="searchBtn" aria-label="Search">⌕</button><button class="iconbtn notification-bell" id="bellBtn" aria-label="Notifications">
+  🔔
+  <span class="notification-badge"></span>
+</button><img class="avatar" id="topAvatar" src="https://i.pravatar.cc/100?img=12"></div></header>
+<div class="notifications-panel" id="notificationsPanel">
+  <div class="notifications-head">
+    <h3>Notifications</h3>
+    <span>New</span>
+  </div>
+
+  <div class="notification-item">
+    <div class="notification-icon">❤️</div>
+    <div>
+      <strong>Someone liked your post</strong>
+      <p>Your post received a new like.</p>
+      <small>Just now</small>
+    </div>
+  </div>
+
+  <div class="notification-item">
+    <div class="notification-icon">👤</div>
+    <div>
+      <strong>New follower</strong>
+      <p>Someone started following you.</p>
+      <small>Recently</small>
+    </div>
+  </div>
+
+  <div class="notification-item">
+    <div class="notification-icon">💬</div>
+    <div>
+      <strong>New comment</strong>
+      <p>Someone commented on your post.</p>
+      <small>Recently</small>
+    </div>
+  </div>
+</div>
+<div class="wrap"><main class="main">
+<section class="page active" id="homePage">
+<div class="heading"><div><h1 id="welcomeGreeting">Welcome to JC CONNECT 👋</h1>
+<p>Your people, your moments, your world.</p></div><button class="softbtn" id="feedFilter">For you⌄</button></div>
+<div class="stories" id="stories"></div>
+<div class="composer">
+  <div class="compose-row">
+    <img class="avatar" id="composeAvatar" src="https://i.pravatar.cc/100?img=12" alt="Your profile">
+    <button class="compose-input" id="openPost" type="button">What's happening? Share a moment...</button>
+  </div>
+  <div class="compose-actions">
+    <button class="softbtn" id="photoPost" type="button"><b>▧</b> Photo</button>
+    <button class="softbtn" id="videoPost" type="button"><b>▷</b> Video</button>
+    <button class="softbtn" id="storyPost" type="button"><b>◉</b> Story</button>
+    <button class="softbtn" id="goLiveBtn" type="button"><b>🔴</b> Live</button>
+    <button class="softbtn" id="musicPost" type="button"><b>🎵</b> Music</button>
+  </div>
+</div>
+<div class="feed" id="feed"></div>
+</section>
+<section class="page" id="explorePage"><div class="heading"><div><h1>Explore</h1><p>Discover creators, conversations and moments.</p></div></div><input class="search" id="exploreSearch" placeholder="Search people, posts or hashtags"><div class="feed" id="exploreFeed"></div></section>
+<section class="page" id="createPage"><div class="jc-create-studio"><div class="jc-create-head"><button type="button" class="jc-create-back" id="createBackBtn">‹</button><div><h1>Create</h1><p>Capture a moment for JC CONNECT</p></div><span>✦</span></div><div class="jc-create-preview"><div class="jc-create-lens">◎</div><strong>Ready when you are</strong><small>Take a full-screen photo or record a video</small><button type="button" class="jc-create-main" id="openFullCamera">📷 Open camera</button><button type="button" class="jc-create-secondary" id="chooseCreateMedia">▧ Choose from phone</button><input id="jcCreatePicker" type="file" accept="image/*,video/*" hidden></div><div class="jc-create-actions"><button type="button" id="createPost">＋ Text post</button><button type="button" id="createStory">◉ Add story</button></div></div></section>
+<section class="page" id="messagesPage"><div class="heading"><div><h1>Messages</h1><p>Keep your conversations close.</p></div><button class="softbtn" id="newChat">＋ New chat</button></div><div class="chatlayout"><aside class="chatlist">
+  <div class="jc-chat-top"><h2>Chats</h2><button type="button" class="jc-chat-camera" id="chatCameraBtn" aria-label="Open camera">📷</button><button type="button" class="jc-chat-more" aria-label="More options">⋮</button></div>
+  <input class="search jc-chat-search" placeholder="⌕  Search or start a new chat" id="chatSearch">
+  <div class="jc-chat-filters" role="group" aria-label="Chat filters"><button type="button" class="active" data-chat-filter="all">All</button><button type="button" data-chat-filter="unread">Unread</button><button type="button" data-chat-filter="favorites">Favorites</button><button type="button" data-chat-filter="groups">Groups</button></div>
+  <button id="createGroupBtn" class="softbtn" type="button">
+    + Create Group
+  </button>
+  
+  <div id="chatPeople"></div>
+  <div id="metaAIButton" class="meta-ai-pinned">
+  <div class="meta-ai-icon">✦</div>
+  <div class="meta-ai-info">
+    <strong>META AI</strong>
+    <small>Your JC intelligent assistant</small>
+  </div>
+  <span class="ai-badge">AI</span>
+</div>
+</aside><section class="conversation">
+ <button id="backToChats" class="back-to-chats">← Chats</button> 
+  
+<div class="convhead">
+  <img id="chatAvatar" src="https://i.pravatar.cc/100?img=5">
+  <div class="conv-info">
+    <strong id="chatName">Amara Okafor</strong>
+    <small class="jc-presence" id="jcChatPresence">Status not available</small>
+  </div>
+</div>
+
+  
+  <div class="call-actions">
+    <button class="call-btn" id="voiceCallBtn" aria-label="Voice call">📞</button>
+    <button class="call-btn" id="videoCallBtn" aria-label="Video call">📹</button>
+  </div>
+<div class="incoming-call" id="incomingCall">
+  <img id="incomingCallerAvatar" src="https://i.pravatar.cc/100?img=5">
+  <div class="incoming-info">
+    <strong id="incomingCallerName">Amara Okafor</strong>
+    <small>Incoming call...</small>
+  </div>
+  <button id="declineCall" class="decline-btn">✕</button>
+  <button id="acceptCall" class="accept-btn">✓</button>
+</div>
+<div class="messages" id="messages"></div><div id="recordingIndicator" class="recording-indicator">🔴 Recording voice note...</div>
+  <div class="sendbar">
+  <button id="voiceNoteBtn" class="voice-note-btn" type="button" aria-label="Record voice note">🎙️</button>
+  
+  <button id="stickerBtn" type="button">😊</button>
+  
+  <button id="imageBtn" type="button">📷</button>
+  
+  <input type="file" id="chatImageInput" accept="image/*" hidden>
+  
+  <input id="messageInput" placeholder="Write a message..." autocomplete="off">
+  
+  <button id="sendMessage" type="button">Send</button>
+</div>
+<div id="jcStickerPanel" class="jc-sticker-panel" aria-label="Emoji and sticker picker">
+  <button type="button">😀</button><button type="button">😂</button><button type="button">🥰</button><button type="button">😍</button><button type="button">😊</button><button type="button">🔥</button><button type="button">❤️</button><button type="button">👏</button><button type="button">🙏</button><button type="button">🎉</button><button type="button">👍</button><button type="button">🤝</button><button type="button">😭</button><button type="button">🤣</button><button type="button">✨</button><button type="button">💯</button>
+</div>
+</div><div class="jc-chat-bottomnav"><button class="active" type="button" data-chat-tab="chats">▣<span>Chats</span></button><button type="button" data-chat-tab="updates">◉<span>Updates</span></button><button type="button" data-chat-tab="communities">♧<span>Communities</span></button><button type="button" data-chat-tab="calls">☎<span>Calls</span></button></div></section></div></section>
+<section class="page" id="profilePage"><div class="heading"><div><h1>My profile</h1><p>Your corner of JC.</p></div><button class="softbtn" id="editProfile">Edit profile</button></div><div class="profilehero"></div><div class="profilebox"><button type="button" class="softbtn" id="changeProfilePhoto">Change profile photo</button><input type="file" id="profilePhotoInput" accept="image/*" hidden><div class="profiletop"><img id="profileAvatar" src="https://i.pravatar.cc/150?img=12"><div><h2 id="profileName">Caleb</h2><p id="profileHandle">@caleb_jc</p></div></div><div class="profilebio" id="profileBio">Sharing moments, ideas and good energy. Welcome to my JC space ✨</div><div class="metrics"><span><b id="postCount">0</b>Posts</span><button type="button" class="jc-metric-button" id="showFollowers"><b id="followerCount">0</b>Followers</button><button type="button" class="jc-metric-button" id="showFollowing"><b id="followingCount">0</b>Following</button></div></div><div class="feed" id="profileFeed"></div></section>
+
+<section class="page" id="settingsPage">
+  <div class="heading">
+    <div>
+      <h1>Settings</h1>
+      <p>Manage your JC account and preferences.</p>
+    </div>
+  </div>
+  
+  <div class="settings-list">
+
+    <button class="settings-item" id="accountSettings" type="button">
+        <span>
+            <strong>Account</strong>
+            <small>Manage your personal information</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="securitySettings" type="button">
+        <span>
+            <strong>Security</strong>
+            <small>Protect your account</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="privacySettings" type="button">
+        <span>
+            <strong>Privacy</strong>
+            <small>Control who can see your content</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="notificationSettings" type="button">
+        <span>
+            <strong>Notifications</strong>
+            <small>Manage your notifications</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="languageSettings" type="button">
+        <span>
+            <strong>Language</strong>
+            <small>Choose your preferred language</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="countrySettings" type="button">
+        <span>
+            <strong>Country</strong>
+            <small>Select your country or region</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="appearanceSettings" type="button">
+        <span>
+            <strong>Appearance</strong>
+            <small>Customize how JC CONNECT looks</small>
+        </span>
+        <b>›</b>
+    </button>
+
+    <button class="settings-item" id="helpSettings" type="button">
+        <span>
+            <strong>Help and Support</strong>
+            <small>Get help with JC CONNECT</small>
+        </span>
+        <b>›</b>
+    </button>
+
+</div>
+</section>
+
+</main>
+<aside class="sidebar"><div class="sidecard"><div class="profile-mini"><img src="https://i.pravatar.cc/100?img=12"><p id="sideName">Caleb<br><small>@caleb_jc</small></p></div><div style="height:1px;background:#eef0f4;margin:16px 0"></div><div class="metrics"><button type="button" class="jc-metric-button" id="sideShowFollowers"><b id="sideFollowerCount">0</b>Followers</button><button type="button" class="jc-metric-button" id="sideShowFollowing"><b id="sideFollowingCount">0</b>Following</button></div></div><div class="sidecard"><h3>Trending on JC</h3><div class="trend"><div><b>#JCConnect</b><br><span>Community</span></div><b>2.4k</b></div><div class="trend"><div><b>#NaijaCreators</b><br><span>Creators</span></div><b>1.8k</b></div><div class="trend"><div><b>#WeekendVibes</b><br><span>Entertainment</span></div><b>980</b></div></div><div class="sidecard"><h3>People to follow</h3><div class="profile-mini"><img src="https://i.pravatar.cc/100?img=47"><p>Amara Okafor<br><small>Digital creator</small></p><button class="softbtn follow">Follow</button></div><div class="profile-mini" style="margin-top:14px"><img src="https://i.pravatar.cc/100?img=32"><p>Daniel James<br><small>Photographer</small></p><button class="softbtn follow">Follow</button></div></div></aside></div>
+<nav class="bottomnav"><button class="nav active" data-page="homePage"><i>⌂</i>Home</button><button class="nav" data-page="explorePage"><i>⌕</i>Explore</button><button class="nav create" data-page="createPage"><i>＋</i>Create</button><button class="nav" data-page="messagesPage"><i>▤</i>Chat</button><button class="nav" data-page="profilePage"><i>◉</i>Profile</button>
+<button class="nav" data-page="settingsPage">
+    <i>⚙</i>Settings
+</button></nav>
+</div>
+<div class="modal" id="modal"><div class="modalbox" id="modalContent"></div></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail, sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+import {
+  getFirestore, doc, setDoc, addDoc, collection, getDocs, getDoc, deleteDoc, query, orderBy, serverTimestamp, onSnapshot, where, updateDoc, arrayUnion, arrayRemove, increment, limit
+} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-storage.js";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBy6hCKpdC5Lp9pTVbNq442pTgzbSlPj0A",
+  authDomain: "jc-social-app.firebaseapp.com",
+  projectId: "jc-social-app",
+  storageBucket: "jc-social-app.firebasestorage.app",
+  messagingSenderId: "877697842547",
+  appId: "1:877697842547:web:65beeec315706380fdd906",
+  measurementId: "G-LCDE7V7L0F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+// JC CONNECT media storage: Firebase remains the identity provider and main database.
+const supabaseUrl = "https://sqgdzbgtbryrjcwpnuai.supabase.co";
+const supabasePublishableKey = "sb_publishable_3Rr48UeihHIu1PD04sAQnw_C--1hON8";
+const supabase = createClient(supabaseUrl, supabasePublishableKey, {
+  accessToken: async () => {
+    const user = auth.currentUser;
+    return user ? await user.getIdToken() : null;
+  }
+});
+window.jcSupabase = { client: supabase, bucket: "jc-connect-media" };
+
+window.jcFirebase = {
+db,
+auth,
+storage,
+storageRef,
+uploadBytes,
+getDownloadURL,
+onAuthStateChanged,
+sendPasswordResetEmail,
+sendEmailVerification,
+onSnapshot,
+where,
+updateDoc,
+arrayUnion,
+arrayRemove,
+increment,
+limit,
+doc,
+setDoc,
+addDoc,
+collection,
+getDocs,
+getDoc,
+deleteDoc,
+query,
+orderBy,
+serverTimestamp
+};
+
+let isSignIn = false;
+const $id = (id) => document.getElementById(id);
+const authForm = $id("authForm");
+const authSubmit = $id("authSubmit");
+const authToggle = $id("authToggle");
+const forgotPasswordBtn = $id("forgotPasswordBtn");
+const authMessage = $id("authMessage");
+const registrationFields = $id("registrationFields");
+const termsRow = $id("termsRow");
+const authPassword = $id("authPassword");
+const authConfirmPassword = $id("authConfirmPassword");
+
+function showMessage(message, isError = false) {
+  authMessage.textContent = message;
+  authMessage.style.color = isError ? "#c33" : "#23845b";
+}
+function setMode(signInMode) {
+  isSignIn = signInMode;
+  $id("authHeading").textContent = isSignIn ? "Welcome back" : "Create your JC account";
+  $id("authIntro").textContent = isSignIn
+    ? "Sign in to continue to your JC community."
+    : "Join JC and connect with your world.";
+  authSubmit.textContent = isSignIn ? "Sign in" : "Create account";
+  authToggle.textContent = isSignIn
+    ? "New to JC? Create an account"
+    : "I already have an account — Sign in";
+  registrationFields.style.display = isSignIn ? "none" : "grid";
+  termsRow.style.display = isSignIn ? "none" : "flex";
+  forgotPasswordBtn.style.display = isSignIn ? "block" : "none";
+
+  ["authFirstName", "authLastName", "authDob", "authGender", "authPhone"].forEach(id => {
+    $id(id).required = !isSignIn;
+  });
+  $id("authTerms").required = !isSignIn;
+  authConfirmPassword.style.display = isSignIn ? "none" : "block";
+  authConfirmPassword.required = !isSignIn;
+  authPassword.autocomplete = isSignIn ? "current-password" : "new-password";
+  authPassword.placeholder = isSignIn ? "Password" : "Password (at least 8 characters)";
+  authPassword.minLength = isSignIn ? 6 : 8;
+  showMessage("");
+}
+authToggle.addEventListener("click", () => setMode(!isSignIn));
+
+forgotPasswordBtn.addEventListener("click", () => {
+  modal('Reset Your Password', `
+    <p>Enter the email address connected to your JC CONNECT account. Firebase will send you a secure password-reset link.</p>
+    <input id="recoveryContact" class="field" type="email" placeholder="Your account email" required>
+  `, 'Send Reset Link', async () => {
+    const email = $('recoveryContact').value.trim().toLowerCase();
+    if (!email) { alert('Enter your account email address.'); return false; }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert('Password reset email sent. Check your inbox and spam folder.');
+    } catch (error) { alert(friendlyError(error)); return false; }
+  });
+});
+
+function friendlyError(error) {
+  const messages = {
+    "auth/email-already-in-use": "This email already has a JC account. Please sign in.",
+    "auth/invalid-email": "Please enter a valid email address.",
+    "auth/weak-password": "Choose a stronger password with at least 8 characters.",
+    "auth/invalid-credential": "Email or password is incorrect. Check them and try again.",
+    "auth/user-not-found": "No JC account was found for this email. Create an account first.",
+    "auth/wrong-password": "The password is incorrect. Try again.",
+    "auth/operation-not-allowed": "Email/password sign-in is not enabled in Firebase Authentication.",
+    "auth/unauthorized-domain": "This website address is not authorised in Firebase Authentication settings.",
+    "auth/invalid-api-key": "Firebase rejected the web API key. Check the Firebase web app configuration.",
+    "auth/network-request-failed": "Network problem. Check your internet connection and try again.",
+    "auth/too-many-requests": "Too many attempts. Wait a little and try again.",
+    "permission-denied": "Your account was created, but the profile could not be saved because Firestore rules need configuring."
+  };
+  return messages[error.code] || error.message || "Something went wrong. Please try again.";
+}
+
+authForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!authForm.reportValidity()) return;
+
+  authSubmit.disabled = true;
+  authSubmit.textContent = isSignIn ? "Signing in..." : "Creating account...";
+  showMessage(isSignIn ? "Signing in securely..." : "Creating your JC account...");
+
+  try {
+    const email = $id("authEmail").value.trim().toLowerCase();
+    const password = authPassword.value;
+
+    if (isSignIn) {
+      await signInWithEmailAndPassword(auth, email, password);
+      showMessage("Signed in successfully.");
+      return;
+    }
+
+    const firstName = $id("authFirstName").value.trim();
+    const lastName = $id("authLastName").value.trim();
+    const dateOfBirth = $id("authDob").value;
+    const gender = $id("authGender").value;
+    const phone = $id("authPhone").value.trim();
+    const acceptedTerms = $id("authTerms").checked;
+
+    if (!firstName || !lastName || !dateOfBirth || !gender || !phone) {
+      throw new Error("Please complete all required personal details.");
+    }
+    if (password.length < 8) {
+      throw new Error("Your password must contain at least 8 characters.");
+    }
+    if (password !== authConfirmPassword.value) {
+      throw new Error("Your passwords do not match.");
+    }
+    if (!acceptedTerms) {
+      throw new Error("Please accept the JC Terms of Service and Privacy Policy.");
+    }
+    const dob = new Date(dateOfBirth + "T00:00:00");
+    if (Number.isNaN(dob.getTime()) || dob >= new Date()) {
+      throw new Error("Please enter a valid date of birth.");
+    }
+
+    const displayName = `${firstName} ${lastName}`.trim();
+    const credential = await createUserWithEmailAndPassword(auth, email, password);
+
+    await updateProfile(credential.user, { displayName });
+
+    // Keep authentication success separate from profile-write success:
+    // Firestore rules may still need to be configured after first setup.
+    try {
+      await setDoc(doc(db, "User", credential.user.uid), {
+        uid: credential.user.uid,
+        firstName,
+        lastName,
+        displayName,
+        dateOfBirth,
+        gender,
+        phone,
+        phoneVerified: false,
+        email,
+        acceptedTerms: true,
+        termsAcceptedAt: serverTimestamp(),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+    } catch (profileError) {
+      console.error("JC profile save failed:", profileError);
+      showMessage("Your login account was created, but your profile details could not be saved yet. Please contact the app administrator.", true);
+      return;
+    }
+    try { await sendEmailVerification(credential.user); } catch (verificationError) { console.warn("Verification email could not be sent:", verificationError); }
+
+    authForm.reset();
+    showMessage("Welcome to JC! Your account has been created.");
+  } catch (error) {
+    console.error("JC authentication error:", error);
+    showMessage(friendlyError(error), true);
+  } finally {
+    authSubmit.disabled = false;
+    authSubmit.textContent = isSignIn ? "Sign in" : "Create account";
+  }
+});
+
+window.addEventListener('pagehide',()=>{const user=auth.currentUser;if(user){try{updateDoc(doc(db,"User",user.uid),{isOnline:false,lastSeenAt:serverTimestamp()});}catch(e){}}});
+
+$id("signOutBtn")?.addEventListener("click", async () => {
+  try { const u=auth.currentUser; if(u){try{await updateDoc(doc(db,"User",u.uid),{isOnline:false,lastSeenAt:serverTimestamp()});}catch(e){}} await signOut(auth); }
+  catch (error) { alert(friendlyError(error)); }
+});
+
+onAuthStateChanged(auth, async (user) => {
+  const authScreen = $id("authScreen");
+  const appRoot = $id("app");
+  if (user) {
+    document.body.classList.remove("signed-out");
+    authScreen.style.display = "none";
+    appRoot.style.display = "block";
+    if (appRoot.querySelector(".bottomnav")) {
+appRoot.querySelector(".bottomnav").style.display = "flex";
+}
+    const name = user.displayName || (user.email ? user.email.split("@")[0] : "JC Member");
+    const handle = "@" + name.toLowerCase().replace(/[^a-z0-9_]/g, "_");
+    if ($id("profileName")) $id("profileName").textContent = name;
+    if ($id("sideName")) $id("sideName").innerHTML = name + "<br><small>" + handle + "</small>";
+    if ($id("profileHandle")) $id("profileHandle").textContent = handle;
+    if ($id("profileBio")) $id("profileBio").textContent = "Welcome to my JC space.";
+    try { await updateDoc(doc(db, "User", user.uid), { isOnline: true, lastSeenAt: serverTimestamp() }); } catch (presenceError) { console.warn("Online presence could not be saved; check User document update rules.", presenceError); }
+    
+await loadPosts();
+    if (window.jcApp?.onLogin) await window.jcApp.onLogin(user);
+  } else {
+  if (window.jcApp?.onLogout) window.jcApp.onLogout();
+  document.body.classList.add("signed-out");
+  appRoot.style.display = "none";
+  if (appRoot.querySelector(".bottomnav")) {
+appRoot.querySelector(".bottomnav").style.display = "none";
+}
+  authScreen.style.display = "grid";
+  setMode(false);
+}
+});
+</script>
+
+<script>
+const $=id=>document.getElementById(id);
+// JC CONNECT: Personalized greeting
+function updateGreeting() {
+  const hour = new Date().getHours();
+  let greeting;
+
+  if (hour >= 5 && hour < 12) {
+    greeting = "Good morning";
+  } else if (hour >= 12 && hour < 16) {
+    greeting = "Good afternoon";
+  } else if (hour >= 16 && hour < 20) {
+    greeting = "Good evening";
+  } else if (hour >= 20 || hour < 5) {
+    greeting = "Good night";
+  }
+
+  const greetingElement = document.getElementById("welcomeGreeting");
+
+  if (greetingElement) {
+    const signedInName = window.jcFirebase?.auth?.currentUser?.displayName
+      || document.getElementById("profileName")?.textContent?.trim()
+      || "there";
+    greetingElement.textContent = greeting + ", " + signedInName + " 👋";
+  }
+}
+
+updateGreeting();
+setInterval(()=>{const u=window.jcFirebase?.auth?.currentUser;if(u){const fb=window.jcFirebase;fb.updateDoc(fb.doc(fb.db,"User",u.uid),{isOnline:true,lastSeenAt:fb.serverTimestamp()}).catch(()=>{});}},60000);
+const people=[
+{name:'Amara Okafor',handle:'@amara_creates',img:'https://i.pravatar.cc/100?img=5',time:'2 min ago'},
+{name:'Daniel James',handle:'@daniel.frames',img:'https://i.pravatar.cc/100?img=32',time:'18 min ago'},
+{name:'Tomi Adebayo',handle:'@tomi_life',img:'https://i.pravatar.cc/100?img=47',time:'1 hr ago'},
+{name:'Sarah Williams',handle:'@sarahw',img:'https://i.pravatar.cc/100?img=44',time:'3 hrs ago'},
+{name:'Michael Obi',handle:'@mikeobi',img:'https://i.pravatar.cc/100?img=13',time:'5 hrs ago'}
+];
+let posts=[
+{id:1,user:people[0],text:'A little reminder to enjoy the small moments. The light, the laughter, the people around you. ☀️',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1100&auto=format&fit=crop',likes:124,comments:18,liked:false},
+{id:2,user:people[1],text:'City views and fresh perspectives. There is always something beautiful around the corner. 📸 #NaijaCreators',img:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1100&auto=format&fit=crop',likes:89,comments:12,liked:false},
+{id:3,user:people[2],text:'Weekend energy loading... What are your plans? ✨',img:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1100&auto=format&fit=crop',likes:206,comments:31,liked:false}
+];
+let stories=[{name:'Your story',img:'https://i.pravatar.cc/100?img=12',own:true},...people.map(p=>({name:p.name.split(' ')[0],img:p.img}))];
+let chats = people.slice(0, 4).map((p, i) => ({
+  person: p,
+  messages: i === 0 ? [
+    { text: 'Hey! Welcome to JC 👋', mine: false, time: '10:42' },
+    { text: 'Thanks! Glad to be here.', mine: true, time: '10:43' },
+    { text: 'Have you checked out the new videos?', mine: false, time: '10:44' }
+  ] : [
+    { text: 'Hi there! How is your day going?', mine: false, time: '09:15' }
+  ]
+}));
+
+chats.unshift({
+  person: {
+    name: 'Meta AI',
+    img: 'https://i.pravatar.cc/100?img=68'
+  },
+  isAI: true,
+  messages: [{
+    text: 'Hello! 👋 I am the AI assistant in JC CONNECT. How can I help you today?',
+    mine: false,
+    time: 'Now'
+  }]
+});
+let activeChat=0, userName='Caleb',userBio='Sharing moments, ideas and good energy. Welcome to my JC space ✨',nextId=4;
+
+function modal(title,body,submitText,handler){
+  $('modalContent').innerHTML=`<h2>${title}</h2>${body}<div class="modalrow"><button class="cancel" id="cancelModal">Cancel</button><button class="primary" id="submitModal">${submitText}</button></div>`;
+  $('modal').classList.add('show');
+  $('cancelModal').onclick=closeModal;
+  $('submitModal').onclick=async () => {
+    const previousContent = $('modalContent').innerHTML;
+    const result = await handler();
+    if (result !== false && $('modalContent').innerHTML === previousContent) {
+      closeModal();
+    }
+  };
+}
+
+
+// Plain-language preview for members before they accept registration terms.
+document.addEventListener('click', event => {
+  if (event.target?.id !== 'readJcTerms') return;
+  modal('JC CONNECT Terms & Privacy', `
+    <div class="help-content">
+      <h3>Community rules</h3><p>Use JC CONNECT respectfully. Do not bully, threaten, impersonate, harass, or post unlawful, harmful, or misleading material. You are responsible for what you publish and share.</p>
+      <h3>Your account</h3><p>Keep your sign-in details private and provide accurate account information. You may be responsible for activity carried out through your account.</p>
+      <h3>Photos, videos and messages</h3><p>Only upload content you own or have permission to share. Think carefully before sharing personal information. Other members may save or share content you make visible to them.</p>
+      <h3>Privacy</h3><p>JC CONNECT uses account and profile information to operate the service, show your profile and content, and support features such as posts, comments and messages. Do not share passwords or sensitive information in public posts.</p>
+      <h3>Safety and reporting</h3><p>Report abusive or unsafe content. JC CONNECT may restrict content or accounts that violate its rules.</p>
+      <h3>Important</h3><p>This is a plain-language summary for the registration screen, not a substitute for a complete, legally reviewed Terms of Service and Privacy Policy. The app owner should publish full documents and contact details before public launch.</p>
+    </div>
+  `, 'Close', () => {});
+});
+
+function showOTPVerification(method, contact) {
+  modal('Verify Your Account', `
+    <div class="otp-content">
+      <h3>Enter verification code</h3>
+
+      <p>
+        Enter the 6-digit code sent to your
+        ${method === 'email' ? 'email address' : 'phone number'}:
+      </p>
+
+      <strong>${escapeHtml(contact)}</strong>
+
+      <input
+        id="otpCode"
+        class="field"
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="Enter 6-digit code"
+        autocomplete="one-time-code"
+      >
+
+      <p class="otp-note">
+        Verification delivery will be connected later.
+      </p>
+    </div>
+  `, 'Verify Code', () => {
+    const code = $('otpCode').value.trim();
+
+    if (!/^\d{6}$/.test(code)) {
+      alert('Please enter a valid 6-digit code.');
+      return;
+    }
+
+    alert('OTP screen is working. Real code verification will be added with Firebase.');
+  });
+}
+
+function closeModal(){if(window.jcStopCreateCamera)window.jcStopCreateCamera();$('modal').classList.remove('show')}
+$('editProfile').onclick = () => {
+  modal('Edit Profile', `
+    <label>Full Name</label>
+    <input id="editName" class="field" value="${escapeHtml($('profileName').textContent)}">
+
+    <label>Username</label>
+    <input id="editHandle" class="field" value="${escapeHtml($('profileHandle').textContent.replace('@',''))}">
+
+    <label>Bio</label>
+    <textarea id="editBio" class="field" rows="3">${escapeHtml($('profileBio').textContent)}</textarea>
+  `, 'Save Changes', () => {
+    const name = $('editName').value.trim();
+    const handle = $('editHandle').value.trim().replace('@','');
+    const bio = $('editBio').value.trim();
+
+    if (!name || !handle) {
+      alert('Please enter your name and username.');
+      return;
+    }
+
+    $('profileName').textContent = name;
+    $('profileHandle').textContent = '@' + handle;
+    $('profileBio').textContent = bio;
+
+    alert('Profile updated successfully!');
+  });
+};
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});
+function nav(page){const target=$(page);if(!target)return;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));target.classList.add('active');document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));window.scrollTo(0,0)}
+document.querySelectorAll('.nav').forEach(n=>n.onclick=()=>nav(n.dataset.page));
+function renderStories(){if(!$('stories'))return;$('stories').innerHTML=stories.map((s,i)=>`<button class="story ${s.own?'add':''}" data-story="${i}"><div class="storyring">${s.own?'+':`<img src="${escapeHtml(s.img||'https://i.pravatar.cc/100?img=12')}">`}</div>${escapeHtml(s.name)}</button>`).join('');document.querySelectorAll('[data-story]').forEach(b=>b.onclick=()=>{const s=stories[+b.dataset.story];if(s.own){addStory();return;}const media=s.mediaType==='video'?`<video src="${escapeHtml(s.mediaUrl)}" controls autoplay style="width:100%;max-height:65vh"></video>`:s.mediaUrl?`<img src="${escapeHtml(s.mediaUrl)}" style="width:100%;max-height:65vh;object-fit:contain">`:'';modal(escapeHtml(s.name)+"’s story",`${media}<p>${escapeHtml(s.text||'')}</p>`,'Close',()=>{});});}
+async function loadPosts() {
+  // Use the realtime loader: it resolves private Supabase media URLs and keeps
+  // creator details, likes and comments together. Do not replace it with the
+  // older Firestore-only loader, which would hide uploaded media.
+  if (typeof jcLoadPostsRealtime === 'function' && jcCurrentUser()) {
+    await jcLoadPostsRealtime();
+    return;
+  }
+}
+
+function escapeHtml(text){
+  return String(text ?? '').replace(/[&<>"']/g, char => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  })[char]);
+}
+function renderAll() {
+  renderStories();
+  renderPosts();
+  renderPosts('exploreFeed', [...posts].reverse());
+  renderPosts('profileFeed', posts.filter(p => p.user.name === userName));
+  
+  if ($('postCount')) {
+    $('postCount').textContent = posts.filter(p => p.user.name === userName).length;
+  }
+}
+
+let jcVideoViewerIndex = -1;
+function jcVideoPosts(){ return posts.filter(p => p.mediaType === 'video' && p.img); }
+function jcOpenVideoViewer(postIndex){
+  const videoList = jcVideoPosts();
+  const post = posts[postIndex];
+  const index = videoList.findIndex(p => p.id === post?.id);
+  if(index < 0) return;
+  jcVideoViewerIndex = index;
+  jcRenderVideoViewer();
+}
+function jcRenderVideoViewer(){
+  const list = jcVideoPosts();
+  if(!list.length || jcVideoViewerIndex < 0 || jcVideoViewerIndex >= list.length){ closeModal(); return; }
+  const post = list[jcVideoViewerIndex];
+  const content = `<div class="jc-tiktok-viewer" id="jcTikTokViewer">
+    <button class="jc-viewer-close" type="button" id="jcVideoClose" aria-label="Close">×</button>
+    <div class="jc-tiktok-video-wrap"><video id="jcTikTokVideo" src="${escapeHtml(post.img)}" autoplay playsinline controls></video></div>
+    <div class="jc-tiktok-gradient"></div>
+    <div class="jc-tiktok-author"><img src="${escapeHtml(post.user.img||'')}" alt=""><div><strong>${escapeHtml(post.user.name)}</strong><small>${escapeHtml(post.user.handle||'@user')}</small></div></div>
+    <div class="jc-tiktok-caption">${escapeHtml(post.text||'')}</div>
+    <div class="jc-tiktok-actions"><button type="button" id="jcVideoLike">${post.liked?'♥':'♡'} <span>${post.likes||0}</span></button><button type="button" id="jcVideoComment">💬 <span>${post.comments||0}</span></button><button type="button" id="jcVideoShare">↗ Share</button></div>
+    <div class="jc-tiktok-position">${jcVideoViewerIndex+1} / ${list.length}</div>
+    <button type="button" class="jc-video-next jc-video-prev" id="jcVideoPrev" aria-label="Previous video">⌃</button>
+    <button type="button" class="jc-video-next" id="jcVideoNext" aria-label="Next video">⌄</button>
+  </div>`;
+  modal(' ',content,'Close',()=>{});
+  const box=$('modalContent')?.closest('.modalbox'); box?.classList.add('jc-tiktok-modal');
+  $('jcVideoClose')?.addEventListener('click',closeModal);
+  $('jcVideoPrev')?.addEventListener('click',()=>{jcVideoViewerIndex=(jcVideoViewerIndex-1+list.length)%list.length;jcRenderVideoViewer();});
+  $('jcVideoNext')?.addEventListener('click',()=>{jcVideoViewerIndex=(jcVideoViewerIndex+1)%list.length;jcRenderVideoViewer();});
+  $('jcVideoLike')?.addEventListener('click',()=>{const b=document.querySelector(`[data-like="${CSS.escape(post.id)}"]`);if(b)b.click();setTimeout(()=>{const updated=posts.find(p=>p.id===post.id);if(updated){post.liked=updated.liked;post.likes=updated.likes;$('jcVideoLike').innerHTML=`${post.liked?'♥':'♡'} <span>${post.likes||0}</span>`;}},350);});
+  $('jcVideoComment')?.addEventListener('click',()=>{closeModal();const b=document.querySelector(`[data-comment="${CSS.escape(post.id)}"]`);b?.click();});
+  $('jcVideoShare')?.addEventListener('click',()=>{const b=document.querySelector(`[data-share="${CSS.escape(post.id)}"]`);b?.click();});
+  const viewer=$('jcTikTokViewer'); let startY=0;
+  viewer?.addEventListener('touchstart',e=>{startY=e.changedTouches[0].clientY;},{passive:true});
+  viewer?.addEventListener('touchend',e=>{const delta=e.changedTouches[0].clientY-startY;if(Math.abs(delta)>55){jcVideoViewerIndex=(jcVideoViewerIndex+(delta<0?1:-1)+list.length)%list.length;jcRenderVideoViewer();}},{passive:true});
+  $('jcTikTokVideo')?.play().catch(()=>{});
+}
+
+function renderPosts(target = 'feed', list = posts) {
+  const container = $(target);
+  if (!container) return;
+  
+  container.innerHTML = list.map(p => `
+    <article class="post">
+      <div class="posthead">
+        <img src="${escapeHtml(p.user.img || 'https://i.pravatar.cc/100?img=12')}" alt="${escapeHtml(p.user.name)}">
+        <div class="person">
+          <strong>${escapeHtml(p.user.name)}</strong>
+          <small>${escapeHtml(p.user.handle || '@user')} · ${escapeHtml(p.time||'Today')}</small>
+        </div>
+      </div>
+      <div class="posttext">${escapeHtml(p.text)}</div>
+      ${p.img ? (p.mediaType==='video' ? `<button type="button" class="jc-video-thumb" data-open-video="${escapeHtml(p.id)}" aria-label="Watch video by ${escapeHtml(p.user.name)}"><video class="media" src="${escapeHtml(p.img)}" playsinline muted preload="metadata"></video><span class="jc-play-mark">▶</span><span class="jc-video-byline">${escapeHtml(p.user.name)}</span></button>` : p.mediaType==='audio' ? `<audio class="media" src="${escapeHtml(p.img)}" controls preload="metadata"></audio>` : `<img class="media jc-open-media" data-post-media="${escapeHtml(p.id)}" src="${escapeHtml(p.img)}" alt="Photo posted by ${escapeHtml(p.user.name)}" loading="lazy" decoding="async">`) : ''}
+      <div class="postfoot">
+        <div class="counts">${p.likes} likes · ${p.comments} comments</div>
+        <div class="actions">
+          <button class="act ${p.liked?'liked':''}" data-like="${p.id}">
+            ${p.liked?'♥':'♡'} Like
+          </button>
+          <button class="act" data-comment="${p.id}">▢ Comment</button>
+          <button class="act" data-share="${p.id}">↗ Share</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+  
+  document.querySelectorAll('[data-like]').forEach(b => {
+    b.onclick = async () => {
+      const p = posts.find(x => String(x.id) === b.dataset.like);
+      if (!p) return;
+      const wasLiked = p.liked;
+      
+      try {
+        const { db, auth, doc, getDoc, setDoc, deleteDoc, serverTimestamp } = window.jcFirebase;
+        const currentUser = auth.currentUser;
+        
+        if (!currentUser) {
+          alert('Please log in to like a post.');
+          return;
+        }
+        
+        const likeRef = doc(db, 'post', String(p.id), 'likes', currentUser.uid);
+        const likeSnap = await getDoc(likeRef);
+        
+        if (likeSnap.exists()) {
+          await deleteDoc(likeRef);
+          p.liked = false;
+          p.likes = Math.max(0, p.likes - 1);
+        } else {
+          await setDoc(likeRef, {
+            userId: currentUser.uid,
+            createdAt: serverTimestamp()
+          });
+          p.liked = true;
+          p.likes++;
+        }
+        
+        if (p.userId && !wasLiked) await jcCreateNotification(p.userId, { type:'like', fromUid:currentUser.uid, fromName:currentUser.displayName || userName, text:'liked your post', postId:String(p.id) });
+        renderAll();
+        
+      } catch (error) {
+        console.error(error);
+        alert('Like could not be saved: ' + error.message);
+      }
+    };
+  });
+  document.querySelectorAll('[data-comment]').forEach(button => {
+    button.onclick = () => {
+      const post = posts.find(item => String(item.id) === button.dataset.comment);
+      if (!post) return;
+      modal('Comments', `<div class="jc-comment-context"><strong>${escapeHtml(post.user.name)}</strong><p>${escapeHtml(post.text||'')}</p></div><div id="jcCommentThread" class="jc-comment-thread"><p class="empty">Comments are saved to this post. Add your comment below.</p></div><textarea id="commentText" class="field jc-comment-input" rows="3" maxlength="1000" placeholder="Write a comment..."></textarea>`, 'Add Comment', async () => {
+        const value = $('commentText').value.trim();
+        const current = window.jcFirebase?.auth?.currentUser;
+        if (!value) { alert('Write a comment first.'); return false; }
+        if (!current) { alert('Please sign in first.'); return false; }
+        try {
+          const { db, collection, addDoc, serverTimestamp } = window.jcFirebase;
+          await addDoc(collection(db, 'post', String(post.id), 'comments'), {
+            userId: current.uid, displayName: current.displayName || userName,
+            text: value, createdAt: serverTimestamp()
+          });
+          post.comments = (post.comments || 0) + 1;
+          if (post.userId) await jcCreateNotification(post.userId,{type:'comment',fromUid:current.uid,fromName:current.displayName||userName,text:'commented on your post',postId:String(post.id)});
+          await loadPosts();
+        } catch (error) { alert('Comment could not be saved: ' + error.message); return false; }
+      });
+      $('modalContent').closest('.modalbox')?.classList.add('jc-live-sheet');
+      (async()=>{
+        const thread=$('jcCommentThread');
+        try {
+          const fb=window.jcFirebase;
+          const snap=await fb.getDocs(fb.collection(fb.db,'post',String(post.id),'comments'));
+          if(!thread)return;
+          const rows=snap.docs.map(d=>d.data()).sort((a,b)=>(a.createdAt?.toMillis?.()||0)-(b.createdAt?.toMillis?.()||0));
+          thread.innerHTML=rows.length?rows.map(row=>`<div class=\"jc-comment-row\"><strong>${escapeHtml(row.displayName||'JC Member')}</strong><p>${escapeHtml(row.text||'')}</p></div>`).join(''):'<p class=\"empty\">No comments yet. Start the conversation.</p>';
+        } catch(error) { if(thread)thread.innerHTML='<p class=\"empty\">Comments could not be loaded right now.</p>'; }
+      })();
+    };
+  });
+  document.querySelectorAll('[data-open-video]').forEach(button => {
+    button.onclick = () => {
+      const index = posts.findIndex(item => String(item.id) === button.dataset.openVideo);
+      if (index >= 0) jcOpenVideoViewer(index);
+    };
+  });
+  document.querySelectorAll('[data-post-media]').forEach(media => {
+    media.addEventListener('click', event => {
+      const post = posts.find(item => String(item.id) === media.dataset.postMedia);
+      if (!post) return;
+      const viewerMedia = post.mediaType === 'video'
+        ? `<video src="${escapeHtml(post.img)}" controls autoplay playsinline style="width:100%;height:100%;max-height:72dvh;object-fit:contain;background:#050505"></video>`
+        : `<img src="${escapeHtml(post.img)}" alt="Photo by ${escapeHtml(post.user.name)}" style="width:100%;height:100%;max-height:72dvh;object-fit:contain;background:#050505">`;
+      modal(' ', `<div class="jc-viewer-author"><img src="${escapeHtml(post.user.img)}" alt=""><div><strong>${escapeHtml(post.user.name)}</strong><small>${escapeHtml(post.user.handle||'@user')}</small></div></div><div class="jc-viewer-media">${viewerMedia}</div><p class="jc-viewer-caption">${escapeHtml(post.text||'')}</p>`, 'Close', () => {});
+      $('modalContent').closest('.modalbox')?.classList.add('jc-media-viewer');
+    });
+  });
+
+  document.querySelectorAll('[data-share]').forEach(button => {
+    button.onclick = async () => {
+      const post = posts.find(item => String(item.id) === button.dataset.share);
+      if (!post) return;
+      const shareText = `${post.user.name}: ${post.text}`;
+      try {
+        if (navigator.share) await navigator.share({ title: 'JC CONNECT post', text: shareText, url: window.location.href });
+        else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(shareText); alert('Post text copied.'); }
+        else alert(shareText);
+      } catch (error) { console.log('Share cancelled or unavailable.', error); }
+    };
+  });
+}
+
+// Chat rendering and selection were referenced throughout the app but were
+// missing from the original file. These functions keep conversations usable.
+function renderChatPeople() {
+  const container = $('chatPeople');
+  if (!container) return;
+  container.innerHTML = chats.map((chat, index) => `
+    <button type="button" class="chatperson" data-chat-index="${index}">
+      <img src="${escapeHtml(chat.person.img || 'https://i.pravatar.cc/100?img=12')}" alt="">
+      <div><strong>${escapeHtml(chat.name || chat.person.name)}</strong><small>${escapeHtml((chat.messages.at(-1)?.text || 'Tap to start chatting').slice(0, 54))}</small></div>
+    </button>
+  `).join('');
+  container.querySelectorAll('[data-chat-index]').forEach(button => {
+    button.onclick = () => selectChat(Number(button.dataset.chatIndex));
+  });
+}
+
+function selectChat(index) {
+  if (!Number.isInteger(index) || !chats[index]) return;
+  activeChat = index;
+  const chat = chats[index];
+  if ($('chatName')) $('chatName').textContent = chat.name || chat.person.name;
+  if ($('chatAvatar')) $('chatAvatar').src = chat.person.img || 'https://i.pravatar.cc/100?img=12';
+  if ($('incomingCallerName')) $('incomingCallerName').textContent = chat.person.name;
+  if ($('incomingCallerAvatar')) $('incomingCallerAvatar').src = chat.person.img || 'https://i.pravatar.cc/100?img=12';
+  const presence=$('jcChatPresence');
+  if(presence){presence.textContent='Status not available';presence.classList.remove('online');}
+  if(presence && chat.otherUserId && window.jcFirebase){
+    const fb=window.jcFirebase;
+    fb.getDoc(fb.doc(fb.db,'User',chat.otherUserId)).then(snap=>{
+      if(!snap.exists())return;const data=snap.data();const seen=data.lastSeenAt?.toDate?data.lastSeenAt.toDate():null;
+      const online=!!data.isOnline && seen && (Date.now()-seen.getTime()<120000);
+      if(presence){presence.textContent=online?'Online':(seen?'Last seen '+seen.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'Offline');presence.classList.toggle('online',!!online);}
+    }).catch(()=>{});
+  }
+  const messages = $('messages');
+  if (messages) {
+    messages.innerHTML = chat.messages.map(message => `
+      <div class="bubble ${message.mine ? 'mine' : ''}">
+        ${message.type==='audio' && message.mediaUrl ? `<audio src="${escapeHtml(message.mediaUrl)}" controls style="max-width:220px;width:100%"></audio>` : (message.mediaUrl || message.image) ? `<img src="${escapeHtml(message.mediaUrl || message.image)}" alt="Shared image" style="display:block;max-width:220px;width:100%;border-radius:10px">` : escapeHtml(message.text || '')}
+        <small>${escapeHtml(message.time || '')}</small>
+      </div>
+    `).join('');
+    messages.scrollTop = messages.scrollHeight;
+  }
+  document.querySelectorAll('.chatperson').forEach((el, i) => el.classList.toggle('active', i === index));
+  document.querySelector('.chatlayout')?.classList.add('chat-open');
+  if (chat.id) jcWatchChatMessages(chat);
+}
+
+// Upload public-feed media into the private Supabase bucket using the signed-in Firebase user's JWT.
+async function jcUploadSupabaseMedia(file, folder, user) {
+  if (!file || !user) throw new Error('Sign in and choose a media file first.');
+  if (!['posts', 'stories'].includes(folder)) throw new Error('Unsupported media folder.');
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  const path = `${folder}/${user.uid}/${Date.now()}_${safeName}`;
+  const { error } = await window.jcSupabase.client.storage
+    .from(window.jcSupabase.bucket)
+    .upload(path, file, { contentType: file.type || 'application/octet-stream', upsert: false });
+  if (error) throw error;
+  return path;
+}
+
+async function jcGetSupabaseMediaUrl(path) {
+  if (!path || !window.jcSupabase?.client) return '';
+  const { data, error } = await window.jcSupabase.client.storage
+    .from(window.jcSupabase.bucket)
+    .createSignedUrl(path, 60 * 60 * 24 * 7);
+  if (error) {
+    console.warn('Supabase media URL could not be created:', error.message);
+    return '';
+  }
+  return data?.signedUrl || '';
+}
+
+async function loadStories() {
+  const fb = window.jcFirebase; const current = fb?.auth?.currentUser;
+  if (!current) return;
+  try {
+    const snap = await fb.getDocs(fb.collection(fb.db, 'stories'));
+    const now = Date.now();
+    const remote = snap.docs.map(d => ({ id:d.id, ...d.data() }))
+      .filter(x => !x.expiresAt || (x.expiresAt.toMillis ? x.expiresAt.toMillis() : new Date(x.expiresAt).getTime()) > now)
+      .sort((a,b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    stories = [{ name:'Your story', img:$('profileAvatar')?.src || 'https://i.pravatar.cc/100?img=12', own:true }, ...await Promise.all(remote.map(async x => {
+      const mediaUrl = x.mediaPath ? await jcGetSupabaseMediaUrl(x.mediaPath) : (x.mediaUrl || '');
+      return {...x, mediaUrl, name:x.displayName || 'JC Member', img:mediaUrl || x.photoURL || 'https://i.pravatar.cc/100?img=12', text:x.text || ''};
+    }))];
+    renderStories();
+  } catch (error) { console.error('Stories could not load:', error); }
+}
+function addStory() {
+  modal('Add a story', `
+    <label for="newStoryText">Write a story</label>
+    <textarea id="newStoryText" class="field" rows="3" maxlength="500" placeholder="Share a moment with your people..."></textarea>
+    <label for="newStoryFile">Add a photo or video (optional)</label>
+    <input id="newStoryFile" class="field" type="file" accept="image/*,video/*">
+  `, 'Share Story', async () => {
+    const fb = window.jcFirebase; const current = fb?.auth?.currentUser;
+    const value = $('newStoryText').value.trim(); const file = $('newStoryFile').files[0];
+    if (!current) { alert('Please sign in first.'); return false; }
+    if (!value && !file) { alert('Write something or choose a photo/video.'); return false; }
+    try {
+      let mediaPath = '', mediaType = '';
+      if (file) {
+        mediaPath = await jcUploadSupabaseMedia(file, 'stories', current);
+        mediaType = file.type.startsWith('video/') ? 'video' : 'image';
+      }
+      await fb.addDoc(fb.collection(fb.db,'stories'), {
+        userId:current.uid, displayName:current.displayName || userName,
+        text:value, mediaPath, mediaType, createdAt:fb.serverTimestamp(),
+        expiresAt:new Date(Date.now()+24*60*60*1000)
+      });
+      await loadStories();
+    } catch(error) { console.error(error); alert('Story could not be saved: '+error.message); return false; }
+  });
+}
+
+async function sendChatMessage() {
+  const input = $('messageInput'); const text = input?.value.trim();
+  const chat = chats[activeChat]; const fb = window.jcFirebase; const current = fb?.auth?.currentUser;
+  if (!text || !chat) return;
+  if (!current || !chat.id) { alert('Choose a real JC CONNECT member to start a Firebase chat.'); return; }
+  try {
+    await fb.addDoc(fb.collection(fb.db,'chats',chat.id,'messages'), {
+      senderId:current.uid, text, type:'text', createdAt:fb.serverTimestamp()
+    });
+    await fb.updateDoc(fb.doc(fb.db,'chats',chat.id), { lastMessage:text, lastMessageAt:fb.serverTimestamp() });
+    input.value = '';
+    for (const memberId of (chat.members || [chat.otherUserId])) {
+      if (memberId && memberId !== current.uid) await jcCreateNotification(memberId, { type:'message', text:'sent you a message', fromUid:current.uid, fromName:current.displayName || userName, chatId:chat.id });
+    }
+  } catch(error) { alert('Message could not be sent: '+error.message); }
+}
+$('sendMessage').onclick = sendChatMessage;
+$('stickerBtn')?.addEventListener('click',()=> $('jcStickerPanel')?.classList.toggle('show'));
+$('jcStickerPanel')?.addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;const input=$('messageInput');input.value+=(input.value?' ':'')+b.textContent;input.focus();});
+$('messageInput').addEventListener('keydown', event => { if (event.key === 'Enter') sendChatMessage(); });
+$('chatSearch').addEventListener('input', event => {
+  const term = event.target.value.trim().toLowerCase();
+  document.querySelectorAll('#chatPeople .chatperson').forEach(button => {
+    button.style.display = button.textContent.toLowerCase().includes(term) ? '' : 'none';
+  });
+});
+$('backToChats')?.addEventListener('click', () => document.querySelector('.chatlayout')?.classList.remove('chat-open'));
+
+// Simple text-post creation uses the existing Firestore post collection.
+function openCreatePost() {
+  modal('Create a post', `
+    <label for="newPostText">What's happening?</label>
+    <textarea id="newPostText" class="field" rows="3" maxlength="3000" placeholder="Share your thoughts with JC CONNECT..."></textarea>
+    <div class="jc-camera-tools"><button type="button" id="jcOpenCamera">📸 Open JC Camera</button><button type="button" id="jcChooseMedia">Choose from phone</button></div>
+    <input id="newPostFile" class="field" type="file" accept="image/*,video/*,audio/*" hidden>
+    <div id="jcCameraPanel" hidden>
+      <div class="jc-camera-stage"><video id="jcCameraVideo" autoplay muted playsinline></video></div>
+      <div class="jc-camera-tools" id="jcCameraFilters">
+        <button type="button" data-filter="none" class="active">Natural</button>
+        <button type="button" data-filter="beauty">Beauty</button>
+        <button type="button" data-filter="soft">Soft glow</button>
+        <button type="button" data-filter="warm">Warm</button>
+        <button type="button" data-filter="bw">B&W</button>
+      </div>
+      <div class="jc-camera-tools"><button type="button" id="jcFlipCamera">↔ Flip camera</button><button type="button" id="jcCapture">● Capture photo</button><button type="button" id="jcRecordVideo">⏺ Record video</button><button type="button" id="jcStopRecord" disabled>■ Stop recording</button><button type="button" id="jcStopCamera">Stop camera</button></div>
+      <p style="font-size:12px;color:#7b8492">Beauty and glow are visual filters, not AI face retouching. Camera access requires permission and a secure browser context.</p>
+    </div>
+    <p id="jcSelectedMedia" style="font-size:12px;color:#667085">No media selected yet.</p>
+  `, 'Publish Post', async () => {
+    const text = $('newPostText').value.trim(); const file = $('newPostFile').files[0];
+    const fb = window.jcFirebase; const current = fb?.auth?.currentUser;
+    if (!text && !file) { alert('Write something or select a media file.'); return false; }
+    if (!current) { alert('Please sign in to publish a post.'); return false; }
+    try {
+      let mediaPath = '', mediaType = '';
+      if (file) {
+        mediaType = file.type.startsWith('video/') ? 'video' : file.type.startsWith('audio/') ? 'audio' : 'image';
+        mediaPath = await jcUploadSupabaseMedia(file, 'posts', current);
+      }
+      const displayName = current.displayName || userName;
+      const handle = '@' + displayName.toLowerCase().replace(/[^a-z0-9_]/g, '_');
+      await fb.addDoc(fb.collection(fb.db,'post'), {
+        displayName, handle, text, userId:current.uid, photoURL:current.photoURL||'', mediaPath, mediaType,
+        createdAt:fb.serverTimestamp(), likes:0, comments:0
+      });
+      if (window.jcStopCreateCamera) window.jcStopCreateCamera();
+      await loadPosts();
+    } catch(error) { console.error('Post publish failed:',error); alert('Your post could not be published: '+error.message); return false; }
+  });
+  const modalBox=$('modalContent').closest('.modalbox'); modalBox?.classList.add('jc-camera-modal');
+  let stream=null, facing='user', recorder=null, recordedChunks=[];
+  const video=$('jcCameraVideo'), panel=$('jcCameraPanel'), fileInput=$('newPostFile');
+  window.jcStopCreateCamera=()=>{if(recorder && recorder.state==='recording'){try{recorder.stop()}catch(e){}}if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;if(video)video.srcObject=null;};
+  $('jcChooseMedia').onclick=()=>fileInput.click();
+  fileInput.onchange=()=>{$('jcSelectedMedia').textContent=fileInput.files[0]?.name||'No media selected yet.';};
+  async function startCamera(){
+    try{window.jcStopCreateCamera();stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing},audio:false});video.srcObject=stream;panel.hidden=false;}
+    catch(err){alert('Camera could not start. Allow camera permission and use SPCK preview or HTTPS. '+err.message);}
+  }
+  $('jcOpenCamera').onclick=startCamera;
+  $('jcStopCamera').onclick=()=>{window.jcStopCreateCamera();panel.hidden=true;};
+  $('jcRecordVideo').onclick=()=>{
+    if(!stream){alert('Open the camera first.');return;}
+    if(!window.MediaRecorder){alert('Video recording is not supported in this browser. You can choose a video from your phone.');return;}
+    try{recordedChunks=[];const type=['video/webm;codecs=vp9','video/webm'].find(t=>MediaRecorder.isTypeSupported(t));recorder=new MediaRecorder(stream,type?{mimeType:type}:undefined);
+      recorder.ondataavailable=e=>{if(e.data&&e.data.size)recordedChunks.push(e.data)};
+      recorder.onstop=()=>{const blob=new Blob(recordedChunks,{type:recorder.mimeType||'video/webm'});const file=new File([blob],`jc-video-${Date.now()}.webm`,{type:blob.type});const dt=new DataTransfer();dt.items.add(file);fileInput.files=dt.files;$('jcSelectedMedia').textContent='Video ready: '+file.name;};
+      recorder.start();$('jcRecordVideo').disabled=true;$('jcStopRecord').disabled=false;
+    }catch(err){alert('Could not start video recording: '+err.message)}
+  };
+  $('jcStopRecord').onclick=()=>{if(recorder&&recorder.state==='recording'){recorder.stop();$('jcRecordVideo').disabled=false;$('jcStopRecord').disabled=true;}};
+  $('jcFlipCamera').onclick=()=>{facing=facing==='user'?'environment':'user';startCamera();};
+  $('jcCameraFilters').onclick=e=>{
+    const b=e.target.closest('[data-filter]');if(!b)return;
+    const filters={none:'none',beauty:'brightness(1.08) contrast(.94) saturate(1.08)',soft:'brightness(1.12) contrast(.88) saturate(1.12)',warm:'sepia(.18) saturate(1.2) brightness(1.04)',bw:'grayscale(1)'};
+    video.style.setProperty('--jc-camera-filter',filters[b.dataset.filter]);
+    $('jcCameraFilters').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+  };
+  $('jcCapture').onclick=()=>{
+    if(!video.videoWidth){alert('Wait for the camera preview to start.');return;}
+    const canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+    const ctx=canvas.getContext('2d');
+    const activeFilter=getComputedStyle(video).filter;ctx.filter=activeFilter||'none';
+    if(facing==='user'){ctx.translate(canvas.width,0);ctx.scale(-1,1);}
+    ctx.drawImage(video,0,0,canvas.width,canvas.height);
+    canvas.toBlob(blob=>{if(!blob){alert('Photo capture failed.');return;}const photo=new File([blob],`jc-camera-${Date.now()}.jpg`,{type:'image/jpeg'});const dt=new DataTransfer();dt.items.add(photo);fileInput.files=dt.files;$('jcSelectedMedia').textContent='Camera photo ready: '+photo.name;window.jcStopCreateCamera();panel.hidden=true;},'image/jpeg',.9);
+  };
+  $('cancelModal').addEventListener('click',()=>window.jcStopCreateCamera(),{once:true});
+}
+$('openPost')?.addEventListener('click', openCreatePost);
+$('openFullCamera')?.addEventListener('click',()=>openCreatePost());
+$('chatCameraBtn')?.addEventListener('click',()=>openCreatePost());
+$('chooseCreateMedia')?.addEventListener('click',()=>$('jcCreatePicker')?.click());
+$('jcCreatePicker')?.addEventListener('change',e=>{const file=e.target.files?.[0];if(!file)return;openCreatePost();setTimeout(()=>{const input=$('newPostFile');if(input){const dt=new DataTransfer();dt.items.add(file);input.files=dt.files;$('jcSelectedMedia').textContent='Selected: '+file.name;}},150);});
+$('createBackBtn')?.addEventListener('click',()=>nav('homePage'));
+document.querySelectorAll('[data-chat-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-chat-filter]').forEach(x=>x.classList.toggle('active',x===btn));const term=$('chatSearch')?.value.trim().toLowerCase()||'';document.querySelectorAll('#chatPeople .chatperson').forEach(el=>{const text=el.textContent.toLowerCase();el.style.display=(!term||text.includes(term))?'':'none';});}));
+document.querySelectorAll('[data-chat-tab]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-chat-tab]').forEach(x=>x.classList.toggle('active',x===btn));if(btn.dataset.chatTab!=='chats')alert(btn.dataset.chatTab.charAt(0).toUpperCase()+btn.dataset.chatTab.slice(1)+' section is coming soon.');}));
+$('createPost')?.addEventListener('click', openCreatePost);
+$('photoPost')?.addEventListener('click', openCreatePost);
+$('createStory')?.addEventListener('click', addStory);
+$('storyPost')?.addEventListener('click', addStory);
+$('videoPost')?.addEventListener('click', openCreatePost);
+$('musicPost').onclick = openCreatePost;
+
+$('exploreSearch')?.addEventListener('input', event => {
+  const term = event.target.value.trim().toLowerCase();
+  const filtered = posts.filter(post => `${post.user.name} ${post.user.handle} ${post.text}`.toLowerCase().includes(term));
+  renderPosts('exploreFeed', term ? filtered : [...posts].reverse());
+});
+
+$('imageBtn').onclick = () => {
+  if (activeChat < 0) {
+    alert('Open a chat first.');
+    return;
+  }
+
+  $('chatImageInput').click();
+};
+
+$('chatImageInput').onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    alert('Please select an image.');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    if (!chats[activeChat]) { alert('Open a chat first.'); return; }
+    chats[activeChat].messages.push({
+      text: '',
+      image: reader.result,
+      mine: true,
+      time: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    });
+
+    selectChat(activeChat);
+    renderChatPeople();
+    e.target.value = '';
+  };
+
+  reader.readAsDataURL(file);
+};
+$('metaAIButton').onclick = () => {
+  const aiIndex = chats.findIndex(c => c.isAI);
+
+  if (aiIndex !== -1) {
+    selectChat(aiIndex);
+  }
+};
+let liveStream = null;
+$('goLiveBtn').onclick = () => {
+  modal('Go Live 🔴', `
+    <label for="liveTitle">Live video title</label>
+    <input id="liveTitle" class="field" placeholder="Enter your live title" maxlength="100">
+    <video id="livePreview" autoplay muted playsinline style="width:100%;border-radius:12px;background:#111;min-height:180px;object-fit:cover"></video>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0">
+      <button type="button" id="cameraBtn" class="softbtn">📷 Turn On Camera</button>
+      <button type="button" id="muteLiveBtn" class="softbtn">🎙️ Mute Microphone</button>
+      <button type="button" id="shareLiveBtn" class="softbtn">📤 Share Live</button>
+      <button type="button" id="endLiveBtn" class="softbtn">⏹ Stop Camera</button>
+    </div>
+    <h3>Live Comments</h3>
+    <div id="liveComments" style="min-height:45px;color:#777">Comments will appear here.</div>
+    <input id="liveCommentInput" class="field" placeholder="Write a comment...">
+    <button type="button" id="sendLiveComment" class="softbtn">Send Comment</button>
+    <p style="font-size:12px;color:#8a95a4">Camera preview only. Live broadcasting requires a streaming service.</p>
+  `, 'Start Live', () => {
+    const title = $('liveTitle').value.trim();
+    if (!title) { alert('Please enter a live video title.'); return false; }
+    alert('Your live session is ready: ' + title + '. This preview does not broadcast to other users.');
+  });
+
+  $('cameraBtn').onclick = async () => {
+    try {
+      liveStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      $('livePreview').srcObject = liveStream;
+      $('cameraBtn').textContent = '📷 Camera On';
+    } catch (error) {
+      alert('Camera access failed. Please allow camera and microphone permission.');
+    }
+  };
+  $('muteLiveBtn').onclick = () => {
+    if (!liveStream) { alert('Turn on the camera first.'); return; }
+    const tracks = liveStream.getAudioTracks();
+    if (!tracks.length) { alert('No microphone was found.'); return; }
+    tracks.forEach(track => track.enabled = !track.enabled);
+    $('muteLiveBtn').textContent = tracks[0].enabled ? '🎙️ Mute Microphone' : '🔇 Unmute Microphone';
+  };
+  $('shareLiveBtn').onclick = async () => {
+    const shareData = { title: 'JC CONNECT Live', text: 'Join my live session on JC CONNECT!', url: window.location.href };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(shareData.url); alert('Link copied.'); }
+      else alert('Sharing is not supported on this device.');
+    } catch (error) { console.log('Share cancelled or unavailable.', error); }
+  };
+  $('endLiveBtn').onclick = () => {
+    if (liveStream) liveStream.getTracks().forEach(track => track.stop());
+    liveStream = null;
+    $('livePreview').srcObject = null;
+    $('cameraBtn').textContent = '📷 Turn On Camera';
+    $('muteLiveBtn').textContent = '🎙️ Mute Microphone';
+  };
+  $('sendLiveComment').onclick = () => {
+    const input = $('liveCommentInput');
+    const comment = input.value.trim();
+    if (!comment) return;
+    const item = document.createElement('p');
+    item.textContent = comment;
+    item.style.padding = '6px 0';
+    $('liveComments').appendChild(item);
+    input.value = '';
+  };
+};
+$('musicPost').onclick = () => {
+  modal('🎵 Add Music', `
+    <label>Choose a music file</label>
+    <input type="file" id="musicFile" accept="audio/*">
+
+    <p style="font-size:13px;color:#777;">
+      Choose an audio file from your phone to preview.
+    </p>
+
+    <audio id="musicPreview" controls style="width:100%;"></audio>
+  `, 'Done', () => {
+    const file = $('musicFile').files[0];
+
+    if (!file) {
+      alert('Please choose a music file.');
+      return;
+    }
+
+    alert('Music selected: ' + file.name);
+  });
+
+  $('musicFile').onchange = () => {
+    const file = $('musicFile').files[0];
+
+    if (file) {
+      $('musicPreview').src = URL.createObjectURL(file);
+    }
+  };
+};
+$('createGroupBtn').onclick = () => {
+  modal('Create New Group', `
+    <label>Group Name</label>
+    <input id="groupName" class="field" placeholder="Enter group name">
+
+    <label>Select Members</label>
+    <div class="group-members">
+      ${people.map((p,i) => `
+        <label style="display:block;padding:8px 0">
+          <input type="checkbox" name="groupMember" value="${i}">
+          ${escapeHtml(p.name)}
+        </label>
+      `).join('')}
+    </div>
+  `, 'Create Group', () => {
+    const name = $('groupName').value.trim();
+
+    const selected = [...document.querySelectorAll(
+      'input[name="groupMember"]:checked'
+    )].map(input => people[Number(input.value)]);
+
+    if (!name || selected.length < 1) {
+      alert('Enter a group name and select at least one member.');
+      return;
+    }
+
+    const group = {
+      person: {
+        name: name,
+        img: selected[0].img
+      },
+      members: selected,
+      isGroup: true,
+      messages: []
+    };
+
+    chats.unshift(group);
+    renderChatPeople();
+    selectChat(0);
+  });
+};
+$('newChat').onclick=()=>modal('Start a new chat',`<select id="newPerson" class="field">${people.map((p,i)=>`<option value="${i}">${p.name}</option>`).join('')}</select>`,'Open chat',()=>{let p=people[+$('newPerson').value],idx=chats.findIndex(c=>c.person.name===p.name);if(idx<0){chats.unshift({person:p,messages:[]});idx=0}renderChatPeople();selectChat(idx)});
+
+
+
+// ---------------- JC CONNECT FIREBASE DATA LAYER ----------------
+let jcChatUnsubscribe = null;
+let jcChatMessageUnsubscribe = null;
+let jcActiveMessageChatId = null;
+let jcPostUnsubscribe = null;
+let jcPeople = [];
+function jcCurrentUser(){ return window.jcFirebase?.auth?.currentUser || null; }
+async function jcCreateNotification(uid, data) {
+  const fb=window.jcFirebase; const current=jcCurrentUser();
+  if (!uid || !current || uid===current.uid) return;
+  try {
+    const recipient=await fb.getDoc(fb.doc(fb.db,'User',uid));
+    const prefs=recipient.exists() ? recipient.data().settings?.notifications : null;
+    const prefKey={like:'likes',comment:'comments',follow:'follows',message:'messages'}[data.type];
+    if(prefKey && prefs && prefs[prefKey]===false) return;
+    await fb.addDoc(fb.collection(fb.db,'User',uid,'notifications'), { ...data, read:false, createdAt:fb.serverTimestamp() });
+  } catch(error){ console.warn('Notification write failed:',error); }
+}
+async function jcSaveSettingGroup(section, values) {
+  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user) throw new Error('Sign in first.');
+  await fb.setDoc(fb.doc(fb.db,'User',user.uid),{settings:{[section]:values},updatedAt:fb.serverTimestamp()},{merge:true});
+}
+async function jcLoadProfile(user) {
+  const fb=window.jcFirebase;
+  try {
+    const snap=await fb.getDoc(fb.doc(fb.db,'User',user.uid));
+    const data=snap.exists()?snap.data():{};
+    const name=data.displayName || user.displayName || user.email?.split('@')[0] || 'JC Member';
+    userName=name; userBio=data.bio || 'Welcome to my JC space.';
+    const settings=data.settings||{};
+    for(const [key,value] of Object.entries(settings.security||{})) localStorage.setItem('jc'+key[0].toUpperCase()+key.slice(1),value);
+    if(settings.privacy){const v=settings.privacy; if(v.privateAccount!==undefined)localStorage.setItem('jcPrivate',v.privateAccount); if(v.postAudience)localStorage.setItem('jcPostAudience',v.postAudience); if(v.messageAccess)localStorage.setItem('jcMessages',v.messageAccess); if(v.commentAccess)localStorage.setItem('jcComments',v.commentAccess); if(v.onlineStatus!==undefined)localStorage.setItem('jcOnlineStatus',v.onlineStatus);}
+    for(const [key,value] of Object.entries(settings.notifications||{})) localStorage.setItem('jcNotify'+key[0].toUpperCase()+key.slice(1),value);
+    if(settings.appearance?.theme) localStorage.setItem('jcTheme',settings.appearance.theme);
+    if(settings.language?.language) localStorage.setItem('jcLanguage',settings.language.language);
+    if ($('profileName')) $('profileName').textContent=name;
+    if ($('profileHandle')) $('profileHandle').textContent=data.handle || '@'+name.toLowerCase().replace(/[^a-z0-9_]/g,'_');
+    if ($('profileBio')) $('profileBio').textContent=userBio;
+    if ($('profileAvatar') && (data.photoURL || user.photoURL)) $('profileAvatar').src=data.photoURL || user.photoURL;
+    if ($('composeAvatar') && (data.photoURL || user.photoURL)) $('composeAvatar').src=data.photoURL || user.photoURL;
+    if ($('sideName')) $('sideName').textContent=name;
+    updateGreeting();
+  } catch(error){ console.warn('Profile load failed:',error); }
+}
+async function jcSaveProfile(name, handle, bio) {
+  const fb=window.jcFirebase, user=jcCurrentUser(); if(!user) throw new Error('Sign in first.');
+  await fb.updateProfile(user,{displayName:name});
+  await fb.setDoc(fb.doc(fb.db,'User',user.uid),{uid:user.uid,displayName:name,handle:'@'+handle.replace(/^@/,''),bio,updatedAt:fb.serverTimestamp()},{merge:true});
+  userName=name; userBio=bio;
+  $('profileName').textContent=name; $('profileHandle').textContent='@'+handle.replace(/^@/,''); $('profileBio').textContent=bio;
+  if($('sideName')) $('sideName').textContent=name;
+  updateGreeting();
+}
+async function jcUploadProfilePhoto(file) {
+  const fb=window.jcFirebase,user=jcCurrentUser();if(!user||!file)throw new Error('Sign in and choose an image first.');
+  if(!file.type.startsWith('image/'))throw new Error('Choose an image file.');
+  const path=`users/${user.uid}/profile/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
+  const ref=fb.storageRef(fb.storage,path);await fb.uploadBytes(ref,file,{contentType:file.type});const url=await fb.getDownloadURL(ref);
+  await fb.setDoc(fb.doc(fb.db,'User',user.uid),{photoURL:url,updatedAt:fb.serverTimestamp()},{merge:true});
+  await fb.updateProfile(user,{photoURL:url});
+  ['profileAvatar','composeAvatar'].forEach(id=>{if($(id))$(id).src=url;});
+  return url;
+}
+async function jcLoadFollowList(kind) {
+  const fb=window.jcFirebase, user=jcCurrentUser();
+  if(!fb || !user) { alert('Please sign in first.'); return; }
+  const title=kind==='followers'?'Followers':'Following';
+  modal(title, '<div class="jc-follow-list" id="jcFollowList"><p class="empty">Loading members...</p></div>', 'Close', ()=>{});
+  $('modalContent').closest('.modalbox')?.classList.add('jc-live-sheet');
+  const list=$('jcFollowList');
+  try {
+    const snap=await fb.getDocs(fb.collection(fb.db,'User',user.uid,kind));
+    if(!snap.size) { list.innerHTML='<p class="empty">No '+title.toLowerCase()+' yet.</p>'; return; }
+    const members=await Promise.all(snap.docs.map(async item=>{
+      const uid=item.id;
+      try { const profile=await fb.getDoc(fb.doc(fb.db,'User',uid)); const data=profile.exists()?profile.data():{}; return {id:uid,name:data.displayName||item.data().displayName||'JC Member',handle:data.handle||'@member',photo:data.photoURL||'https://i.pravatar.cc/100?img=12'}; }
+      catch(e) { return {id:uid,name:item.data().displayName||'JC Member',handle:'@member',photo:'https://i.pravatar.cc/100?img=12'}; }
+    }));
+    list.innerHTML=members.map(person=>`<div class="jc-follow-person"><img src="${escapeHtml(person.photo)}" alt=""><div><strong>${escapeHtml(person.name)}</strong><small>${escapeHtml(person.handle)}</small></div></div>`).join('');
+  } catch(error) {
+    console.error('Could not load '+title+':',error);
+    list.innerHTML='<p class="empty">Could not load '+title.toLowerCase()+'. Check Firestore access rules and try again.</p>';
+  }
+}
+async function jcRefreshFollowCounts() {
+  const fb=window.jcFirebase, user=jcCurrentUser(); if(!fb||!user)return;
+  try {
+    const [followers,following]=await Promise.all([
+      fb.getDocs(fb.collection(fb.db,'User',user.uid,'followers')),
+      fb.getDocs(fb.collection(fb.db,'User',user.uid,'following'))
+    ]);
+    ['followerCount','sideFollowerCount'].forEach(id=>{if($(id))$(id).textContent=followers.size;});
+    ['followingCount','sideFollowingCount'].forEach(id=>{if($(id))$(id).textContent=following.size;});
+  } catch(error) { console.warn('Follow counts unavailable:',error); }
+}
+$('showFollowers')?.addEventListener('click',()=>jcLoadFollowList('followers'));
+$('showFollowing')?.addEventListener('click',()=>jcLoadFollowList('following'));
+$('sideShowFollowers')?.addEventListener('click',()=>jcLoadFollowList('followers'));
+$('sideShowFollowing')?.addEventListener('click',()=>jcLoadFollowList('following'));
+
+async function jcLoadPeople() {
+  const fb=window.jcFirebase, user=jcCurrentUser(); if(!user) return;
+  try {
+    const snap=await fb.getDocs(fb.collection(fb.db,'User'));
+    jcPeople=snap.docs.filter(d=>d.id!==user.uid).map(d=>({id:d.id,...d.data(),name:d.data().displayName||'JC Member',img:d.data().photoURL||'https://i.pravatar.cc/100?img=12'}));
+    const followingSnap=await fb.getDocs(fb.collection(fb.db,'User',user.uid,'following'));
+    const followingIds=new Set(followingSnap.docs.map(d=>d.id));
+    const suggestionCard=document.querySelector('.sidebar .sidecard:last-child');
+    if(suggestionCard) suggestionCard.innerHTML='<h3>People to follow</h3>'+(jcPeople.slice(0,5).map(p=>`<div class="profile-mini" style="margin:12px 0"><img src="${escapeHtml(p.img)}"><p>${escapeHtml(p.name)}<br><small>${escapeHtml(p.handle||'JC member')}</small></p><button class="softbtn" data-follow-user="${p.id}">${followingIds.has(p.id)?'Following':'Follow'}</button></div>`).join('')||'<p>No other members yet.</p>');
+    suggestionCard?.querySelectorAll('[data-follow-user]').forEach(button=>button.onclick=async()=>{const person=jcPeople.find(p=>p.id===button.dataset.followUser);try{await jcToggleFollow(person);button.textContent=button.textContent==='Follow'?'Following':'Follow';}catch(e){alert('Follow update failed: '+e.message);}});
+    const box=$('chatPeople'); if(box && !chats.length) box.innerHTML='<p class="empty">No conversations yet. Start a chat with a JC member.</p>';
+  } catch(error){ console.warn('Member directory unavailable:',error); }
+}
+async function jcLoadChats() {
+  const fb=window.jcFirebase, user=jcCurrentUser(); if(!user) return;
+  if(jcChatUnsubscribe) jcChatUnsubscribe();
+  const q=fb.query(fb.collection(fb.db,'chats'),fb.where('members','array-contains',user.uid));
+  jcChatUnsubscribe=fb.onSnapshot(q, async snap=>{
+    const next=[];
+    for(const d of snap.docs){
+      const data=d.data(); const other=(data.participants||[]).find(x=>x.uid!==user.uid)||{};
+      next.push({id:d.id, name:data.name||'', type:data.type||'direct', person:{name:other.displayName||data.name||'JC Member',img:other.photoURL||'https://i.pravatar.cc/100?img=12'},otherUserId:other.uid||'',members:data.members||[],messages:[]});
+    }
+    chats=next; if(activeChat>=chats.length) activeChat=0;
+    renderChatPeople(); if(chats.length) selectChat(activeChat); else if($('messages')) $('messages').innerHTML='<div class="empty">No messages yet. Start a conversation.</div>';
+  },error=>console.error('Chat list listener failed:',error));
+}
+function jcWatchChatMessages(chat) {
+  const fb=window.jcFirebase, user=jcCurrentUser(); if(!chat?.id||!user) return;
+  if(jcActiveMessageChatId===chat.id && jcChatMessageUnsubscribe) return;
+  if(jcChatMessageUnsubscribe) jcChatMessageUnsubscribe();
+  jcActiveMessageChatId=chat.id;
+  const q=fb.query(fb.collection(fb.db,'chats',chat.id,'messages'),fb.orderBy('createdAt','asc'),fb.limit(200));
+  jcChatMessageUnsubscribe=fb.onSnapshot(q,snap=>{
+    const target=chats.find(item=>item.id===chat.id) || chat;
+    target.messages=snap.docs.map(d=>{const m=d.data();return {...m,id:d.id,mine:m.senderId===user.uid,time:m.createdAt?.toDate?m.createdAt.toDate().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'Now'};});
+    if(chats[activeChat]?.id===chat.id) selectChat(activeChat);
+    renderChatPeople();
+  },error=>console.error('Message listener failed:',error));
+}
+async function jcStartChat(person) {
+  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user||!person?.id) return;
+  const existing=chats.find(c=>c.members?.includes(person.id)); if(existing){selectChat(chats.indexOf(existing));return;}
+  try {
+    const ids=[user.uid,person.id].sort(); const chatId=ids.join('_');
+    const ref=fb.doc(fb.db,'chats',chatId); const snap=await fb.getDoc(ref);
+    if(!snap.exists()) await fb.setDoc(ref,{members:ids,participants:[{uid:user.uid,displayName:user.displayName||'JC Member',photoURL:user.photoURL||''},{uid:person.id,displayName:person.displayName||person.name,photoURL:person.photoURL||person.img||''}],createdBy:user.uid,createdAt:fb.serverTimestamp(),lastMessage:'',lastMessageAt:fb.serverTimestamp(),type:'direct'});
+    await jcLoadChats();
+  } catch(error){alert('Could not start chat: '+error.message);}
+}
+async function jcLoadNotifications(){
+  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user) return;
+  try {
+    const snap=await fb.getDocs(fb.query(fb.collection(fb.db,'User',user.uid,'notifications'),fb.orderBy('createdAt','desc'),fb.limit(30)));
+    const panel=document.querySelector('.notifications-panel'); if(!panel) return;
+    const rows=snap.docs.map(d=>d.data());
+    panel.innerHTML='<div class="notifications-head"><h3>Notifications</h3><span>Recent activity</span></div>'+ (rows.length?rows.map(n=>`<div class="notification-item"><div class="notification-icon">${n.type==='like'?'♥':n.type==='comment'?'💬':n.type==='follow'?'👤':'✉️'}</div><div><strong>${escapeHtml(n.fromName||'JC member')}</strong><p>${escapeHtml(n.text||'Activity on your account')}</p><small>${n.createdAt?.toDate?n.createdAt.toDate().toLocaleString():'Recently'}</small></div></div>`).join(''):'<p class="empty">You are all caught up.</p>');
+  } catch(error){console.warn('Notifications load failed:',error);}
+}
+async function jcLoadPostsRealtime(){
+  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user) return;
+  if(jcPostUnsubscribe) jcPostUnsubscribe();
+  const q=fb.query(fb.collection(fb.db,'post'),fb.orderBy('createdAt','desc'),fb.limit(100));
+  jcPostUnsubscribe=fb.onSnapshot(q,async snap=>{
+    const next=await Promise.all(snap.docs.map(async d=>{
+      const data=d.data(); let likeCount=Number(data.likes||0),commentCount=Number(data.comments||0),liked=false;
+      try {const [likes,comments]=await Promise.all([fb.getDocs(fb.collection(fb.db,'post',d.id,'likes')),fb.getDocs(fb.collection(fb.db,'post',d.id,'comments'))]);likeCount=likes.size;commentCount=comments.size;liked=likes.docs.some(x=>x.id===user.uid);}catch(e){console.warn('Post engagement read failed:',e);}
+      let mediaUrl=data.mediaUrl||data.imageUrl||'';
+      if(data.mediaPath){try{mediaUrl=await jcGetSupabaseMediaUrl(data.mediaPath);}catch(e){console.warn('Media URL could not be refreshed:',e);}}
+      return {id:d.id,user:{name:data.displayName||'JC CONNECT User',handle:data.handle||'@user',img:data.photoURL||'https://i.pravatar.cc/100?img=12'},text:data.text||'',img:mediaUrl,mediaType:data.mediaType||'image',likes:likeCount,comments:commentCount,liked,time:data.createdAt?.toDate?data.createdAt.toDate().toLocaleString():'Recently',userId:data.userId};
+    }));
+    posts=next; renderAll();
+  },error=>{console.error('Feed listener failed:',error);});
+}
+async function jcToggleFollow(person){
+  const fb=window.jcFirebase,user=jcCurrentUser();if(!user||!person?.id)return;
+  const followingRef=fb.doc(fb.db,'User',user.uid,'following',person.id);
+  const existing=await fb.getDoc(followingRef);
+  if(existing.exists()){
+    await fb.deleteDoc(followingRef); await fb.deleteDoc(fb.doc(fb.db,'User',person.id,'followers',user.uid));
+  }else{
+    await fb.setDoc(followingRef,{uid:person.id,displayName:person.displayName||person.name,createdAt:fb.serverTimestamp()});
+    await fb.setDoc(fb.doc(fb.db,'User',person.id,'followers',user.uid),{uid:user.uid,displayName:user.displayName||'JC Member',createdAt:fb.serverTimestamp()});
+    await jcCreateNotification(person.id,{type:'follow',fromUid:user.uid,fromName:user.displayName||'JC Member',text:'started following you'});
+  }
+  await jcRefreshFollowCounts();
+}
+async function jcOnLogin(user){
+  await jcLoadProfile(user); await jcLoadPeople(); await jcRefreshFollowCounts(); await loadStories(); await jcLoadNotifications(); await jcLoadChats(); await jcLoadPostsRealtime();
+}
+function jcOnLogout(){if(jcPostUnsubscribe)jcPostUnsubscribe();if(jcChatUnsubscribe)jcChatUnsubscribe();if(jcChatMessageUnsubscribe)jcChatMessageUnsubscribe();jcActiveMessageChatId=null;posts=[];chats=[];stories=[{name:'Your story',img:'https://i.pravatar.cc/100?img=12',own:true}];}
+window.jcApp={onLogin:jcOnLogin,onLogout:jcOnLogout,loadPosts:loadPosts};
+
+$('changeProfilePhoto')?.addEventListener('click',()=>$('profilePhotoInput')?.click());
+$('profilePhotoInput')?.addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{await jcUploadProfilePhoto(file);}catch(error){alert('Profile photo upload failed: '+error.message);}finally{e.target.value='';}});
+
+// Replace demo profile editing with a persistent Firebase profile update.
+$('editProfile').onclick = null;
+$('editProfile')?.addEventListener('click',()=>{
+  modal('Edit Profile',`<label>Full Name</label><input id="editName" class="field" value="${escapeHtml($('profileName')?.textContent||'')}"><label>Username</label><input id="editHandle" class="field" value="${escapeHtml(($('profileHandle')?.textContent||'').replace('@',''))}"><label>Bio</label><textarea id="editBio" class="field" rows="3">${escapeHtml($('profileBio')?.textContent||'')}</textarea>`, 'Save Changes',async()=>{
+    const name=$('editName').value.trim(),handle=$('editHandle').value.trim(),bio=$('editBio').value.trim();if(!name||!handle){alert('Enter your name and username.');return false;}
+    try{await jcSaveProfile(name,handle,bio);}catch(e){alert('Profile could not be saved: '+e.message);return false;}
+  });
+});
+// Real user directory for new direct chats.
+$('newChat').onclick = null;
+$('newChat')?.addEventListener('click',()=>{
+  if(!jcPeople.length){alert('No other JC accounts were found yet. Ask another member to register first.');return;}
+  modal('Start a new chat',`<input id="memberSearch" class="field" placeholder="Search JC members"><div id="memberChoices" style="max-height:280px;overflow:auto">${jcPeople.map((p,i)=>`<button type="button" class="chatperson" data-member-index="${i}"><img src="${escapeHtml(p.img)}"><div><strong>${escapeHtml(p.name)}</strong><small>${escapeHtml(p.handle||'JC member')}</small></div></button>`).join('')}</div>`,'Cancel',()=>{});
+  $('submitModal').style.display='none';$('memberSearch').addEventListener('input',e=>{const t=e.target.value.toLowerCase();document.querySelectorAll('[data-member-index]').forEach(b=>b.style.display=b.textContent.toLowerCase().includes(t)?'':'none');});
+  document.querySelectorAll('[data-member-index]').forEach(b=>b.onclick=async()=>{await jcStartChat(jcPeople[Number(b.dataset.memberIndex)]);closeModal();});
+});
+// Real Firebase story, post, chat image, notification, and follow persistence.
+$('chatImageInput').onchange = null;
+$('chatImageInput')?.addEventListener('change',async e=>{
+  const file=e.target.files?.[0],chat=chats[activeChat],fb=window.jcFirebase,user=jcCurrentUser();if(!file)return;
+  if(!user||!chat?.id){alert('Open a Firebase chat first.');e.target.value='';return;}
+  try{const path=`chats/${chat.id}/${user.uid}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;const ref=fb.storageRef(fb.storage,path);await fb.uploadBytes(ref,file,{contentType:file.type});const url=await fb.getDownloadURL(ref);await fb.addDoc(fb.collection(fb.db,'chats',chat.id,'messages'),{senderId:user.uid,text:'',mediaUrl:url,type:'image',createdAt:fb.serverTimestamp()});await fb.updateDoc(fb.doc(fb.db,'chats',chat.id),{lastMessage:'📷 Photo',lastMessageAt:fb.serverTimestamp()});}
+  catch(error){alert('Image could not be sent: '+error.message);}finally{e.target.value='';}
+});
+// Group creation uses actual registered accounts, never the demo profiles.
+$('createGroupBtn').onclick = null;
+$('createGroupBtn')?.addEventListener('click',()=>{
+  if(!jcPeople.length){alert('No other JC accounts are available to add yet.');return;}
+  modal('Create New Group',`<input id="groupName" class="field" placeholder="Group name">${jcPeople.map((p,i)=>`<label style="display:block;padding:7px"><input type="checkbox" name="groupMember" value="${i}"> ${escapeHtml(p.name)}</label>`).join('')}`,'Create Group',async()=>{
+    const user=jcCurrentUser(),fb=window.jcFirebase,name=$('groupName').value.trim(),selected=[...document.querySelectorAll('input[name="groupMember"]:checked')].map(x=>jcPeople[Number(x.value)]);if(!name||!selected.length){alert('Enter a group name and select at least one member.');return false;}
+    try{const members=[user.uid,...selected.map(p=>p.id)];const ref=await fb.addDoc(fb.collection(fb.db,'chats'),{name,type:'group',members,participants:[{uid:user.uid,displayName:user.displayName||'JC Member'},...selected.map(p=>({uid:p.id,displayName:p.displayName||p.name,photoURL:p.photoURL||''}))],createdBy:user.uid,createdAt:fb.serverTimestamp(),lastMessage:'Group created',lastMessageAt:fb.serverTimestamp()});await jcLoadChats();}catch(e){alert('Group could not be created: '+e.message);return false;}
+  });
+});
+// Follow controls are connected to real member records only.
+
+
+function applyJCTheme(theme) {
+  let actualTheme = theme;
+
+  if (theme === 'system') {
+    actualTheme = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches ? 'dark' : 'light';
+  }
+
+  document.body.classList.toggle(
+    'jc-dark-mode',
+    actualTheme === 'dark'
+  );
+}
+
+// SETTINGS INTERACTIONS
+// LANGUAGE SETTINGS
+$('languageSettings').onclick = () => {
+    modal('Choose Language', `
+        <label>Preferred language</label>
+        <select id="languageChoice" class="field">
+            <option value="English">English</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Portuguese">Portuguese</option>
+        </select>
+    `, 'Save Language', async () => {
+        const language = $('languageChoice').value;
+        localStorage.setItem('jcLanguage', language);
+        try { await jcSaveSettingGroup('language',{language}); } catch(e) { alert('Language could not be synced to Firebase: '+e.message); return false; }
+        alert('Language set to ' + language);
+    });
+};
+
+// COUNTRY SETTINGS
+$('countrySettings').onclick = () => {
+    modal('Choose Country', `
+        <label>Your country</label>
+        <select id="countryChoice" class="field">
+  <option value="Nigeria">Nigeria</option>
+  <option value="Ghana">Ghana</option>
+  <option value="Kenya">Kenya</option>
+  <option value="South Africa">South Africa</option>
+  <option value="Uganda">Uganda</option>
+  <option value="Tanzania">Tanzania</option>
+  <option value="Rwanda">Rwanda</option>
+  <option value="Egypt">Egypt</option>
+  <option value="Morocco">Morocco</option>
+  <option value="Ethiopia">Ethiopia</option>
+  <option value="United States">United States</option>
+  <option value="United Kingdom">United Kingdom</option>
+  <option value="Canada">Canada</option>
+  <option value="Australia">Australia</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="India">India</option>
+  <option value="China">China</option>
+  <option value="Japan">Japan</option>
+  <option value="South Korea">South Korea</option>
+  <option value="Singapore">Singapore</option>
+  <option value="Malaysia">Malaysia</option>
+  <option value="Indonesia">Indonesia</option>
+  <option value="Pakistan">Pakistan</option>
+  <option value="Bangladesh">Bangladesh</option>
+  <option value="United Arab Emirates">United Arab Emirates</option>
+  <option value="Saudi Arabia">Saudi Arabia</option>
+  <option value="Qatar">Qatar</option>
+  <option value="Turkey">Turkey</option>
+  <option value="Germany">Germany</option>
+  <option value="France">France</option>
+  <option value="Italy">Italy</option>
+  <option value="Spain">Spain</option>
+  <option value="Portugal">Portugal</option>
+  <option value="Netherlands">Netherlands</option>
+  <option value="Belgium">Belgium</option>
+  <option value="Switzerland">Switzerland</option>
+  <option value="Sweden">Sweden</option>
+  <option value="Norway">Norway</option>
+  <option value="Denmark">Denmark</option>
+  <option value="Ireland">Ireland</option>
+  <option value="Poland">Poland</option>
+  <option value="Ukraine">Ukraine</option>
+  <option value="Russia">Russia</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Mexico">Mexico</option>
+  <option value="Colombia">Colombia</option>
+  <option value="Chile">Chile</option>
+  <option value="Jamaica">Jamaica</option>
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+  <option value="Other">Other</option>
+</select>
+    `, 'Save Country', async () => {
+        const country = $('countryChoice').value;
+        localStorage.setItem('jcCountry', country);
+        try { await jcSaveSettingGroup('location',{country}); } catch(e) { alert('Country could not be synced to Firebase: '+e.message); return false; }
+        alert('Country set to ' + country);
+    });
+};
+
+
+$('accountSettings').onclick = () => {
+  modal('Account Settings', `
+    <div class="account-content">
+
+      <h3>👤 Personal Information</h3>
+      <p>Manage the personal details displayed on your JC CONNECT profile.</p>
+
+      <div class="account-setting-item">
+        <strong>Full Name</strong>
+        <small>Update your display name through Edit Profile.</small>
+      </div>
+
+      <div class="account-setting-item">
+        <strong>Username</strong>
+        <small>Manage your JC CONNECT username through Edit Profile.</small>
+      </div>
+
+      <div class="account-setting-item">
+        <strong>Profile Details</strong>
+        <small>Update your bio and profile photo through Edit Profile.</small>
+      </div>
+
+      <hr>
+
+      <h3>⚙️ Account Management</h3>
+      <div class="account-setting-item">
+        <strong>Account Information</strong>
+        <small>Your account details are managed securely.</small>
+      </div>
+
+      <div class="account-setting-item">
+        <strong>Account Status</strong>
+        <small>JC CONNECT account settings.</small>
+      </div>
+
+      <p class="account-note">
+        More account management features will be added as development continues.
+      </p>
+
+    </div>
+  `, 'Close', () => {});
+};
+
+
+$('securitySettings').onclick = () => {
+  const loginAlerts = localStorage.getItem('jcLoginAlerts') !== 'false';
+  const securityTips = localStorage.getItem('jcSecurityTips') !== 'false';
+
+  modal('Security Settings', `
+    <div class="security-content">
+
+      <h3>🔐 Account Protection</h3>
+      <p>Keep your JC CONNECT account safe and secure.</p>
+
+      <div class="security-item">
+        <strong>Password Management</strong>
+        <small>Password changes will be connected to Firebase authentication later.</small>
+      </div>
+
+      <div class="security-item">
+        <strong>Login Alerts</strong>
+        <label>
+          <input type="checkbox" id="loginAlerts"
+            ${loginAlerts ? 'checked' : ''}>
+          Enable login alerts
+        </label>
+        <small>Preference for future login notifications.</small>
+      </div>
+
+      <div class="security-item">
+        <strong>Security Tips</strong>
+        <label>
+          <input type="checkbox" id="securityTips"
+            ${securityTips ? 'checked' : ''}>
+          Show security reminders
+        </label>
+      </div>
+
+      <hr>
+
+      <h3>🛡️ Stay Safe</h3>
+      <ul>
+        <li>Use a strong and unique password.</li>
+        <li>Never share your password or verification code.</li>
+        <li>Always log out on shared devices.</li>
+        <li>Avoid suspicious links and messages.</li>
+      </ul>
+
+      <p class="security-note">
+        Advanced security features will be connected during the Firebase development stage.
+      </p>
+
+    </div>
+  `, 'Save Security Settings', () => {
+    localStorage.setItem('jcLoginAlerts', $('loginAlerts').checked);
+    localStorage.setItem('jcSecurityTips', $('securityTips').checked);
+
+    alert('Security preferences saved!');
+  });
+};
+
+
+$('privacySettings').onclick = () => {
+  const privateAccount = localStorage.getItem('jcPrivate') === 'true';
+  const postAudience = localStorage.getItem('jcPostAudience') || 'Everyone';
+  const messageAccess = localStorage.getItem('jcMessages') || 'Everyone';
+  const commentAccess = localStorage.getItem('jcComments') || 'Everyone';
+  const onlineStatus = localStorage.getItem('jcOnlineStatus') !== 'false';
+
+  modal('Privacy Settings', `
+    <div class="privacy-content">
+
+      <h3>Account Privacy</h3>
+      <label>
+        <input type="checkbox" id="privateAccount"
+          ${privateAccount ? 'checked' : ''}>
+        Private Account
+      </label>
+      <p>Choose whether your account should be private.</p>
+
+      <hr>
+
+      <h3>Who can see your posts?</h3>
+      <select id="postAudience" class="field">
+        <option ${postAudience === 'Everyone' ? 'selected' : ''}>Everyone</option>
+        <option ${postAudience === 'Followers' ? 'selected' : ''}>Followers</option>
+        <option ${postAudience === 'Only me' ? 'selected' : ''}>Only me</option>
+      </select>
+
+      <h3>Who can message you?</h3>
+      <select id="messageAccess" class="field">
+        <option ${messageAccess === 'Everyone' ? 'selected' : ''}>Everyone</option>
+        <option ${messageAccess === 'Followers' ? 'selected' : ''}>Followers</option>
+        <option ${messageAccess === 'Nobody' ? 'selected' : ''}>Nobody</option>
+      </select>
+
+      <h3>Who can comment on your posts?</h3>
+      <select id="commentAccess" class="field">
+        <option ${commentAccess === 'Everyone' ? 'selected' : ''}>Everyone</option>
+        <option ${commentAccess === 'Followers' ? 'selected' : ''}>Followers</option>
+        <option ${commentAccess === 'Nobody' ? 'selected' : ''}>Nobody</option>
+      </select>
+
+      <hr>
+
+      <h3>Online Status</h3>
+      <label>
+        <input type="checkbox" id="onlineStatus"
+          ${onlineStatus ? 'checked' : ''}>
+        Show when I am online
+      </label>
+
+      <p>Manage your visibility and control your privacy preferences.</p>
+    </div>
+  `, 'Save Privacy Settings', async () => {
+    const values={privateAccount:$('privateAccount').checked,postAudience:$('postAudience').value,messageAccess:$('messageAccess').value,commentAccess:$('commentAccess').value,onlineStatus:$('onlineStatus').checked};
+    localStorage.setItem('jcPrivate', values.privateAccount); localStorage.setItem('jcPostAudience', values.postAudience); localStorage.setItem('jcMessages', values.messageAccess); localStorage.setItem('jcComments', values.commentAccess); localStorage.setItem('jcOnlineStatus', values.onlineStatus);
+    try { await jcSaveSettingGroup('privacy',values); } catch(e) { alert('Settings could not be synced to Firebase: '+e.message); return false; }
+    alert('Privacy preferences saved to your JC account.');
+  });
+};
+
+
+
+$('notificationSettings').onclick = () => {
+  const likes = localStorage.getItem('jcNotifyLikes') !== 'false';
+  const comments = localStorage.getItem('jcNotifyComments') !== 'false';
+  const follows = localStorage.getItem('jcNotifyFollows') !== 'false';
+  const messages = localStorage.getItem('jcNotifyMessages') !== 'false';
+  const updates = localStorage.getItem('jcNotifyUpdates') !== 'false';
+
+  modal('Notification Settings', `
+    <div class="notification-content">
+
+      <h3>Choose your notifications</h3>
+      <p>Control which activities you want to be notified about.</p>
+
+      <label>
+        <input type="checkbox" id="notifyLikes" ${likes ? 'checked' : ''}>
+        Likes on my posts
+      </label>
+
+      <label>
+        <input type="checkbox" id="notifyComments" ${comments ? 'checked' : ''}>
+        Comments on my posts
+      </label>
+
+      <label>
+        <input type="checkbox" id="notifyFollows" ${follows ? 'checked' : ''}>
+        New followers
+      </label>
+
+      <label>
+        <input type="checkbox" id="notifyMessages" ${messages ? 'checked' : ''}>
+        New messages
+      </label>
+
+      <label>
+        <input type="checkbox" id="notifyUpdates" ${updates ? 'checked' : ''}>
+        JC CONNECT updates
+      </label>
+
+    </div>
+  `, 'Save Preferences', async () => {
+    const values={likes:$('notifyLikes').checked,comments:$('notifyComments').checked,follows:$('notifyFollows').checked,messages:$('notifyMessages').checked,updates:$('notifyUpdates').checked};
+    for(const [key,value] of Object.entries(values)) localStorage.setItem('jcNotify'+key[0].toUpperCase()+key.slice(1),value);
+    try { await jcSaveSettingGroup('notifications',values); } catch(e) { alert('Settings could not be synced to Firebase: '+e.message); return false; }
+    alert('Notification preferences saved to your JC account.');
+  });
+};
+
+
+$('appearanceSettings').onclick = () => {
+  const savedTheme = localStorage.getItem('jcTheme') || 'light';
+
+  modal('Appearance', `
+    <div class="appearance-options">
+      <h3>Customize your experience</h3>
+      <p>Choose how JC CONNECT looks on your device.</p>
+
+      <label class="theme-option">
+        <input type="radio" name="jcTheme" value="light"
+          ${savedTheme === 'light' ? 'checked' : ''}>
+        ☀️ Light Mode
+        <small>Bright background and dark text.</small>
+      </label>
+
+      <label class="theme-option">
+        <input type="radio" name="jcTheme" value="dark"
+          ${savedTheme === 'dark' ? 'checked' : ''}>
+        🌙 Dark Mode
+        <small>Dark background for comfortable viewing.</small>
+      </label>
+
+      <label class="theme-option">
+        <input type="radio" name="jcTheme" value="system"
+          ${savedTheme === 'system' ? 'checked' : ''}>
+        📱 System Default
+        <small>Follow your device appearance.</small>
+      </label>
+    </div>
+  `, 'Save Appearance', async () => {
+    const selected = document.querySelector(
+      'input[name="jcTheme"]:checked'
+    );
+
+    if (!selected) return;
+
+    const theme = selected.value;
+    localStorage.setItem('jcTheme', theme);
+    try { await jcSaveSettingGroup('appearance',{theme}); } catch(e) { alert('Appearance could not be synced to Firebase: '+e.message); return false; }
+    applyJCTheme(theme);
+    alert('Appearance preference saved to your JC account.');
+  });
+};
+
+$('helpSettings').onclick = () => {
+  modal('Help and Support', `
+    <div class="help-content">
+
+      <h3>Welcome to JC CONNECT Support 👋</h3>
+      <p>We're here to help you enjoy a safe, smooth and better experience on JC CONNECT.</p>
+
+      <hr>
+
+      <h3>Frequently Asked Questions</h3>
+
+      <details>
+        <summary>How do I edit my profile?</summary>
+        <p>Open your Profile page and tap Edit Profile to update your name, username, bio and profile photo.</p>
+      </details>
+
+      <details>
+        <summary>How do I create a post?</summary>
+        <p>Go to your Home feed, write your message and use the post option to share it.</p>
+      </details>
+
+      <details>
+        <summary>How do I change my password?</summary>
+        <p>Password management will be available through your account security settings.</p>
+      </details>
+
+      <details>
+        <summary>How do I protect my privacy?</summary>
+        <p>Visit Settings and choose Privacy to manage your privacy preferences as those features become available.</p>
+      </details>
+
+      <hr>
+
+      <h3>Safety and Security</h3>
+      <p>Never share your password or verification codes. Report suspicious accounts and harmful content.</p>
+
+      <h3>Contact and Feedback</h3>
+      <p>We value your feedback. Help us make JC CONNECT better for everyone.</p>
+
+      <p><b>JC CONNECT</b><br>Connecting people, ideas and opportunities.</p>
+
+    </div>
+  `, 'Close', () => {});
+};
+
+$('exploreSearch').oninput=e=>{let q=e.target.value.toLowerCase();renderPosts('exploreFeed',posts.filter(p=>(p.text+' '+p.user.name).toLowerCase().includes(q)))};
+$('searchBtn').onclick=()=>{nav('explorePage');$('exploreSearch').focus()};$('bellBtn').onclick = () => {
+  $('notificationsPanel').classList.toggle('show');
+};
+
+$('voiceCallBtn').onclick = () => {
+  alert('Voice call interface coming soon!');
+};
+
+$('videoCallBtn').onclick = () => {
+  alert('Video call interface coming soon!');
+};
+
+$('acceptCall').onclick = () => {
+  $('incomingCall').style.display = 'none';
+  alert('Call accepted!');
+};
+
+$('declineCall').onclick = () => {
+  $('incomingCall').style.display = 'none';
+  alert('Call declined!');
+};
+  
+let voiceRecorder;
+let voiceChunks = [];
+let voiceRecording = false;
+
+$('voiceNoteBtn').onclick = async () => {
+  if (!voiceRecording) {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: {
+    echoCancellation: true,
+    noiseSuppression: true
+  }
+});
+
+console.log('Microphone tracks:', stream.getAudioTracks());
+      voiceChunks = [];
+      voiceRecorder = new MediaRecorder(stream);
+
+      voiceRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          voiceChunks.push(event.data);
+        }
+      };
+
+      voiceRecorder.onstop = async () => {
+        const voiceBlob = new Blob(voiceChunks, { type: voiceRecorder.mimeType || 'audio/webm' });
+        try {
+          const fb=window.jcFirebase, user=jcCurrentUser(), chat=chats[activeChat];
+          if(!user || !chat?.id) throw new Error('Open a Firebase chat before sending a voice note.');
+          const path=`chats/${chat.id}/${user.uid}/${Date.now()}_voice-note.webm`;
+          const fileRef=fb.storageRef(fb.storage,path);
+          await fb.uploadBytes(fileRef,voiceBlob,{contentType:voiceBlob.type||'audio/webm'});
+          const mediaUrl=await fb.getDownloadURL(fileRef);
+          await fb.addDoc(fb.collection(fb.db,'chats',chat.id,'messages'),{senderId:user.uid,text:'',type:'audio',mediaUrl,createdAt:fb.serverTimestamp()});
+          await fb.updateDoc(fb.doc(fb.db,'chats',chat.id),{lastMessage:'🎙️ Voice message',lastMessageAt:fb.serverTimestamp()});
+        } catch(error) { alert('Voice note could not be sent: '+error.message); }
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      voiceRecorder.start();
+      voiceRecording = true;
+      $('recordingIndicator').style.display = 'block';
+      $('voiceNoteBtn').textContent = '⏹️';
+
+    } catch (error) {
+      alert('Please allow microphone access to record voice notes.');
+    }
+
+  } else {
+    voiceRecorder.stop();
+    voiceRecording = false;
+    $('recordingIndicator').style.display = 'none';
+    $('voiceNoteBtn').textContent = '🎙️';
+  }
+};
+$('feedFilter').onclick=()=>alert('For You feed selected. Following feed can be added in the next version.');
+document.querySelectorAll('.follow').forEach(b=>b.onclick=()=>{b.textContent=b.textContent==='Follow'?'Following':'Follow';b.style.color=b.textContent==='Following'?'#326cf4':''});
+applyJCTheme(localStorage.getItem('jcTheme') || 'light');
+renderChatPeople();
+selectChat(activeChat);
+renderAll();
+</script>
+</body>
+</html>
