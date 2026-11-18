@@ -45,7 +45,8 @@
   margin: 0;
   letter-spacing: -1px;
   color: #18212f;
-}.heading p{color:var(--muted);font-size:13px;margin:4px 0 0}.stories{display:flex;gap:14px;overflow:auto;padding:5px 2px 16px;scrollbar-width:none}.story{
+}.heading p{color:var(--muted);font-size:13px;margin:4px 0 0}.jc-home-suggestions{margin:8px 0 18px}.jc-home-suggestions-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 10px}.jc-home-suggestions-head h2{font-size:18px;margin:0;color:var(--ink)}.jc-home-suggestions-head span{font-size:12px;color:var(--muted)}.jc-home-suggestions-list{display:flex;gap:10px;overflow-x:auto;padding:2px 1px 10px;scrollbar-width:none}.jc-home-suggestion{flex:0 0 142px;min-width:142px;background:var(--card,#fff);border:1px solid var(--line,#edf0f4);border-radius:14px;padding:12px 10px;text-align:center}.jc-home-suggestion img{width:58px;height:58px;border-radius:50%;object-fit:cover;margin:0 auto 7px;display:block}.jc-home-suggestion strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.jc-home-suggestion small{display:block;color:var(--muted);font-size:11px;margin:3px 0 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.jc-home-suggestion button{width:100%;border:0;border-radius:20px;background:var(--blue);color:#fff;padding:7px 8px;font-weight:700;font-size:12px}.jc-home-suggestion button.following{background:#eef2f8;color:var(--ink)}
+.stories{display:flex;gap:14px;overflow:auto;padding:5px 2px 16px;scrollbar-width:none}.story{
   flex:0 0 76px;
   text-align:center;
   border:0;
@@ -1629,7 +1630,7 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
  #messagesPage>.heading{display:none!important}
  #messagesPage .chatlayout{display:flex!important;flex-direction:column!important;min-height:calc(100dvh - 76px)!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff}
  #messagesPage .chatlist{display:flex!important;flex-direction:column!important;flex:1!important;padding:14px 16px 8px!important;border:0!important;overflow:hidden}
- #messagesPage .chatlist h2{font-size:27px!important;color:#326cf4!important;margin:0!important}
+ #messagesPage .chatlist h2{font-size:27px!important;color:#159b63!important;margin:0!important}
  .jc-chat-top{display:flex;align-items:center;gap:14px;margin:3px 0 18px}
  .jc-chat-top button{border:0;background:transparent;font-size:25px;color:#17212b;padding:4px}
  .jc-chat-top .jc-chat-camera{margin-left:auto}
@@ -1653,6 +1654,10 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
 .jc-create-head{display:flex;align-items:center;gap:13px}.jc-create-head h1{font-size:22px;margin:0}.jc-create-head p{font-size:12px;color:#b9c0ca;margin:4px 0}.jc-create-head>span{margin-left:auto;font-size:23px}.jc-create-back{border:0;background:#252b34;color:#fff;border-radius:50%;width:38px;height:38px;font-size:25px}
 .jc-create-preview{flex:1;min-height:55vh;border-radius:24px;margin:18px 0;background:radial-gradient(circle at 50% 40%,#303946,#11151c 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px}.jc-create-lens{font-size:60px;color:#c9d5e6}.jc-create-preview strong{font-size:20px}.jc-create-preview small{color:#b7c0cb}.jc-create-main,.jc-create-secondary{border:0;border-radius:28px;padding:13px 23px;font-weight:750;font-size:14px}.jc-create-main{background:#18a76a;color:#fff;margin-top:12px}.jc-create-secondary{background:#2b313b;color:#fff}.jc-create-actions{display:flex;justify-content:space-around;gap:12px}.jc-create-actions button{border:0;background:#252b34;color:#fff;border-radius:18px;padding:12px 18px}
 @media(max-width:768px){.jc-create-studio{min-height:calc(100dvh - 105px);border-radius:0;margin:-12px}.jc-create-preview{min-height:60dvh}.jc-create-actions{padding-bottom:12px}}
+
+
+/* Explore member directory */
+.jc-explore-members{margin:14px 0 20px}.jc-explore-members h2{font-size:17px;margin:0 0 10px;color:var(--ink)}.jc-explore-person{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.jc-explore-person img{width:44px;height:44px;border-radius:50%;object-fit:cover}.jc-explore-person .jc-explore-person-info{flex:1;min-width:0}.jc-explore-person strong,.jc-explore-person small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.jc-explore-person small{color:var(--muted);font-size:12px;margin-top:3px}.jc-explore-person button{border:0;border-radius:18px;padding:8px 13px;font-weight:600;background:#326cf4;color:#fff}.jc-explore-person button.secondary{background:#edf2ff;color:#326cf4}
 
 </style></head>
 <body>
@@ -1740,6 +1745,10 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
 <div class="heading"><div><h1 id="welcomeGreeting">Welcome to JC CONNECT 👋</h1>
 <p>Your people, your moments, your world.</p></div><button class="softbtn" id="feedFilter">For you⌄</button></div>
 <div class="stories" id="stories"></div>
+<section class="jc-home-suggestions" id="jcHomeSuggestions">
+  <div class="jc-home-suggestions-head"><h2>People you may know</h2><span>Find people to follow</span></div>
+  <div class="jc-home-suggestions-list" id="jcHomeSuggestionList"><p class="empty">Loading JC members...</p></div>
+</section>
 <div class="composer">
   <div class="compose-row">
     <img class="avatar" id="composeAvatar" src="https://i.pravatar.cc/100?img=12" alt="Your profile">
@@ -1755,7 +1764,7 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
 </div>
 <div class="feed" id="feed"></div>
 </section>
-<section class="page" id="explorePage"><div class="heading"><div><h1>Explore</h1><p>Discover creators, conversations and moments.</p></div></div><input class="search" id="exploreSearch" placeholder="Search people, posts or hashtags"><div class="feed" id="exploreFeed"></div></section>
+<section class="page" id="explorePage"><div class="heading"><div><h1>Explore</h1><p>Discover creators, conversations and moments.</p></div></div><input class="search" id="exploreSearch" placeholder="Search people, posts or hashtags"><section class="jc-explore-members"><h2>People on JC</h2><div id="explorePeople"><p class="empty">Search for people or wait for members to load.</p></div></section><div class="feed" id="exploreFeed"></div></section>
 <section class="page" id="createPage">
   <div class="jc-camera-app" id="jcCameraApp">
     <div class="jc-camera-top">
@@ -2311,30 +2320,9 @@ let posts=[
 {id:2,user:people[1],text:'City views and fresh perspectives. There is always something beautiful around the corner. 📸 #NaijaCreators',img:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1100&auto=format&fit=crop',likes:89,comments:12,liked:false},
 {id:3,user:people[2],text:'Weekend energy loading... What are your plans? ✨',img:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1100&auto=format&fit=crop',likes:206,comments:31,liked:false}
 ];
-let stories=[{name:'Your story',img:'https://i.pravatar.cc/100?img=12',own:true},...people.map(p=>({name:p.name.split(' ')[0],img:p.img}))];
-let chats = people.slice(0, 4).map((p, i) => ({
-  person: p,
-  messages: i === 0 ? [
-    { text: 'Hey! Welcome to JC 👋', mine: false, time: '10:42' },
-    { text: 'Thanks! Glad to be here.', mine: true, time: '10:43' },
-    { text: 'Have you checked out the new videos?', mine: false, time: '10:44' }
-  ] : [
-    { text: 'Hi there! How is your day going?', mine: false, time: '09:15' }
-  ]
-}));
-
-chats.unshift({
-  person: {
-    name: 'Meta AI',
-    img: 'https://i.pravatar.cc/100?img=68'
-  },
-  isAI: true,
-  messages: [{
-    text: 'Hello! 👋 I am the AI assistant in JC CONNECT. How can I help you today?',
-    mine: false,
-    time: 'Now'
-  }]
-});
+let stories=[{name:'Your story',img:'https://i.pravatar.cc/100?img=12',own:true}];
+// Start with no sample conversations. Only real Firebase chats are shown.
+let chats = [];
 let activeChat=0, userName='Caleb',userBio='Sharing moments, ideas and good energy. Welcome to my JC space ✨',nextId=4;
 
 function modal(title,body,submitText,handler){
@@ -2677,9 +2665,13 @@ function renderPosts(target = 'feed', list = posts) {
 function renderChatPeople() {
   const container = $('chatPeople');
   if (!container) return;
+  if (!chats.length) {
+    container.innerHTML = '<p class="empty">No conversations yet. Follow a member in Explore, then tap Message to start chatting.</p>';
+    return;
+  }
   container.innerHTML = chats.map((chat, index) => `
     <button type="button" class="chatperson" data-chat-index="${index}">
-      <img src="${escapeHtml(chat.person.img || 'https://i.pravatar.cc/100?img=12')}" alt="">
+      <img src="${escapeHtml(chat.person.img || jcAvatarForGender(chat.person.gender))}" alt="">
       <div><strong>${escapeHtml(chat.name || chat.person.name)}</strong><small>${escapeHtml((chat.messages.at(-1)?.text || 'Tap to start chatting').slice(0, 54))}</small></div>
     </button>
   `).join('');
@@ -2757,7 +2749,7 @@ async function loadStories() {
       .sort((a,b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
     stories = [{ name:'Your story', img:$('profileAvatar')?.src || 'https://i.pravatar.cc/100?img=12', own:true }, ...await Promise.all(remote.map(async x => {
       const mediaUrl = x.mediaPath ? await jcGetSupabaseMediaUrl(x.mediaPath) : (x.mediaUrl || '');
-      return {...x, mediaUrl, name:x.displayName || 'JC Member', img:mediaUrl || x.photoURL || 'https://i.pravatar.cc/100?img=12', text:x.text || ''};
+      return {...x, mediaUrl, name:x.displayName || 'JC Member', img:mediaUrl || x.photoURL || jcAvatarForGender(x.gender), text:x.text || ''};
     }))];
     renderStories();
   } catch (error) { console.error('Stories could not load:', error); }
@@ -2794,6 +2786,8 @@ async function sendChatMessage() {
   const chat = chats[activeChat]; const fb = window.jcFirebase; const current = fb?.auth?.currentUser;
   if (!text || !chat) return;
   if (!current || !chat.id) { alert('Choose a real JC CONNECT member to start a Firebase chat.'); return; }
+  const recipientId=chat.otherUserId || (chat.members||[]).find(id=>id!==current.uid);
+  if(!recipientId || !(await fb.getDoc(fb.doc(fb.db,'User',current.uid,'following',recipientId))).exists()){alert('Follow this member before sending messages.');return;}
   try {
     await fb.addDoc(fb.collection(fb.db,'chats',chat.id,'messages'), {
       senderId:current.uid, text, type:'text', createdAt:fb.serverTimestamp()
@@ -2958,12 +2952,63 @@ $('chatImageInput').onchange = e => {
 
   reader.readAsDataURL(file);
 };
+let jcAiHistory = [];
 $('metaAIButton').onclick = () => {
-  const aiIndex = chats.findIndex(c => c.isAI);
-
-  if (aiIndex !== -1) {
-    selectChat(aiIndex);
-  }
+  const currentUser = window.jcFirebase?.auth?.currentUser;
+  if (!currentUser) { alert('Please sign in to use JC AI.'); return; }
+  jcAiHistory = [];
+  modal('JC AI Assistant', `
+    <div class="jc-ai-panel" style="display:flex;flex-direction:column;gap:12px;min-height:330px">
+      <p style="margin:0;color:#667085;font-size:13px">Ask JC AI a question. Your conversation stays in this chat session.</p>
+      <div id="jcAiMessages" aria-live="polite" style="height:270px;overflow-y:auto;border:1px solid #e8edf5;border-radius:14px;padding:12px;background:#f8faff;display:flex;flex-direction:column;gap:10px">
+        <div style="align-self:flex-start;max-width:90%;background:#fff;border:1px solid #e8edf5;padding:10px 12px;border-radius:13px">Hello! I'm JC AI. How can I help you today?</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <textarea id="jcAiInput" class="field" rows="2" maxlength="4000" placeholder="Message JC AI…" style="resize:vertical;flex:1;min-width:0"></textarea>
+        <button type="button" id="jcAiSend" class="primary" style="min-height:44px">Send</button>
+      </div>
+      <small id="jcAiStatus" style="color:#667085">AI responses may take a few seconds.</small>
+    </div>
+  `, 'Close', () => {});
+  const footer = $('submitModal')?.closest('.modalrow');
+  if (footer) footer.style.display = 'none';
+  const input = $('jcAiInput'), send = $('jcAiSend'), messages = $('jcAiMessages'), status = $('jcAiStatus');
+  const addBubble = (text, mine=false) => {
+    const bubble = document.createElement('div');
+    bubble.style.cssText = `align-self:${mine?'flex-end':'flex-start'};max-width:90%;white-space:pre-wrap;overflow-wrap:anywhere;padding:10px 12px;border-radius:13px;background:${mine?'#326cf4':'#fff'};color:${mine?'#fff':'#18212f'};border:${mine?'0':'1px solid #e8edf5'}`;
+    bubble.textContent = text;
+    messages.appendChild(bubble); messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  };
+  const sendMessage = async () => {
+    const message = input.value.trim();
+    if (!message || send.disabled) return;
+    const user = window.jcFirebase?.auth?.currentUser;
+    if (!user) { status.textContent = 'Please sign in again to continue.'; return; }
+    addBubble(message, true); input.value = ''; send.disabled = true; status.textContent = 'JC AI is thinking…';
+    const loading = addBubble('Thinking…');
+    jcAiHistory.push({type:'user_input', content:message});
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/.netlify/functions/jc-ai', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body:JSON.stringify({input:jcAiHistory})
+      });
+      const data = await response.json().catch(()=>({}));
+      if (!response.ok) throw new Error(data.error || `AI request failed (${response.status}).`);
+      loading.remove();
+      addBubble(data.reply || 'I could not create a response. Please try again.');
+      if (Array.isArray(data.steps)) jcAiHistory.push(...data.steps);
+      status.textContent = 'Connected to JC AI';
+    } catch (error) {
+      loading.remove(); jcAiHistory.pop();
+      addBubble('Sorry, I could not connect right now. ' + (error.message || 'Please try again.'));
+      status.textContent = 'Connection error';
+    } finally { send.disabled = false; input.focus(); }
+  };
+  send.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+  setTimeout(()=>input.focus(),50);
 };
 let liveStream = null;
 $('goLiveBtn').onclick = () => {
@@ -3110,6 +3155,17 @@ let jcChatMessageUnsubscribe = null;
 let jcActiveMessageChatId = null;
 let jcPostUnsubscribe = null;
 let jcPeople = [];
+function jcAvatarForGender(gender) {
+  const value=String(gender||'').toLowerCase();
+  const female=['female','woman','f'].includes(value);
+  const symbol=female?'♀':'♂';
+  const fill=female?'#d9468f':'#2563eb';
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" rx="80" fill="#eef2ff"/><circle cx="80" cy="59" r="29" fill="${fill}"/><path d="M25 145c4-31 24-48 55-48s51 17 55 48" fill="${fill}"/><text x="128" y="42" font-size="30" font-family="Arial" font-weight="700" text-anchor="middle" fill="${fill}">${symbol}</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+function jcMemberAvatar(data={}, authUser=null) {
+  return data.photoURL || authUser?.photoURL || jcAvatarForGender(data.gender);
+}
 function jcCurrentUser(){ return window.jcFirebase?.auth?.currentUser || null; }
 async function jcCreateNotification(uid, data) {
   const fb=window.jcFirebase; const current=jcCurrentUser();
@@ -3142,8 +3198,9 @@ async function jcLoadProfile(user) {
     if ($('profileName')) $('profileName').textContent=name;
     if ($('profileHandle')) $('profileHandle').textContent=data.handle || '@'+name.toLowerCase().replace(/[^a-z0-9_]/g,'_');
     if ($('profileBio')) $('profileBio').textContent=userBio;
-    if ($('profileAvatar') && (data.photoURL || user.photoURL)) $('profileAvatar').src=data.photoURL || user.photoURL;
-    if ($('composeAvatar') && (data.photoURL || user.photoURL)) $('composeAvatar').src=data.photoURL || user.photoURL;
+    const defaultAvatar=jcMemberAvatar(data,user);
+    if ($('profileAvatar')) $('profileAvatar').src=defaultAvatar;
+    if ($('composeAvatar')) $('composeAvatar').src=defaultAvatar;
     if ($('sideName')) $('sideName').textContent=name;
     updateGreeting();
   } catch(error){ console.warn('Profile load failed:',error); }
@@ -3179,8 +3236,8 @@ async function jcLoadFollowList(kind) {
     if(!snap.size) { list.innerHTML='<p class="empty">No '+title.toLowerCase()+' yet.</p>'; return; }
     const members=await Promise.all(snap.docs.map(async item=>{
       const uid=item.id;
-      try { const profile=await fb.getDoc(fb.doc(fb.db,'User',uid)); const data=profile.exists()?profile.data():{}; return {id:uid,name:data.displayName||item.data().displayName||'JC Member',handle:data.handle||'@member',photo:data.photoURL||'https://i.pravatar.cc/100?img=12'}; }
-      catch(e) { return {id:uid,name:item.data().displayName||'JC Member',handle:'@member',photo:'https://i.pravatar.cc/100?img=12'}; }
+      try { const profile=await fb.getDoc(fb.doc(fb.db,'User',uid)); const data=profile.exists()?profile.data():{}; return {id:uid,name:data.displayName||item.data().displayName||'JC Member',handle:data.handle||'@member',photo:jcMemberAvatar(data)}; }
+      catch(e) { return {id:uid,name:item.data().displayName||'JC Member',handle:'@member',photo:jcAvatarForGender('')}; }
     }));
     list.innerHTML=members.map(person=>`<div class="jc-follow-person" data-uid="${escapeHtml(person.id)}"><img src="${escapeHtml(person.photo)}" alt=""><div><strong>${escapeHtml(person.name)}</strong><small>${escapeHtml(person.handle)}</small></div></div>`).join('');
   } catch(error) {
@@ -3204,18 +3261,34 @@ $('showFollowing')?.addEventListener('click',()=>jcLoadFollowList('following'));
 $('sideShowFollowers')?.addEventListener('click',()=>jcLoadFollowList('followers'));
 $('sideShowFollowing')?.addEventListener('click',()=>jcLoadFollowList('following'));
 
+function jcRenderHomeSuggestions(followingIds=new Set()) {
+  const box=$('jcHomeSuggestionList'); if(!box) return;
+  const current=jcCurrentUser();
+  const suggestions=jcPeople.filter(p=>p.id!==current?.uid && !followingIds.has(p.id)).slice(0,12);
+  if(!suggestions.length){box.innerHTML='<p class="empty">No new members to suggest right now. Check back later.</p>';return;}
+  box.innerHTML=suggestions.map(p=>`<article class="jc-home-suggestion"><img src="${escapeHtml(p.img||'https://i.pravatar.cc/100?img=12')}" alt=""><strong>${escapeHtml(p.name||p.displayName||'JC Member')}</strong><small>${escapeHtml(p.handle||'@member')}</small><button type="button" data-home-follow="${escapeHtml(p.id)}">Follow</button></article>`).join('');
+  box.querySelectorAll('[data-home-follow]').forEach(button=>button.addEventListener('click',async()=>{
+    const person=jcPeople.find(p=>p.id===button.dataset.homeFollow); if(!person)return;
+    button.disabled=true;button.textContent='Following...';
+    try{await jcToggleFollow(person);followingIds.add(person.id);jcRenderHomeSuggestions(followingIds);}
+    catch(error){button.disabled=false;button.textContent='Follow';alert('Could not follow this member: '+error.message);}
+  }));
+}
+
 async function jcLoadPeople() {
   const fb=window.jcFirebase, user=jcCurrentUser(); if(!user) return;
   try {
     const snap=await fb.getDocs(fb.collection(fb.db,'User'));
-    jcPeople=snap.docs.filter(d=>d.id!==user.uid).map(d=>({id:d.id,...d.data(),name:d.data().displayName||'JC Member',img:d.data().photoURL||'https://i.pravatar.cc/100?img=12'}));
+    jcPeople=snap.docs.filter(d=>d.id!==user.uid).map(d=>({id:d.id,...d.data(),name:d.data().displayName||'JC Member',img:jcMemberAvatar(d.data())}));
     const followingSnap=await fb.getDocs(fb.collection(fb.db,'User',user.uid,'following'));
     const followingIds=new Set(followingSnap.docs.map(d=>d.id));
+    jcRenderHomeSuggestions(followingIds);
     const suggestionCard=document.querySelector('.sidebar .sidecard:last-child');
     if(suggestionCard) suggestionCard.innerHTML='<h3>People to follow</h3>'+(jcPeople.slice(0,5).map(p=>`<div class="profile-mini" style="margin:12px 0"><img src="${escapeHtml(p.img)}"><p>${escapeHtml(p.name)}<br><small>${escapeHtml(p.handle||'JC member')}</small></p><button class="softbtn" data-follow-user="${p.id}">${followingIds.has(p.id)?'Following':'Follow'}</button></div>`).join('')||'<p>No other members yet.</p>');
     suggestionCard?.querySelectorAll('[data-follow-user]').forEach(button=>button.onclick=async()=>{const person=jcPeople.find(p=>p.id===button.dataset.followUser);try{await jcToggleFollow(person);button.textContent=button.textContent==='Follow'?'Following':'Follow';}catch(e){alert('Follow update failed: '+e.message);}});
     const box=$('chatPeople'); if(box && !chats.length) box.innerHTML='<p class="empty">No conversations yet. Start a chat with a JC member.</p>';
-  } catch(error){ console.warn('Member directory unavailable:',error); }
+  } catch(error){ console.warn('Member directory unavailable:',error); throw error; }
+  return jcPeople;
 }
 async function jcLoadChats() {
   const fb=window.jcFirebase, user=jcCurrentUser(); if(!user) return;
@@ -3225,7 +3298,7 @@ async function jcLoadChats() {
     const next=[];
     for(const d of snap.docs){
       const data=d.data(); const other=(data.participants||[]).find(x=>x.uid!==user.uid)||{};
-      next.push({id:d.id, name:data.name||'', type:data.type||'direct', person:{name:other.displayName||data.name||'JC Member',img:other.photoURL||'https://i.pravatar.cc/100?img=12'},otherUserId:other.uid||'',members:data.members||[],messages:[]});
+      next.push({id:d.id, name:data.name||'', type:data.type||'direct', person:{name:other.displayName||data.name||'JC Member',img:other.photoURL||jcAvatarForGender(other.gender)},otherUserId:other.uid||'',members:data.members||[],messages:[]});
     }
     chats=next; if(activeChat>=chats.length) activeChat=0;
     renderChatPeople(); if(chats.length) selectChat(activeChat); else if($('messages')) $('messages').innerHTML='<div class="empty">No messages yet. Start a conversation.</div>';
@@ -3245,14 +3318,19 @@ function jcWatchChatMessages(chat) {
   },error=>console.error('Message listener failed:',error));
 }
 async function jcStartChat(person) {
-  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user||!person?.id) return;
-  const existing=chats.find(c=>c.members?.includes(person.id)); if(existing){selectChat(chats.indexOf(existing));return;}
+  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user||!person?.id) return false;
+  // Messaging is available only after the current user follows the recipient.
+  const followSnap=await fb.getDoc(fb.doc(fb.db,'User',user.uid,'following',person.id));
+  if(!followSnap.exists()){alert('Follow this member before starting a chat.');return false;}
+  const existingIndex=chats.findIndex(c=>c.members?.includes(person.id));
+  if(existingIndex>=0){selectChat(existingIndex);return true;}
   try {
     const ids=[user.uid,person.id].sort(); const chatId=ids.join('_');
     const ref=fb.doc(fb.db,'chats',chatId); const snap=await fb.getDoc(ref);
-    if(!snap.exists()) await fb.setDoc(ref,{members:ids,participants:[{uid:user.uid,displayName:user.displayName||'JC Member',photoURL:user.photoURL||''},{uid:person.id,displayName:person.displayName||person.name,photoURL:person.photoURL||person.img||''}],createdBy:user.uid,createdAt:fb.serverTimestamp(),lastMessage:'',lastMessageAt:fb.serverTimestamp(),type:'direct'});
-    await jcLoadChats();
-  } catch(error){alert('Could not start chat: '+error.message);}
+    if(!snap.exists()) await fb.setDoc(ref,{members:ids,participants:[{uid:user.uid,displayName:user.displayName||userName||'JC Member',photoURL:user.photoURL||''},{uid:person.id,displayName:person.displayName||person.name||'JC Member',photoURL:person.photoURL||person.img||''}],createdBy:user.uid,createdAt:fb.serverTimestamp(),lastMessage:'',lastMessageAt:fb.serverTimestamp(),type:'direct'});
+    const chat={id:chatId,name:'',type:'direct',person:{name:person.displayName||person.name||'JC Member',img:person.photoURL||person.img||jcAvatarForGender(person.gender)},otherUserId:person.id,members:ids,messages:[]};
+    chats.unshift(chat); activeChat=0; renderChatPeople(); selectChat(0); return true;
+  } catch(error){console.error('Could not start chat:',error);alert('Could not start chat: '+(error.message||'Please check your connection and Firebase permissions.'));return false;}
 }
 async function jcLoadNotifications(){
   const fb=window.jcFirebase,user=jcCurrentUser(); if(!user) return;
@@ -3273,7 +3351,7 @@ async function jcLoadPostsRealtime(){
       try {const [likes,comments]=await Promise.all([fb.getDocs(fb.collection(fb.db,'post',d.id,'likes')),fb.getDocs(fb.collection(fb.db,'post',d.id,'comments'))]);likeCount=likes.size;commentCount=comments.size;liked=likes.docs.some(x=>x.id===user.uid);}catch(e){console.warn('Post engagement read failed:',e);}
       let mediaUrl=data.mediaUrl||data.imageUrl||'';
       if(data.mediaPath){try{mediaUrl=await jcGetSupabaseMediaUrl(data.mediaPath);}catch(e){console.warn('Media URL could not be refreshed:',e);}}
-      return {id:d.id,user:{name:data.displayName||'JC CONNECT User',handle:data.handle||'@user',img:data.photoURL||'https://i.pravatar.cc/100?img=12'},text:data.text||'',img:mediaUrl,mediaType:data.mediaType||'image',likes:likeCount,comments:commentCount,liked,time:data.createdAt?.toDate?data.createdAt.toDate().toLocaleString():'Recently',userId:data.userId};
+      return {id:d.id,user:{name:data.displayName||'JC CONNECT User',handle:data.handle||'@user',img:jcMemberAvatar(data)},text:data.text||'',img:mediaUrl,mediaType:data.mediaType||'image',likes:likeCount,comments:commentCount,liked,time:data.createdAt?.toDate?data.createdAt.toDate().toLocaleString():'Recently',userId:data.userId};
     }));
     posts=next; renderAll();
   },error=>{console.error('Feed listener failed:',error);});
@@ -3308,19 +3386,33 @@ $('editProfile')?.addEventListener('click',()=>{
     try{await jcSaveProfile(name,handle,bio);}catch(e){alert('Profile could not be saved: '+e.message);return false;}
   });
 });
-// Real user directory for new direct chats.
+// New chat opens a searchable directory of registered JC CONNECT members.
 $('newChat').onclick = null;
-$('newChat')?.addEventListener('click',()=>{
-  if(!jcPeople.length){alert('No other JC accounts were found yet. Ask another member to register first.');return;}
-  modal('Start a new chat',`<input id="memberSearch" class="field" placeholder="Search JC members"><div id="memberChoices" style="max-height:280px;overflow:auto">${jcPeople.map((p,i)=>`<button type="button" class="chatperson" data-member-index="${i}"><img src="${escapeHtml(p.img)}"><div><strong>${escapeHtml(p.name)}</strong><small>${escapeHtml(p.handle||'JC member')}</small></div></button>`).join('')}</div>`,'Cancel',()=>{});
-  $('submitModal').style.display='none';$('memberSearch').addEventListener('input',e=>{const t=e.target.value.toLowerCase();document.querySelectorAll('[data-member-index]').forEach(b=>b.style.display=b.textContent.toLowerCase().includes(t)?'':'none');});
-  document.querySelectorAll('[data-member-index]').forEach(b=>b.onclick=async()=>{await jcStartChat(jcPeople[Number(b.dataset.memberIndex)]);closeModal();});
+$('newChat')?.addEventListener('click', async ()=>{
+  const current=jcCurrentUser();
+  if(!current){alert('Please sign in again to start a chat.');return;}
+  const trigger=$('newChat'); if(trigger){trigger.disabled=true;trigger.textContent='Loading members...';}
+  try {
+    await jcLoadPeople();
+    const followingSnap=await window.jcFirebase.getDocs(window.jcFirebase.collection(window.jcFirebase.db,'User',current.uid,'following'));
+    const followingIds=new Set(followingSnap.docs.map(d=>d.id));
+    const people=jcPeople.filter(p=>p.id!==current.uid && followingIds.has(p.id));
+    modal('Start a new chat',`<p style="color:#667085;margin:0 0 10px">You can message members you follow. Find them by name or username.</p><input id="memberSearch" class="field" placeholder="Search name or username..." autocomplete="off"><div id="memberChoices" style="max-height:320px;overflow:auto;display:grid;gap:7px">${people.length?people.map((p,i)=>`<button type="button" class="chatperson" data-member-index="${i}" style="width:100%;text-align:left"><img src="${escapeHtml(p.img)}" alt=""><div><strong>${escapeHtml(p.name||p.displayName||'JC Member')}</strong><small>${escapeHtml(p.handle||'JC member')}</small></div></button>`).join(''):'<p class="empty">You are not following any members yet. Find and follow people in Explore first.</p>'}</div>`,'Close',()=>{});
+    const search=$('memberSearch');
+    search?.addEventListener('input',e=>{const term=e.target.value.trim().toLowerCase();document.querySelectorAll('[data-member-index]').forEach(b=>{b.style.display=b.textContent.toLowerCase().includes(term)?'':'none';});});
+    document.querySelectorAll('[data-member-index]').forEach(b=>b.onclick=async()=>{const person=people[Number(b.dataset.memberIndex)];b.disabled=true;b.querySelector('strong').textContent='Opening chat...';const ok=await jcStartChat(person);if(ok)closeModal();else b.disabled=false;});
+  } catch(error) {
+    console.error('New chat member search failed:',error);
+    alert('Could not load JC members. Firebase may be blocking access to the User directory: '+(error.message||'Unknown error'));
+  } finally { if(trigger){trigger.disabled=false;trigger.textContent='＋ New chat';} }
 });
 // Real Firebase story, post, chat image, notification, and follow persistence.
 $('chatImageInput').onchange = null;
 $('chatImageInput')?.addEventListener('change',async e=>{
   const file=e.target.files?.[0],chat=chats[activeChat],fb=window.jcFirebase,user=jcCurrentUser();if(!file)return;
   if(!user||!chat?.id){alert('Open a Firebase chat first.');e.target.value='';return;}
+  const recipientId=chat.otherUserId || (chat.members||[]).find(id=>id!==user.uid);
+  if(!recipientId || !(await fb.getDoc(fb.doc(fb.db,'User',user.uid,'following',recipientId))).exists()){alert('Follow this member before sending media.');e.target.value='';return;}
   try{const path=`chats/${chat.id}/${user.uid}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;const ref=fb.storageRef(fb.storage,path);await fb.uploadBytes(ref,file,{contentType:file.type});const url=await fb.getDownloadURL(ref);await fb.addDoc(fb.collection(fb.db,'chats',chat.id,'messages'),{senderId:user.uid,text:'',mediaUrl:url,type:'image',createdAt:fb.serverTimestamp()});await fb.updateDoc(fb.doc(fb.db,'chats',chat.id),{lastMessage:'📷 Photo',lastMessageAt:fb.serverTimestamp()});}
   catch(error){alert('Image could not be sent: '+error.message);}finally{e.target.value='';}
 });
@@ -4021,6 +4113,25 @@ button, [role="button"], input, select, textarea { touch-action:manipulation; }
     });
   }
 })();
+
+// Explore now includes a searchable directory of registered JC members.
+async function jcRenderExplorePeople(searchTerm='') {
+  const target=$('explorePeople'); if(!target)return;
+  const user=jcCurrentUser(), fb=window.jcFirebase;
+  if(!user||!fb){target.innerHTML='<p class="empty">Sign in to discover JC members.</p>';return;}
+  target.innerHTML='<p class="empty">Loading members...</p>';
+  try {
+    if(!jcPeople.length) await jcLoadPeople();
+    const term=String(searchTerm||'').trim().toLowerCase();
+    const members=jcPeople.filter(p=>p.id!==user.uid && (!term || `${p.name} ${p.handle||''}`.toLowerCase().includes(term)));
+    const followingSnap=await fb.getDocs(fb.collection(fb.db,'User',user.uid,'following'));
+    const followingIds=new Set(followingSnap.docs.map(d=>d.id));
+    if(!members.length){target.innerHTML='<p class="empty">No matching members found.</p>';return;}
+    target.innerHTML=members.map(p=>{const followed=followingIds.has(p.id);return `<div class="jc-explore-person" data-explore-uid="${escapeHtml(p.id)}"><img src="${escapeHtml(p.img||p.photoURL||'https://i.pravatar.cc/100?img=12')}" alt=""><div class="jc-explore-person-info"><strong>${escapeHtml(p.name||p.displayName||'JC Member')}</strong><small>${escapeHtml(p.handle||'@member')}</small></div>${followed?'<button type="button" class="secondary" data-explore-action="message">Message</button>':'<button type="button" data-explore-action="follow">Follow</button>'}</div>`;}).join('');
+    target.querySelectorAll('[data-explore-uid]').forEach(row=>{const person=jcPeople.find(p=>p.id===row.dataset.exploreUid);const button=row.querySelector('button');button?.addEventListener('click',async()=>{button.disabled=true;try{if(button.dataset.exploreAction==='follow'){await jcToggleFollow(person);button.dataset.exploreAction='message';button.textContent='Message';button.classList.add('secondary');}else{nav('messagesPage');const ok=await jcStartChat(person);if(ok)closeModal();}}catch(error){alert('Could not complete this action: '+error.message);}finally{button.disabled=false;}});});
+  } catch(error){console.error('Explore member directory failed:',error);target.innerHTML='<p class="empty">Could not load members. Check your Firebase User directory permissions.</p>'; }
+}
+$('exploreSearch')?.addEventListener('input',e=>{const term=e.target.value.trim().toLowerCase();renderPosts('exploreFeed',posts.filter(p=>(p.text+' '+p.user.name+' '+(p.user.handle||'')).toLowerCase().includes(term)));jcRenderExplorePeople(term);});
 </script>
 \n</body>
 </html>
