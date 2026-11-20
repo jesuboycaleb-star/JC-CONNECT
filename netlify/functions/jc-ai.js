@@ -78,8 +78,16 @@ exports.handler = async (event) => {
       return reply(400, { error: "Please enter a message." });
     }
 
-    const result = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+    
+const GEMINI_FALLBACK_MODEL = "gemini-3.8-flash";
+
+async function generateWithModel(model) {
+  let result;
+  let data;
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    result = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
       {
         method: "POST",
         headers: {
@@ -101,12 +109,36 @@ exports.handler = async (event) => {
       }
     );
 
-    const data = await result.json();
+    data = await result.json();
 
-    if (!result.ok) {
-      console.error("Gemini error:", data.error?.message);
-      return reply(502, { error: "JC AI could not reach Gemini. Please try again." });
-    }
+    if (result.ok) return { result, data };
+
+    const temporaryError = [429, 500, 502, 503, 504]
+      .includes(result.status);
+
+    if (!temporaryError || attempt === 1) break;
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  return { result, data };
+}
+
+let { result, data } = await generateWithModel(GEMINI_MODEL);
+
+if (!result.ok && [429, 500, 502, 503, 504].includes(result.status)) {
+  console.warn("Primary Gemini model unavailable. Trying backup model.");
+
+  ({ result, data } = await generateWithModel(GEMINI_FALLBACK_MODEL));
+}
+
+if (!result.ok) {
+  console.error("Gemini error:", result.status, data.error?.message);
+
+  return reply(502, {
+    error: "JC AI is temporarily unavailable. Please try again shortly."
+  });
+}
 
     const answer = (data.candidates?.[0]?.content?.parts || [])
       .map(part => part.text || "")
