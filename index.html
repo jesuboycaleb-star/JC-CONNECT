@@ -3555,20 +3555,81 @@ function jcWatchChatMessages(chat) {
     renderChatPeople();
   },error=>console.error('Message listener failed:',error));
 }
+
 async function jcStartChat(person) {
-  const fb=window.jcFirebase,user=jcCurrentUser(); if(!user||!person?.id) return false;
-  // Members can start a conversation from the registered-member directory.
-  // Recipient direct-message privacy preferences are checked by the message flow.
-  const existingIndex=chats.findIndex(c=>c.members?.includes(person.id));
-  if(existingIndex>=0){selectChat(existingIndex);return true;}
+  const fb = window.jcFirebase;
+  const user = jcCurrentUser();
+
+  if (!user || !person?.id || person.id === user.uid) {
+    return false;
+  }
+
+  const existingIndex = chats.findIndex(
+    c => c.members?.includes(person.id)
+  );
+
+  if (existingIndex >= 0) {
+    selectChat(existingIndex);
+    return true;
+  }
+
   try {
-    const ids=[user.uid,person.id].sort(); const chatId=ids.join('_');
-    const ref=fb.doc(fb.db,'chats',chatId); const snap=await fb.getDoc(ref);
-    if(!snap.exists()) await fb.setDoc(ref,{members:ids,participants:[{uid:user.uid,displayName:user.displayName||userName||'JC Member',photoURL:user.photoURL||''},{uid:person.id,displayName:person.displayName||person.name||'JC Member',photoURL:person.photoURL||person.img||''}],createdBy:user.uid,createdAt:fb.serverTimestamp(),lastMessage:'',lastMessageAt:fb.serverTimestamp(),type:'direct'});
-    const chat={id:chatId,name:'',type:'direct',person:{name:person.displayName||person.name||'JC Member',img:person.photoURL||person.img||jcAvatarForGender(person.gender)},otherUserId:person.id,members:ids,messages:[]};
-    chats.unshift(chat); activeChat=0; renderChatPeople(); selectChat(0); return true;
-  } catch(error){console.error('Could not start chat:',error);alert('Could not start chat: '+(error.message||'Please check your connection and Firebase permissions.'));return false;}
+    const ids = [user.uid, person.id].sort();
+
+    const chatId = ids.join('_');
+
+    const ref = fb.doc(fb.db, 'chats', chatId);
+
+    const participantData = {
+      [user.uid]: {
+        uid: user.uid,
+        displayName: user.displayName || userName || 'JC Member',
+        photoURL: user.photoURL || ''
+      },
+      [person.id]: {
+        uid: person.id,
+        displayName: person.displayName || person.name || 'JC Member',
+        photoURL: person.photoURL || person.img || ''
+      }
+    };
+
+    const participants = ids.map(id => participantData[id]);
+
+    await fb.setDoc(ref, {
+      members: ids,
+      participants: participants,
+      type: 'direct',
+      updatedAt: fb.serverTimestamp()
+    }, { merge: true });
+
+    const chat = {
+      id: chatId,
+      name: '',
+      type: 'direct',
+      person: {
+        name: person.displayName || person.name || 'JC Member',
+        img: person.photoURL || person.img || jcAvatarForGender(person.gender)
+      },
+      otherUserId: person.id,
+      members: ids,
+      messages: []
+    };
+
+    chats.unshift(chat);
+    activeChat = 0;
+
+    renderChatPeople();
+    selectChat(0);
+
+    return true;
+
+  } catch (error) {
+    console.error('Could not start chat:', error);
+    alert('Could not start chat: ' + (error.message || 'Please check your connection and Firebase permissions.'));
+    return false;
+  }
 }
+
 async function jcLoadNotifications(){
   const fb=window.jcFirebase,user=jcCurrentUser(); if(!user) return;
   try {
