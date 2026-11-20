@@ -1,0 +1,105 @@
+
+const admin = require("firebase-admin");
+const Ably = require("ably");
+
+const headers = {
+  "Content-Type": "application/json",
+  "Cache-Control": "no-store",
+  "Access-Control-Allow-Origin": process.env.SITE_URL || "*",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
+};
+
+function reply(statusCode, data) {
+  return {
+    statusCode,
+    headers,
+    body: JSON.stringify(data)
+  };
+}
+
+function getFirebaseAdmin() {
+  if (!admin.apps.length) {
+    const serviceAccount = JSON.parse(
+      process.env.FIREBASE_SERVICE_ACCOUNT
+    );
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+  }
+
+  return admin;
+}
+
+exports.handler = async (event) => {
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 204, headers, body: "" };
+  }
+
+  if (event.httpMethod !== "POST") {
+    return reply(405, { error: "Method not allowed." });
+  }
+
+  try {
+    if (!process.env.ABLY_API_KEY ||
+        !process.env.FIREBASE_SERVICE_ACCOUNT) {
+      return reply(500, {
+        error: "Ably authentication is not configured."
+      });
+    }
+
+    const authHeader = event.headers?.authorization || "";
+    const idToken = authHeader.match(/^Bearer\s+(.+)$/i)?.[1];
+
+    if (!idToken) {
+      return reply(401, { error: "Please sign in again." });
+    }
+
+    const firebase = getFirebaseAdmin();
+    const decoded = await firebase.auth().verifyIdToken(idToken);
+    const uid = decoded.uid;
+
+    const body = JSON.parse(event.body || "{}");
+    const chatId = String(body.chatId || "");
+
+    if (!/^[A-Za-z0-9_-]{1,150}$/.test(chatId)) {
+      return reply(400, { error: "Invalid conversation." });
+    }
+
+    const db = firebase.firestore();
+    const chatRef = db.collection("chats").doc(chatId);
+    const chatSnap = await chatRef.get();
+
+    if (!chatSnap.exists) {
+      return reply(404, { error: "Conversation not found." });
+    }
+
+    const members = chatSnap.data().members;
+
+    if (!Array.isArray(members) || !members.includes(uid)) {
+      return reply(403, { error: "You cannot access this conversation." });
+    }
+
+    const channelName = `jc-chat-${chatId}`;
+
+    const ably = new Ably.Rest(process.env.ABLY_API_KEY);
+
+    const tokenRequest = await ably.auth.createTokenRequest({
+      clientId: uid,
+      capability: JSON.stringify({
+        [channelName]: ["publish", "subscribe", "presence", "history"]
+      }),
+      ttl: 60 * 60 * 1000
+    });
+
+    return reply(200, tokenRequest);
+
+  } catch (error) {
+    console.error("Ably token error:", error.message);
+
+    return reply(500, {
+      error: "Unable to authenticate your chat connection."
+    });
+  }
+};
