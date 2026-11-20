@@ -3625,7 +3625,14 @@ async function jcStartChat(person) {
 
   } catch (error) {
     console.error('Could not start chat:', error);
-    alert('Could not start chat: ' + (error.message || 'Please check your connection and Firebase permissions.'));
+    console.error('CHAT ERROR CODE:', error.code);
+    console.error('CHAT ERROR MESSAGE:', error.message);
+
+    alert(
+      'Chat Error Code: ' + (error.code || 'Unknown') +
+      '\nMessage: ' + (error.message || 'Unknown error')
+    );
+
     return false;
   }
 }
