@@ -1,8 +1,7 @@
 // JC CONNECT - JC AI Netlify Function
 
 const FIREBASE_WEB_API_KEY = "AIzaSyBy6hCKpdC5Lp9pTVbNq442pTgzbSlPj0A";
-const GEMINI_MODEL = "gemini-3.8-flash";
-
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
 const headers = {
   "Content-Type": "application/json",
   "Cache-Control": "no-store",
