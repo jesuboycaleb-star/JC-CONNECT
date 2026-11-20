@@ -3021,10 +3021,14 @@ $('chatImageInput').onchange = e => {
   reader.readAsDataURL(file);
 };
 let jcAiHistory = [];
+let jcAiConversationId = null;
+let jcAiLoading = false;
 $('metaAIButton').onclick = () => {
   const currentUser = window.jcFirebase?.auth?.currentUser;
   if (!currentUser) { alert('Please sign in to use JC AI.'); return; }
   jcAiHistory = [];
+jcAiConversationId = null;
+jcAiLoading = true;
   modal('JC AI Assistant', `
     <div class="jc-ai-panel" style="display:flex;flex-direction:column;gap:12px;min-height:330px">
       <p style="margin:0;color:#667085;font-size:13px">Ask JC AI a question. Your conversation stays in this chat session.</p>
@@ -3048,39 +3052,202 @@ $('metaAIButton').onclick = () => {
     messages.appendChild(bubble); messages.scrollTop = messages.scrollHeight;
     return bubble;
   };
+  const loadSavedConversation = async () => {
+  try {
+    const db = window.jcFirebase.db;
+    const user = window.jcFirebase.auth.currentUser;
+    const { collection, query, orderBy, limit, getDocs, doc } = window.jcFirebase;
+
+    const conversationsRef = collection(
+      db, "jcAiUsers", user.uid, "conversations"
+    );
+
+    const recentQuery = query(
+      conversationsRef,
+      orderBy("updatedAt", "desc"),
+      limit(1)
+    );
+
+    const conversationSnapshot = await getDocs(recentQuery);
+
+    messages.innerHTML = "";
+    jcAiHistory = [];
+
+    if (conversationSnapshot.empty) {
+      addBubble("Hello! I'm JC AI. How can I help you today?");
+      status.textContent = "Start a new conversation";
+      return;
+    }
+
+    const conversationDoc = conversationSnapshot.docs[0];
+    jcAiConversationId = conversationDoc.id;
+
+    const messagesRef = collection(
+      doc(conversationsRef, jcAiConversationId),
+      "messages"
+    );
+
+    const savedMessages = await getDocs(
+      query(messagesRef, orderBy("createdAt", "asc"))
+    );
+
+    savedMessages.forEach(messageDoc => {
+      const item = messageDoc.data();
+
+      if (!item.content || !item.type) return;
+
+      jcAiHistory.push({
+        type: item.type,
+        content: item.content
+      });
+
+      addBubble(item.content, item.type === "user_input");
+    });
+
+    if (!jcAiHistory.length) {
+      addBubble("Hello! I'm JC AI. How can I help you today?");
+    }
+
+    status.textContent = "Previous conversation loaded";
+  } catch (error) {
+    console.error("JC AI conversation loading failed:", error);
+    status.textContent = "Could not load saved conversation";
+    addBubble("Welcome back! You can still start chatting.");
+  } finally {
+    jcAiLoading = false;
+  }
+};
+
+loadSavedConversation();
   const sendMessage = async () => {
+     
     const message = input.value.trim();
-    if (!message || send.disabled) return;
+    if (!message || send.disabled || jcAiLoading) return;
     const user = window.jcFirebase?.auth?.currentUser;
     if (!user) { status.textContent = 'Please sign in again to continue.'; return; }
     addBubble(message, true); input.value = ''; send.disabled = true; status.textContent = 'JC AI is thinking…';
-    const loading = addBubble('Thinking…');
-    jcAiHistory.push({type:'user_input', content:message});
-    try {
-      const token = await user.getIdToken();
-      const response = await fetch('/.netlify/functions/jc-ai', {
-        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
-        body:JSON.stringify({input:jcAiHistory})
-      });
-      const data = await response.json().catch(()=>({}));
-      if (!response.ok) throw new Error(data.error || `AI request failed (${response.status}).`);
-      loading.remove();
-      addBubble(data.reply || 'I could not create a response. Please try again.');
-      if (Array.isArray(data.steps)) jcAiHistory.push(...data.steps);
-      status.textContent = 'Connected to JC AI';
-    } catch (error) {
-      loading.remove(); jcAiHistory.pop();
-      addBubble('Sorry, I could not connect right now. ' + (error.message || 'Please try again.'));
-      status.textContent = 'Connection error';
-    } finally { send.disabled = false; input.focus(); }
-  };
-  send.addEventListener('click', sendMessage);
-  input.addEventListener('keydown', e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
-  setTimeout(()=>input.focus(),50);
+
+const loading = addBubble('Thinking…');
+
+try {
+  const db = window.jcFirebase.db;
+  const {
+    collection,
+    doc,
+    addDoc,
+    serverTimestamp,
+    updateDoc
+  } = window.jcFirebase;
+
+  if (!jcAiConversationId) {
+    const conversationRef = await addDoc(
+      collection(db, "jcAiUsers", user.uid, "conversations"),
+      {
+        title: message.slice(0, 60),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      }
+    );
+
+    jcAiConversationId = conversationRef.id;
+  }
+
+  jcAiHistory.push({
+    type: 'user_input',
+    content: message
+  });
+
+  const messagesRef = collection(
+    doc(db, "jcAiUsers", user.uid, "conversations", jcAiConversationId),
+    "messages"
+  );
+
+  await addDoc(messagesRef, {
+    type: "user_input",
+    content: message,
+    createdAt: serverTimestamp()
+  });
+
+  await updateDoc(
+    doc(db, "jcAiUsers", user.uid, "conversations", jcAiConversationId),
+    { updatedAt: serverTimestamp() }
+  );
+
+  const token = await user.getIdToken();
+
+  const response = await fetch('/.netlify/functions/jc-ai', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ input: jcAiHistory })
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || `AI request failed (${response.status}).`);
+  }
+
+  const assistantReply = data.reply || 'I could not create a response. Please try again.';
+
+  loading.remove();
+  addBubble(assistantReply);
+
+  jcAiHistory.push({
+    type: "model_output",
+    content: assistantReply
+  });
+
+  await addDoc(messagesRef, {
+    type: "model_output",
+    content: assistantReply,
+    createdAt: serverTimestamp()
+  });
+
+  await updateDoc(
+    doc(db, "jcAiUsers", user.uid, "conversations", jcAiConversationId),
+    { updatedAt: serverTimestamp() }
+  );
+
+  status.textContent = 'Connected to JC AI';
+
+} catch (error) {
+  loading.remove();
+  jcAiHistory.pop();
+
+  addBubble(
+    'Sorry, I could not connect right now. ' +
+    (error.message || 'Please try again.')
+  );
+
+  status.textContent = 'Connection error';
+
+} finally {
+  send.disabled = false;
+  input.focus();
+}
+
 };
+
+send.addEventListener('click', sendMessage);
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+setTimeout(() => input.focus(), 50);
+
+};
+
 document.getElementById('jcTopAiBtn')?.addEventListener('click', () => {
   document.getElementById('metaAIButton')?.click();
 });
+
 let liveStream = null;
 $('goLiveBtn').onclick = () => {
   modal('Go Live 🔴', `
