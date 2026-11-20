@@ -3559,48 +3559,47 @@ function jcWatchChatMessages(chat) {
 async function jcStartChat(person) {
   const fb = window.jcFirebase;
   const user = jcCurrentUser();
+  let stage = 'Checking account';
 
   if (!user || !person?.id || person.id === user.uid) {
+    alert('Invalid account or member selected.');
     return false;
   }
 
-  const existingIndex = chats.findIndex(
-    c => c.members?.includes(person.id)
-  );
-
-  if (existingIndex >= 0) {
-    selectChat(existingIndex);
-    return true;
-  }
+  const ids = [user.uid, person.id].sort();
+  const chatId = ids.join('_');
+  const ref = fb.doc(fb.db, 'chats', chatId);
 
   try {
-    const ids = [user.uid, person.id].sort();
+    stage = 'Preparing chat details';
 
-    const chatId = ids.join('_');
-
-    const ref = fb.doc(fb.db, 'chats', chatId);
-
-    const participantData = {
-      [user.uid]: {
+    const participants = [
+      {
         uid: user.uid,
         displayName: user.displayName || userName || 'JC Member',
         photoURL: user.photoURL || ''
       },
-      [person.id]: {
+      {
         uid: person.id,
         displayName: person.displayName || person.name || 'JC Member',
         photoURL: person.photoURL || person.img || ''
       }
-    };
+    ];
 
-    const participants = ids.map(id => participantData[id]);
+    stage = 'Saving chat document';
 
     await fb.setDoc(ref, {
       members: ids,
-      participants: participants,
+      participants,
       type: 'direct',
-      updatedAt: fb.serverTimestamp()
+      createdBy: user.uid,
+      createdAt: fb.serverTimestamp(),
+      updatedAt: fb.serverTimestamp(),
+      lastMessage: '',
+      lastMessageAt: fb.serverTimestamp()
     }, { merge: true });
+
+    stage = 'Opening chat';
 
     const chat = {
       id: chatId,
@@ -3617,19 +3616,17 @@ async function jcStartChat(person) {
 
     chats.unshift(chat);
     activeChat = 0;
-
     renderChatPeople();
     selectChat(0);
 
     return true;
 
   } catch (error) {
-    console.error('Could not start chat:', error);
-    console.error('CHAT ERROR CODE:', error.code);
-    console.error('CHAT ERROR MESSAGE:', error.message);
+    console.error('JC CHAT FAILURE:', stage, error);
 
     alert(
-      'Chat Error Code: ' + (error.code || 'Unknown') +
+      'Failed at: ' + stage +
+      '\nError code: ' + (error.code || 'Unknown') +
       '\nMessage: ' + (error.message || 'Unknown error')
     );
 
