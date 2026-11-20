@@ -1,0 +1,15 @@
+
+{
+  "name": "jc-connect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JC CONNECT social networking application",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ably": "^2.30.0",
+    "firebase-admin": "^14.5.1"
+  }
+}
