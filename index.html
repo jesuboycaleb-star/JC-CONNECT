@@ -1724,7 +1724,24 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
  #messagesPage .chatperson strong{font-size:17px!important}
  #messagesPage .chatperson small{font-size:14px!important}
 }
+#jcTopAiBtn {
+  background: linear-gradient(135deg, #1265f4, #00b8ff) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 25px !important;
+  font-weight: 900 !important;
+  box-shadow: 0 3px 12px rgba(18, 101, 244, 0.35) !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  cursor: pointer;
+}
 
+#jcTopAiBtn:active {
+  transform: scale(0.94);
+  }
 </style>
 <style id="jc-share-sheet-style">
 .jc-share-sheet{margin:0 -4px}.jc-share-friends,.jc-share-destinations,.jc-share-actions{display:flex;gap:16px;overflow-x:auto;padding:12px 4px 18px;scrollbar-width:none}.jc-share-friends::-webkit-scrollbar,.jc-share-destinations::-webkit-scrollbar,.jc-share-actions::-webkit-scrollbar{display:none}.jc-share-friend,.jc-share-option,.jc-share-action{flex:0 0 84px;min-width:84px;border:0;background:transparent;color:#111;text-align:center;padding:0;display:flex;flex-direction:column;align-items:center;gap:8px;font:inherit}.jc-share-friend>span,.jc-share-option>span,.jc-share-action>span{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:#e9eaed;font-size:32px;font-weight:700}.jc-share-friend img{width:100%;height:100%;object-fit:cover;border-radius:50%}.jc-share-friend b,.jc-share-option b,.jc-share-action b{font-size:13px;line-height:1.25;font-weight:650;max-width:84px}.jc-invite-circle{background:#9146f5!important;color:white;font-size:42px!important}.jc-share-destinations{border-top:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8;padding-top:20px;padding-bottom:20px}.jc-share-option>span{background:var(--share-color);color:white}.jc-share-option:nth-child(5)>span{color:#1665d8;border:1px solid #ddd}.jc-share-actions{justify-content:space-between;gap:8px;padding-top:22px}.jc-share-action{flex:1;min-width:0}.jc-share-action>span{width:62px;height:62px;background:#f0f0f2;color:#555}.jc-share-action b{max-width:76px}.modalbox:has(.jc-share-sheet){width:min(680px,96vw);max-height:82dvh;overflow-y:auto;border-radius:22px 22px 0 0}.modalbox:has(.jc-share-sheet) h2{font-size:19px}
@@ -1774,7 +1791,14 @@ body.signed-out .bottomnav, body.signed-out .top {display:none!important}
   </div>
 </section>
 <div id="app" style="display:none">
-<header class="top"><div class="brand">JC <small>CONNECT</small></div><div class="topright"><button id="signOutBtn" type="button">Sign out</button><button class="iconbtn" id="searchBtn" aria-label="Search">⌕</button><button class="iconbtn notification-bell" id="bellBtn" aria-label="Notifications">
+<header class="top"><div class="brand">JC <small>CONNECT</small></div><div class="topright"><button id="signOutBtn" type="button">Sign out</button><button class="iconbtn" id="searchBtn" aria-label="Search">⌕</button>
+<button class="iconbtn" id="jcTopAiBtn"
+  type="button"
+  aria-label="Open JC AI"
+  title="JC AI">
+  ✦
+</button>
+<button class="iconbtn notification-bell" id="bellBtn" aria-label="Notifications">
   🔔
   <span class="notification-badge"></span>
 </button><img class="avatar" id="topAvatar" src="https://i.pravatar.cc/100?img=12"></div></header>
@@ -3054,6 +3078,9 @@ $('metaAIButton').onclick = () => {
   input.addEventListener('keydown', e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
   setTimeout(()=>input.focus(),50);
 };
+document.getElementById('jcTopAiBtn')?.addEventListener('click', () => {
+  document.getElementById('metaAIButton')?.click();
+});
 let liveStream = null;
 $('goLiveBtn').onclick = () => {
   modal('Go Live 🔴', `
