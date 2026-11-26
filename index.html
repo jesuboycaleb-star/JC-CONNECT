@@ -5999,9 +5999,6 @@ $('musicPost')?.addEventListener('click',()=>{
 .jc-tiktok-caption{right:84px;bottom:calc(76px + env(safe-area-inset-bottom))}
 @media(max-width:420px){.jc-tiktok-author-row{left:10px;max-width:calc(100% - 82px)}}
 </style>
-</body>
-</html>
-
 <style id="jc-premium-video-upload-fix">
 .jc-tiktok-actions{right:10px;bottom:calc(94px + env(safe-area-inset-bottom));gap:17px;align-items:center}
 .jc-tiktok-actions button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:48px;min-height:48px;padding:5px 4px;background:transparent;color:#fff;border:0;text-shadow:0 2px 5px #000;font-size:27px;font-weight:800;filter:drop-shadow(0 2px 3px #0008)}
@@ -6021,3 +6018,85 @@ $('musicPost')?.addEventListener('click',()=>{
 .jc-upgrade-progress.is-error #jcUploadProgressValue{color:#d92d20}
 @media(max-width:480px){.jc-tiktok-actions{right:6px;gap:13px}.jc-tiktok-actions button{min-width:44px}.jc-tiktok-caption{right:72px}}
 </style>
+
+/* ==========================================
+   JC CONNECT: NOTIFICATION + INBOX PATCH
+   ========================================== */
+
+(function () {
+  if (window.jcInboxNotificationPatchLoaded) return;
+  window.jcInboxNotificationPatchLoaded = true;
+
+  // Open the existing conversation screen.
+  // The original chat functions are left untouched.
+  window.jcOpenConversationFromNotification = function (chatId, otherUserId) {
+    if (!chatId) return;
+
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      alert("Please sign in to view this conversation.");
+      return;
+    }
+
+    // Store the requested conversation until the chat screen opens.
+    window.jcPendingChatOpen = {
+      chatId: chatId,
+      otherUserId: otherUserId || ""
+    };
+
+    // Use existing app navigation where available.
+    if (typeof window.openChat === "function") {
+      window.openChat(chatId);
+    } else if (typeof window.openMessages === "function") {
+      window.openMessages();
+    } else {
+      const messagesButton = document.querySelector(
+        '[data-page="messages"], #messagesNav, #messagesPage'
+      );
+      if (messagesButton) messagesButton.click();
+    }
+
+    // Notify the existing chat screen.
+    window.dispatchEvent(new CustomEvent("jc:open-chat", {
+      detail: window.jcPendingChatOpen
+    }));
+  };
+
+  // Do not erase inbox records on logout.
+  // Firestore remains the permanent source of chat history.
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (!user) {
+      window.jcPendingChatOpen = null;
+      return;
+    }
+
+    // Reload the existing inbox when the account signs in.
+    if (typeof window.jcLoadChats === "function") {
+      window.jcLoadChats();
+    }
+  });
+
+  // Make message notifications open their conversation.
+  document.addEventListener("click", function (event) {
+    const notification = event.target.closest(
+      "[data-chat-id], [data-notification-chat]"
+    );
+    if (!notification) return;
+
+    const chatId =
+      notification.dataset.chatId ||
+      notification.dataset.notificationChat;
+
+    const otherUserId =
+      notification.dataset.userId || "";
+
+    if (chatId) {
+      event.preventDefault();
+      window.jcOpenConversationFromNotification(chatId, otherUserId);
+    }
+  });
+
+})();
+  
+</body>
+</html>
